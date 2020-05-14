@@ -28,4 +28,14 @@ module.exports = class extends UserRepository {
         const removedUser = await UserModel.findOneAndDelete({ _id: id});
         return removedUser;
     }
+
+    async findByEmail(email){
+        const user = await UserModel.findOne({ email });
+        return user;
+    }
+
+    async findByIdentifaint(identifiant){
+        const user = await UserModel.findOne({ identifiant });
+        return user;
+    }
 }
