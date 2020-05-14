@@ -1,0 +1,98 @@
+main {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.welcome-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-container img {
+    width: 30%;
+    height: auto;
+}
+
+.top {
+    padding: 20px;
+}
+
+.welcome-container h1 {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5em;
+}
+
+.welcome-container p {
+    padding: 20px;
+    font-weight: lighter;
+    font-size: 1.05em;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px;
+    text-align: right;
+}
+
+.header a {
+    text-decoration: none;
+    color: #ECA821;
+}
+
+.header p {
+    text-align: right;
+}
+
+.form-container {
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-header {
+    text-align: left;
+    width: 80%;
+    padding: 40px 0px;
+}
+
+.form-group {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.form-container input[type="text"], input[type="password"], input[type="email"], input[type="tel"]{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+input[type="submit"]{
+    outline: none;
+    border: none;
+    width: 50%;
+    padding: 8px 8px;
+    margin: 20px;
+}

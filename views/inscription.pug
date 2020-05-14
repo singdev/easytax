@@ -1,0 +1,48 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/connexion.css')
+    main
+        .welcome-container
+            .top
+                img(src="/images/logo_easytax.png", alt="Logo de easytax")
+            .middle
+                h1 NULLA SIT AMET PURUS ELIEFEN, HENDRERIT DOLOR ET, CONSECTETUR MASSA. 
+                p Morbi tincidunt fringilla cursus. Fusce et magna diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a finibus orci, et ultrices ligula. Vivamus eu diam aliquet, eleifend tellus at, tempus ligula. Pellentesque ac elit turpis.
+            .bottom
+                a(href="#" class="outline-btn") En savoir plus
+
+        .form-container(class="pm-bg-color white")
+            .header
+                p Vous avez déjà un compte?
+                    a(href="/connexion" class="pm-color") Connectez vous
+            
+            form(action="/auth", method="post")
+                .form-header
+                    h1 Easytax
+                .form-group
+                    label(for="nom") Nom ou raison social
+                    input(type="text" name="nom" id="nom")
+                
+                .form-group
+                    label(for="password") Choisissez un mot de passe pour votre compte
+                    input(type="password" name="password" id="password")
+                
+                .form-group
+                    label(for="nomdirigeant") Nom du dirigeant
+                    input(type="text" name="nomDirigeant" id="nomdirigeant")
+
+                .form-group
+                    label(for="email") Adresse Email
+                    input(type="email" name="email" id="email")
+                
+                .form-group
+                    label(for="telephone") Numéro de téléphone
+                    input(type="tel" name="telephone" id="telephone")
+
+                input(type="submit", value="Je m'inscris" class="sd-bg-color white")
+
+                p(class="small-info") En cliquant sur je m'inscris, vous acceptez la
+                    a(href="#" class="sd-color") politique de confidentialité
+                    span et les
+                    a(href="#" class="sd-color") conditions d'utilisation de easytax

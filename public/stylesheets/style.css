@@ -1,8 +1,47 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+/* Les couleurs de l'application*/
+.pm-color {
+  color: #006EB6;
+}
+
+.sd-color {
+  color: #ECA821;
+}
+
+.white {
+  color: #ffffff;
+}
+
+.pm-bg-color {
+  background-color: #006EB6;
+}
+
+.sd-bg-color {
+  background-color: #ECA821;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.outline-btn {
+  padding: 8px 20px;
+  border: 1px solid #ECA821;
+  text-decoration: none;
+  color: #ECA821;
+}
+
+.small-info {
+  font-size: 0.65em;
+}
+
+p a {
+  display: inline-block;
+  padding: 0px 8px;
 }
