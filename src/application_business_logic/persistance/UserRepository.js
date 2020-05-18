@@ -13,7 +13,7 @@ module.exports = class {
         throw Error("Unimplemented method call");
     }
 
-    findByIdentifaint(){
+    findByIdentifiant(){
         throw Error("Unimplemented method call");
     }
 

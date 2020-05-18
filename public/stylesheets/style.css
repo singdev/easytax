@@ -1,7 +1,7 @@
 * {
   padding: 0px;
   margin: 0px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Jost', sans-serif;
   box-sizing: border-box;
 }
 
@@ -32,10 +32,14 @@
 
 .outline-btn {
   padding: 8px 20px;
-  border: 1px solid #ECA821;
+  border: 2px solid #ECA821;
   text-decoration: none;
   color: #ECA821;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 2px;
 }
+
 
 .small-info {
   font-size: 0.65em;
@@ -44,4 +48,13 @@
 p a {
   display: inline-block;
   padding: 0px 8px;
+}
+
+.btn {
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+  background-color: #ECA821;
+  border-radius: 10px;
+  text-align: center;
 }

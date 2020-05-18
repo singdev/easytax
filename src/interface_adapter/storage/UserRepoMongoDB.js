@@ -34,7 +34,7 @@ module.exports = class extends UserRepository {
         return user;
     }
 
-    async findByIdentifaint(identifiant){
+    async findByIdentifiant(identifiant){
         const user = await UserModel.findOne({ identifiant });
         return user;
     }

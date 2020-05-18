@@ -1,0 +1,60 @@
+.alert {
+    background-color: #006EB6;
+    padding: 20px;
+    transition: 0.4s;
+    overflow: hidden;
+}
+
+.alert p {
+    color: white;
+    font-size: 24px;
+}
+
+.alert-close {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+}
+
+.alert-header {
+    text-align: right;
+    padding: 0px 20px;
+}
+
+.zero-height {
+    height: 0;
+    padding: 0px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.form-group label {
+    color: white;
+}
+
+.form-group select {
+    border: none;
+    border-bottom: 2px solid white;
+    padding-bottom: 8px;
+    background-color: transparent;
+    color: black;
+    outline: none;
+}
+
+input {
+    border: none;
+    outline: none;
+    margin-top: 16px;
+}
+
+form {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}

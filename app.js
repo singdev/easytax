@@ -7,7 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var mongo = require('./src/framework_driver/database/mongoDB/init');
+
 var app = express();
+
+//Database
+mongo("easytax");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

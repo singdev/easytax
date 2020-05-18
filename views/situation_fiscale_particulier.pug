@@ -1,0 +1,159 @@
+extends layout
+
+block content
+    link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
+    link(rel="stylesheet", href="/stylesheets/alert.css")
+
+    header
+        nav.menu
+            a(href="#" class="nav-item")
+                i(class="fa fa-poll")
+                span Ma fiscalité
+            a(href="#" class="nav-item") 
+                i(class="fas fa-pencil-alt")
+                span Déclaration
+            a(href="#" class="nav-item") 
+                i(class="fas fa-user-circle")
+                span Mon profile
+            a(href="/deconnexion" class="nav-item") 
+                i(class="fas fa-sign-out-alt")
+                span Déconnexion
+        .logo-cn
+            img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
+        div
+            - var nom = user.nom;
+            h1(class="special") 
+                i(class="fa fa-star")
+                span= nom
+    
+    main
+        .bases
+            p.base RS
+            .bar
+            p.base RF
+            .bar
+            p.base PC
+            .bar
+            p.base IRVM
+            .bar
+            p.base BIC
+            .bar
+            p.base BA
+
+        .rs
+            p.question Êtes vous salarié?
+            .form-group
+                input#salarie-oui(type="radio", name="q-salarie" value="oui")
+                label(for="salarie-oui") Oui
+            .form-group
+                input#salarie-non(type="radio", name="q-salarie" value="non")
+                label(for="salarie-non") Non
+            
+            p.question Renseignez les informations suivante:
+            .form-group
+                input#traitement(type="text" name="traitement")
+                label(for="traitement") Traitement
+            .form-group
+                input#salaire(type="text" name="salaire")
+                label(for="salaire") Salaire
+            .form-group
+                input#indemnite(type="text" name="indemnite")
+                label(for="indemnite") Indemnité
+            .form-group
+                input#emolument(type="text" name="emolument")
+                label(for="emolument") Emoluments
+            .form-group
+                input#avantage(type="text" name="avantage")
+                label(for="avantage") Avantage en argent et en nature
+            .form-group
+                input#pensions(type="text" name="pension")
+                label(for="salaire") Pensions
+            .form-group
+                input#retenues-retraite(type="text" name="retenues-retraite")
+                label(for="retenues-retraite") Retenues retraites
+            .form-group
+                input#cotisation-assurance-maladie(type="text" name="cotisation-assurance-maladie")
+                label(for="cotisation-assurance-maladie") Cotisation assurance maladie
+            .form-group
+                input#rente-viagere(type="text" name="rente-viagere")
+                label(for="rente-viagere") Rentes viagères
+        
+        .rf
+            p.question Avez vous des propriétés avec des batîments 
+            .form-group
+                input#batiment-oui(type="radio", name="q-batiment" value="oui")
+                label(for="batiment-oui") Oui
+            .form-group
+                input#batiment-non(type="radio", name="q-batiment" value="non")
+                label(for="batiment-non") Non
+            
+            .form-group
+                input#batiment(type="text" name="batiment")
+                label(for="batiment") Quel est leur valeur locative?  
+
+            p.question Avez vous des terrains nus ?
+            .form-group
+                input#vv-oui(type="radio", name="q-vv" value="oui")
+                label(for="vv-oui") Oui
+            .form-group
+                input#vv-non(type="radio", name="q-vv" value="non")
+                label(for="vv-non") Non
+            .form-group
+                input#vv(type="text" name="vv")
+                label(for="vv") A combien estimez vous la valeur de ces terrains
+            
+            p.question Avez vous des maisons en location ?
+            .form-group
+                input#location-oui(type="radio", name="q-location" value="oui")
+                label(for="location-oui") Oui
+            .form-group
+                input#location-non(type="radio", name="q-location" value="non")
+                label(for="location-non") Non
+            .form-group
+                input#vv(type="text" name="location")
+                label(for="localtion") Quel est le total des loyés percue
+
+        .pc
+            p.question Avez vous vendu des biens de votre patrimoine?
+            .form-group
+                input#v-oui(type="radio", name="q-v" value="oui")
+                label(for="v-oui") Oui
+            .form-group
+                input#v-non(type="radio", name="q-v" value="non")
+                label(for="v-non") Non
+
+            button.btn Ajouter un bien
+            .biens
+
+        .irvm
+            p.question Êtes vous actionnaire dans une société?
+            .form-group
+                input#action-oui(type="radio", name="q-action" value="oui")
+                label(for="action-oui") Oui
+            .form-group
+                input#action-non(type="radio", name="q-action" value="non")
+                label(for="action-non") Non
+
+            .form-group
+                input#action(type="text" name="action")
+                label(for="action") Renseigné les dividendes perçue
+
+        .bic
+            p.question Quel bénéfice gagnez vous de vos ventes?
+            .form-group
+                input#b1(type="text" name="b1")
+                label(for="b1") Bénéfices
+
+        .ba
+            p.question Quel bénéfice gagnez vous de vos production agricole?
+            .form-group
+                input#action(type="text" name="b2")
+                label(for="b2") Bénéfices
+
+        
+    script(src="/javascripts/situation_fiscale_particulier.js")
+
+
+
+
+      

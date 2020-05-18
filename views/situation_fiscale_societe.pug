@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  header
+    nav.menu
+      a(href="#" class="nav-item") Ma fiscalité
+      a(href="#" class="nav-item") Déclaration
+      a(href="#" class="nav-item") Mon profile
+      a(href="/deconnexion" class="nav-item") Déconnexion
+    img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
+    div
+      - var nom = user.nom;
+      h1(class="special") 
+        i(class="fa fa-star")
+        span= nom
+    
+    main
+      p Situation fiscale société
+
+      

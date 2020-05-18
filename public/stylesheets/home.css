@@ -1,0 +1,125 @@
+* {
+    transition: 0.6s;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 18px;
+    padding: 16px 16px;
+    border-radius: 4px;
+}
+
+.special {
+    width: 400px;
+    padding: 40px 20px;
+    background-color: #006EB6;
+    color: white;
+    border-radius: 100px;
+    transform: rotate('80deg');
+    position: fixed;
+    right: -200px;
+    top: 0px;
+
+}
+
+span, i {
+    padding: 4px;
+}
+
+header .nav-item {
+    text-decoration: none;
+    color: #999999;
+    font-weight: bolder;
+    padding: 0px 16px;
+    display: inline-block;
+    transition: 0.4s;
+}
+
+header .nav-item:hover {
+    color: #ECA821;
+}
+
+.mc-it {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    padding: 0px 80px;
+    margin-top: 80px;
+}
+
+.nav-bar {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-bar-item {
+    text-decoration: none;
+    margin: 8px 0px;
+    padding: 8px;
+    font-weight: bold;
+    color: #006EB6;
+}
+
+a.active {
+    background-color: rgb(132, 206, 255);
+    border-radius: 4px;
+}
+
+.main-content {
+    padding: 0px 20px;
+}
+
+.reflexion-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 300px;
+    margin-right: 20px;
+}
+
+.illustration-cn {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+}
+
+h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.main-content h1 {
+    font-size: 18px;
+    padding: 8px;
+    color: rgb(14, 52, 78);
+    font-weight: 700;
+    border-bottom: 1px solid rgb(14, 52, 78);
+}

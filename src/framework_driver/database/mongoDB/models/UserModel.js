@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = mongoose.Model('User', Schema({
+module.exports = mongoose.model('User', Schema({
      identifiant  :{ type: String, unique: true, require: true } ,
      password  : { type: String, require: true } ,
      nom  : { type: String, require: true, unique: true } ,
@@ -22,17 +22,15 @@ module.exports = mongoose.Model('User', Schema({
         "Organisme d’Etat autonome",
         "Syndicat agricole",
         "Caisse de crédit agricole",
-        "mutuel",
-        "Société et union de société de",
-        "secours mutuel",
+        "Mutuel",
+        "Société et union de société de secours mutuel",
         "Association sans but lucratif",
         "Collectivités locales",
         "Offices publics",
         "Mutuelles scolaires",
         "Clubs et cercles privés",
         "GIE",
-        "Entreprises d’hôtellerie et de",
-        "tourisme.",
+        "Entreprises d’hôtellerie et de tourisme.",
      ]} ,
      domaineActivite  : { type: String, enum: [
         "ACHETEUR DE CACAO",
@@ -50,7 +48,7 @@ module.exports = mongoose.Model('User', Schema({
         "ARTISAN (charpentier, couvreur, écailliste, voirier, maçon, menuisier, peintre en bâtiment, plombier, teinturier, etc.) travaillant seul",
         "ARTISAN (charpentier, couvreur, écailliste, voirier, maçon, menuisier peintre en bâtiment, plombier, teinturier, etc.) travaillant employant 1a 5 personnes",
      ]} ,
-     nomDirigeant  : { type: String } ,
+     nomDirigeant  : { type: String, require: true } ,
      numeroFonctionnaire  :{ type: String } ,
      numeroCNAMGS  : { type: String } ,
      situationGeographique  :{ type: String, enum: [
@@ -65,7 +63,7 @@ module.exports = mongoose.Model('User', Schema({
         "Woleu - Ntem"
      ]} ,
      quartier  : { type: String } ,
-     telephone  : { type: String } ,
+     telephone  : { type: String, require: true } ,
      email  : { type: String } ,
      dateCreation  :{ type: Date, require: true } ,
      nombreEmployes  :{ type: String, enum: [
