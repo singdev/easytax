@@ -58,3 +58,18 @@ p a {
   border-radius: 10px;
   text-align: center;
 }
+
+button {
+  border: none;
+  outline: none;
+  background-color: #006EB6;
+  color: white;
+  border-radius: 4px;
+  padding: 8px 32px;
+  transition: 0.4s;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

@@ -1,5 +1,9 @@
+* {
+    transition: 0.4s;
+}
+
 header {
-    background-color: #006EB6;
+    background-color: #efefef;
     display: grid;
     grid-template-columns: 33% 33% 33%;
     align-items: center;
@@ -9,12 +13,17 @@ header {
     z-index: 10;
     box-shadow: -1px 0.5px 5px #777777;
     width: 100vw;
+    padding-right: 40px;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 .logo {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
-    width: 50px;
+    filter: grayscale(50%);
+    width: 40px;
     height: auto;
 }
 
@@ -22,9 +31,9 @@ header {
     text-decoration: none;
     color: white;
     padding: 8px;
-    background-color: rgb(9, 60, 94);
+    background-color: #006EB6;
     border-radius: 2px;
-    width: 50px;
+    width: 40px;
     text-align: center;
     margin: 2px;
 }
@@ -62,6 +71,9 @@ header div {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 .base {
@@ -72,10 +84,120 @@ header div {
     border-radius: 50px;
     text-align: center;
     line-height: 50px;
+    transition: 0.5s;
 }
 
 .bar {
     height: 4px;
     background-color: #ECA821;
     flex-grow: 10;
+    transition: 0.5s;
+}
+
+
+.bar-active {
+    background-color: #006EB6;
+}
+
+.form-container > div {
+    display: none;
+}
+
+.form-container > .current-base {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    align-items: center;
+}
+
+.current-base > div {
+    display: none;
+}
+
+.current-base > .question {
+    display: none;
+}
+
+.current-base > .show-div {
+    display: flex;
+}
+
+.current-base > .show-question {
+    display: block;
+}
+
+.question {
+    font-size: 24px;
+    color: #000000;
+    padding: 20px;
+    font-family: "Noto Sans JP";
+    font-weight: 500;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]+label {
+    background-color: white;
+    color: #006EB6;
+    border: 2px solid #006EB6;
+    padding: 8px 32px;
+    border-radius: 4px;
+    font-weight: bolder;
+}
+
+input[type="radio"]+label:hover {
+    cursor: pointer;
+    background-color: #006EB6;
+    color: white;
+}
+
+input[type="text"] {
+    border: none;
+    background-color: #eeeeee;
+    color: #000000;
+    padding: 8px 16px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+input[type="text"]:hover {
+    border: none;
+    border: 2px solid #006EB6;
+    cursor: pointer;
+}
+
+input[type="text"]:focus {
+    border: none;
+    border: 2px solid #006EB6;
+    outline: none;
+}
+
+.yes-no-cn {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-field-cn {
+    display: grid;
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 8px;
+    width: 50vw;
+}
+
+.actions-btn-cn {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 40px;
 }
