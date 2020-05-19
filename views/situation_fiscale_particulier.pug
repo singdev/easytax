@@ -5,15 +5,15 @@ block content
 
   header
     nav.menu
-      a(href="#" class="nav-item")
+      a(href="/" class="nav-item")
         i(class="fa fa-poll")
         span Ma fiscalité
-      a(href="#" class="nav-item") 
+      a(href="/declaration" class="nav-item") 
         i(class="fas fa-pencil-alt")
         span Déclaration
-      a(href="#" class="nav-item") 
+      a(href="/profil" class="nav-item") 
         i(class="fas fa-user-circle")
-        span Mon profile
+        span Mon profil
       a(href="/deconnexion" class="nav-item") 
         i(class="fas fa-sign-out-alt")
         span Déconnexion
@@ -26,6 +26,45 @@ block content
         span= nom
 
   main
+    div(class="result-cn")
+      p Vous y êtes,
+      p Voici votre situation fiscale
+
+      table
+        tr
+          th Base imposable
+          th Abbreviation
+          th Total
+        
+        tr
+          td Retenue sur salaire
+          td RS
+          td.rs-value 0 
+        tr
+          td Revenue net foncier
+          td RF
+          td.rf-value 0 
+        tr
+          td Plus-value
+          td PC
+          td.pc-value 0 
+        tr
+          td Retenue des capitaux
+          td IRVM
+          td.irvm-value 0 
+        tr
+          td Bénéfice des activités industrielles
+          td BIC
+          td.bic-value 0 
+        tr
+          td Bénéfices des activités agricoles
+          td BA
+          td.ba-value 0 
+        tr
+          td
+            strong Total
+          td
+          td.total-value 0
     .bases
       p(class="base bar-active") RS
       .bar
@@ -65,19 +104,19 @@ block content
             input#emolument(type="text" name="emolument")
             label(for="emolument") Emoluments
           .form-group
-            input#avantage(type="text" name="avantage")
+            input#avantage(type="text" name="avantage_espece_argent")
             label(for="avantage") Avantage en argent et en nature
           .form-group
             input#pensions(type="text" name="pension")
             label(for="salaire") Pensions
           .form-group
-            input#retenues-retraite(type="text" name="retenues-retraite")
+            input#retenues-retraite(type="text" name="retenu_retraite")
             label(for="retenues-retraite") Retenues retraites
           .form-group
-            input#cotisation-assurance-maladie(type="text" name="cotisation-assurance-maladie")
+            input#cotisation-assurance-maladie(type="text" name="cotisation_assurance_maladie")
             label(for="cotisation-assurance-maladie") Cotisation assurance maladie
           .form-group
-            input#rente-viagere(type="text" name="rente-viagere")
+            input#rente-viagere(type="text" name="rente_viagere")
             label(for="rente-viagere") Rentes viagères
 
       div(class="rf")
@@ -93,7 +132,7 @@ block content
         p.question Renseignez les champs suivant
         .text-field-cn
           .form-group
-            input#batiment(type="text" name="batiment")
+            input#batiment(type="text" name="valeur_locative")
             label(for="batiment") Quel est leur valeur locative?  
 
         p.question Avez vous des terrains nus ?
@@ -108,8 +147,11 @@ block content
         p.question Renseignez les champs suivant
         .text-field-cn
           .form-group
-            input#vv(type="text" name="vv")
+            input#vv(type="text" name="valeur_venal")
             label(for="vv") A combien estimez vous la valeur de ces terrains
+          .form-group
+            input#total_interet(type="text" name="total_interet")
+            label(for="total_interet") total des Intérêts liés aux emprunts réalisés pour construire, acquérir, réparer ou entretenir la propriété
 
         p.question Avez vous des maisons en location ?
         .yes-no-cn
@@ -123,8 +165,17 @@ block content
         p.question Renseignez les champs suivant
         .text-field-cn
           .form-group
-            input#vv(type="text" name="location")
-            label(for="localtion") Quel est le total des loyés percue
+            input#lm(type="text" name="loyer_mensuel")
+            label(for="lm") Quel est le total des loyés percue
+          .form-group
+            input#recette_brute(type="text" name="recette_brute")
+            label(for="recette_brute") Recettes brutes perçues  en temps que propriétaire
+          .form-group
+            input#charge_proprietaire_par_locataire(type="text" name="charge_proprietaire_par_locataire")
+            label(for="charge_proprietaire_par_locataire") Montant des charges du propriétaire assurées par le locataire
+          .form-group
+            input#depense_proprietaire_pour_locataire(type="text" name="depense_proprietaire_pour_locataire")
+            label(for="depense_proprietaire_pour_locataire") Dépenses supportées par le propriétaire pour le compte des locataires
 
       div(class="pc")
         p.question Avez vous vendu des biens de votre patrimoine?
@@ -137,11 +188,12 @@ block content
             label(for="v-non") Non
 
         p.question Renseignez les bénéfices perçus pour chaque bien
-        button.btn Ajouter un bien
-        .biens
+        .text-field-cn
+          button(class="btn" onclick="addBien()") Ajouter un bien
+          .biens
 
       div(class="irvm")
-        p.question Êtes vous actionnaire dans une société?
+        p.question Avez vous des actions dans une ou plusieurs sociétés?
         .yes-no-cn
           .form-group
             input#action-oui(type="radio", name="q-action" value="oui" onclick="nextQuestion(this.value)")
@@ -150,28 +202,56 @@ block content
             input#action-non(type="radio", name="q-action" value="non" onclick="nextQuestion(this.value)")
             label(for="action-non") Non
 
+        p.question Renseignez les champs suivant
         .text-field-cn
           .form-group
             input#action(type="text" name="action")
-            label(for="action") Renseigné les dividendes perçue
+            label(for="action") Produits des actions détenues
+          .form-group
+            input#obligation(type="text" name="obligation")
+            label(for="obligation") Revenus des obligations
+          .form-group
+            input#interets_creances(type="text" name="interets_creances")
+            label(for="interets_creances") Intérêts issus des comptes bancaires, des cautions, des dépôts ou des créances
+          .form-group
+            input#interets_bon_caisse(type="text" name="interets_bon_caisse")
+            label(for="interets_bon_caisse") Intérêts de bon de caisse
 
       .bic
-        p.question Quel bénéfice gagnez vous de vos ventes?
-        .form-group
-          input#b1(type="text" name="b1")
-          label(for="b1") Bénéfices
+        p.question Avez vous effectué des ventes de produits que vous avez fabriquer en transformant des matières premières?
+        .yes-no-cn
+          .form-group
+            input#vente-oui(type="radio", name="q-vente" value="oui" onclick="nextQuestion(this.value)")
+            label(for="vente-oui") Oui
+          .form-group
+            input#vente-non(type="radio", name="q-vente" value="non" onclick="nextQuestion(this.value)")
+            label(for="vente-non") Non
+        
+        p.question Répondez aux questions suivante
+        .text-field-cn
+          .form-group
+            input#prix_vente(type="text" name="prix_vente")
+            label(for="prix_vente") Prix de vente du produit final
+          .form-group
+            input#prix_achat(type="text" name="prix_achat")
+            label(for="prix_achat") Prix d’achat des matières premières
+          .form-group
+            input#frais_transformation(type="text" name="frais_transformation")
+            label(for="frais_transformation") Frais lié au processus de transformation
 
       .ba
         p.question Quel bénéfice gagnez vous de vos production agricole?
         .form-group
-          input#action(type="text" name="b2")
-          label(for="b2") Bénéfices    
+          input#benefice-agricole(type="text" name="b2")
+          label(for="benefice-agricole") Bénéfices    
 
       section.actions-btn-cn
         button(onclick="nextQuestion('next')") On conitnue 
 
 
   script(src="/javascripts/situation_fiscale_particulier.js")
+  script(src="/javascripts/logic/sfp.js")
+
 
 
 

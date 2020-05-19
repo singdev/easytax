@@ -9,13 +9,25 @@ var User = require('../src/enterprise_business_logic/entity/User');
 var UpdateUser = require("../src/application_business_logic/use_case/UpdateUserData");
 var authController = require('../src/interface_adapter/controller/AuthController');
 
-async function renderHome(req, res) {
+function renderHome(req, res) {
+  renderPage(req, res, 'home', 'Easytax');
+}
+
+function renderProfil(req, res){
+  renderPage(req, res, 'profil', 'Easytax');
+}
+
+function renderDeclaration(req, res){
+  renderPage(req, res, 'declaration', 'Easytax');
+}
+
+async function renderPage(req, res, page, title){
   const accessToken = new JWT();
   const userRepository = new UserRepository();
   const decoded = await GetTokenData(req.cookies.auth, { accessToken });
   const userGet = await GetUser(decoded.uid, { userRepository });
   const user = new User(userGet[0]);
-  res.render('home', { title: "Easytax", user });
+  res.render(page, { title: title, user });
 }
 
 function getStatus(formeJuridique) {
@@ -61,6 +73,14 @@ router.get('/inscription', function (req, res, next) {
 router.get('/deconnexion', function (req, res, next) {
   res.clearCookie('auth');
   res.render('connexion', { title: 'Connexion | Easytax' });
+});
+
+router.get('/declaration', function (req, res, next) {
+  renderDeclaration(req, res);
+});
+
+router.get('/profil', function (req, res, next) {
+  renderProfil(req, res);
 });
 
 router.post('/situation-fiscale/forme-juridique', authController.verifyAccessToken, async function (req, res, next) {

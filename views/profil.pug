@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/home.css")
+  link(rel="stylesheet", href="/stylesheets/alert.css")
+
+  header
+    nav.menu
+      a(href="/" class="nav-item")
+        i(class="fa fa-poll")
+        span Ma fiscalité
+      a(href="/declaration" class="nav-item") 
+        i(class="fas fa-pencil-alt")
+        span Déclaration
+      a(href="/profil" class="nav-item") 
+        i(class="fas fa-user-circle")
+        span Mon profil
+      a(href="/deconnexion" class="nav-item") 
+        i(class="fas fa-sign-out-alt")
+        span Déconnexion
+    img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
+    div
+      - var nom = user.nom;
+      h1(class="special") 
+        i(class="fa fa-star")
+        span= nom
+
+ 
+
+
+      

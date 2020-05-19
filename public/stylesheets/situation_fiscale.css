@@ -52,12 +52,17 @@ body {
 }
 
 header h1 {
-    font-size: 18px;
-    color: white;
+    font-size: 16px;
+    color: #006EB6;
     padding: 8px;
-    border: 1px solid white;
+    border: 1px solid #006EB6;
+    margin: 4px;
     display: inline-block;
     border-radius: 4px;
+}
+
+header h1 i {
+    padding-right: 8px;
 }
 
 header div {
@@ -200,4 +205,27 @@ input[type="text"]:focus {
     text-align: center;
     padding: 20px;
     margin-bottom: 40px;
+}
+
+.hide {
+    display: none;
+}
+
+.result-cn {
+    padding: 40px;
+    padding-top: 80px;
+}
+
+.result-cn p {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #006EB6;
+    padding-bottom: 0px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+table strong {
+    font-size: 18px;
+    color: #006EB6;
 }
