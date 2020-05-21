@@ -152,6 +152,33 @@ th, td {
   display: none;
 }
 
+.horizontal-space {
+  flex-grow: 10;
+}
+
+.form-group input {
+  background-color: #cccccc;
+  color: #444444;
+  font-weight: 200;
+  font-size: 16px;
+  border: 2px solid #cccccc;
+  padding: 4px;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ECA821;
+  background-color: #eeeeee;
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 640px) {
   .blue-text-field input {
     padding: 8px;

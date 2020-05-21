@@ -2,82 +2,20 @@ extends ../layout
 
 block content
   link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
+  link(rel="stylesheet", href="/stylesheets/step_bar.css")
+  
 
   header
-    nav.menu
-      a(href="/" class="nav-item")
-        i(class="fa fa-poll")
-        span Ma fiscalité
-      a(href="/declaration" class="nav-item") 
-        i(class="fas fa-pencil-alt")
-        span Déclaration
-      a(href="/profil" class="nav-item") 
-        i(class="fas fa-user-circle")
-        span Mon profil
-      a(href="/deconnexion" class="nav-item") 
-        i(class="fas fa-sign-out-alt")
-        span Déconnexion
     .logo-cn
       img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
-    div
-      - var nom = user.nom;
-      h1(class="special") 
-        i(class="fa fa-star")
-        span= nom
+    .horizontal-space
+    a(href="/") Quitter
 
   main
-    div(class="result-cn")
-      p Vous y êtes,
-      p Voici votre situation fiscale
-
-      table
-        tr
-          th Base imposable
-          th Abbreviation
-          th Total
-        
-        tr
-          td Retenue sur salaire
-          td RS
-          td.rs-value 0 
-        tr
-          td Revenue net foncier
-          td RF
-          td.rf-value 0 
-        tr
-          td Plus-value
-          td PC
-          td.pc-value 0 
-        tr
-          td Retenue des capitaux
-          td IRVM
-          td.irvm-value 0 
-        tr
-          td Bénéfice des activités industrielles
-          td BIC
-          td.bic-value 0 
-        tr
-          td Bénéfices des activités agricoles
-          td BA
-          td.ba-value 0 
-        tr
-          td
-            strong Total
-          td
-          td.total-value 0
-    .bases
-      p(class="base bar-active") RS
-      .bar
-      p.base RF
-      .bar
-      p.base PC
-      .bar
-      p.base IRVM
-      .bar
-      p.base BIC
-      .bar
-      p.base BA
-
+    include resultat_particulier.pug
+    include ../includes/step_bar.pug
+    - var a = [{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""}]
+    +bar(a)
     .form-container
       .div(class="rs current-base")
         p.question Êtes vous salarié?
@@ -248,11 +186,7 @@ block content
       section.actions-btn-cn
         button(onclick="nextQuestion('next')") On conitnue 
 
-
-  script(src="/javascripts/situation_fiscale_particulier.js")
+  script(src="/javascripts/util/form_step_management.js")
+  script(src="/javascripts/situation_fiscale_particulier.js" defer="defer")
+  script(src="/javascripts/step_bar.js")
   script(src="/javascripts/logic/sfp.js")
-
-
-
-
-

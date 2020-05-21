@@ -1,0 +1,59 @@
+.base .bulle i {
+    display: none;
+    font-size: 12px;
+}
+
+.base-done .bulle span {
+    display: inline-block;
+    font-size: 10px;
+}
+
+.base .bulle {
+    color: white;
+    background-color: #006EB6;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 20px;
+    transition: 0.5s;
+    color: white;
+}
+
+.base .title {
+    color: white;
+}
+
+.bar {
+    height: 2px;
+    background-color: #569ce9;
+    flex-grow: 10;
+    transition: 0.5s;
+    position: relative;
+    top: 10px;
+}
+
+
+.bar-active {
+    background-color: #ffd85794;
+}
+
+.base-active .bulle {
+    border: 8px solid #ffd85794;
+    box-sizing: content-box;
+
+}
+
+.base-done .bulle i {
+    display: inline-block;
+    color: #006EB6;
+}
+
+.base-done .bulle span {
+    display: none;
+}
+
+.base-done .bulle {
+    background-color: #ECA821;
+    border: none;
+}
