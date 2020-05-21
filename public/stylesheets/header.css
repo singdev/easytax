@@ -1,0 +1,70 @@
+.logo {
+    width: auto;
+    height: 48px;
+    background-color: white;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+    box-shadow: 2px 0.5px 10px #cccccc;
+    background-color: #004486;
+}
+
+header h1 {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+header h1 .identifiant {
+    font-weight: normal;
+    color: #ECA821;
+}
+
+.special {
+    flex-grow: 10;
+    text-align: end;
+}
+
+span, i {
+    padding: 4px;
+}
+
+
+
+header .nav-item {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 200;
+    padding: 0px 16px;
+    display: inline-block;
+    transition: 0.1s;
+    height: 100%;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+header .nav-item:hover {
+    color: #ECA821;
+    border-bottom-color: #ECA821;
+}
+
+header .nav-item-current {
+    border-bottom: 4px solid white;
+}
+
+header nav {
+    height: 48px;
+    padding: 0px;
+    min-height: max-content;
+    display: flex;
+    flex-direction: row;
+}

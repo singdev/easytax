@@ -1,0 +1,29 @@
+
+mixin header(current)
+  link(rel="stylesheet", href="/stylesheets/header.css")
+
+  header
+    img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
+    nav.menu
+      +navitem('home', 'Ma fiscalité', "fa fa-poll", current,"/")
+      +navitem('declaration', 'Déclaration', "fa fa-pencil", current,"/declaration")
+      +navitem('profil', 'Profil', "fas fa-user-circle", current, "/profil")
+      +navitem('deconnexion', 'Déconnexion', 'fas fa-sign-out-alt', current, "/deconnexion")
+  
+    - var nom = user.nom;
+    - var id = user.identifiant;
+    h1(class="special") 
+      span= nom
+      span (
+      span(class="identifiant")= id
+      span )
+
+mixin navitem(identifiant, navTitle, icon, current, link)
+  if current == identifiant
+    a(href=link class="nav-item nav-item-current")
+      i(class=icon)
+      span=navTitle
+  else
+      a(href=link class="nav-item")
+        i(class=icon)
+        span=navTitle

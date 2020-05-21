@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/home.css")
+  link(rel="stylesheet", href="/stylesheets/alert.css")
+  
+  include ../includes/main_header.pug
+  +header('home')
+
+  div(class="alert zero-height")
+    .alert-header
+      a(href="#" class="alert-close" onclick="hideSituationFiscaleAlertDialog()") &times;
+    p Pour pouvoir effectué cette opération il faut compléter les informations suivantes
+    .right
+      Test
+  main
+    nav.nav-bar
+      a(href="#" id="sf" class="nav-bar-item active" onclick="enableNavBarItem(this)")
+        i(class="fa fa-poll")
+        span Situation fiscal
+      a(href="#" id="rf" class="nav-bar-item"  onclick="enableNavBarItem(this)") 
+        i(class="fa fa-poll")
+        span Régime fiscal 
+      a(href="#" id="dlp" class="nav-bar-item" onclick="enableNavBarItem(this)") 
+        i(class="fa fa-clock")
+        span Date limite de paiement
+
+    .main-content
+      include ../situation_fiscale/situation_fiscale_home.pug
+      div(class="rf mc-it")
+        p Régime fiscal
+      div(class="dlp mc-it")
+        p Date limite de paiement
+  
+  script(src="/javascripts/home.js")
+  script(src="/javascripts/alert.js")
+
+
+      

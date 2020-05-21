@@ -1,3 +1,22 @@
+/**
+  Les couleurs de easytax
+  BLUE
+  ------------------------
+  primary: #006EB6
+  ------------------------
+  primary-dark: #004486
+  ------------------------
+  primary-light: #569ce9
+
+  YELLOW
+  ------------------------
+  primary: #ECA821
+  ------------------------
+  primary-dark: #b57900
+  ------------------------
+  primary-light: #ffd957
+*/
+
 * {
   padding: 0px;
   margin: 0px;
@@ -8,6 +27,10 @@
 /* Les couleurs de l'application*/
 .pm-color {
   color: #006EB6;
+}
+
+.pm-dark-color {
+  color: #004486;
 }
 
 .sd-color {
@@ -22,6 +45,10 @@
   background-color: #006EB6;
 }
 
+.pm-dark-bg-color {
+  background-color: #004486;
+}
+
 .sd-bg-color {
   background-color: #ECA821;
 }
@@ -30,14 +57,17 @@
   background-color: #ffffff;
 }
 
-.outline-btn {
-  padding: 8px 20px;
-  border: 2px solid #ECA821;
+.outline-yellow-btn {
+  padding: 4px 20px;
+  border: 1px solid #b57900;
   text-decoration: none;
-  color: #ECA821;
-  font-weight: bold;
-  font-size: 12px;
-  border-radius: 2px;
+  color: #b57900;
+  border-radius: 4px;
+  transition: 0.1s;
+}
+
+.outline-yellow-btn:hover {
+  transform: scale(1.02);
 }
 
 
@@ -50,13 +80,24 @@ p a {
   padding: 0px 8px;
 }
 
-.btn {
-  padding: 8px;
+.btn-yellow {
+  padding: 4px;
   text-decoration: none;
   color: white;
-  background-color: #ECA821;
+  background-color: #b57900;
   border-radius: 10px;
   text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.btn-yellow:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 button {
@@ -83,4 +124,43 @@ th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+}
+
+.blue-text-field input {
+  background-color: #006EB6;
+  color: white;
+  font-weight: 200;
+  font-size: 16px;
+  border: 2px solid #006EB6;
+  padding: 4px;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.blue-text-field input:focus {
+  outline: none;
+  border-color: #ECA821;
+}
+
+
+.blue-text-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.hide-label label {
+  display: none;
+}
+
+@media screen and (max-width: 640px) {
+  .blue-text-field input {
+    padding: 8px;
+    background-color: #cccccc;
+    border-color: #cccccc;
+  }
+
+  .btn-yellow {
+    padding: 8px;
+    background-color: #004486;
+  }
 }

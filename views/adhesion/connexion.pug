@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/adhesion.css')
+    main
+        include ../includes/welcome.pug
+
+        .form-container
+            .header
+                p Vous n'avez pas encore de compte?
+                    a(href="/inscription" class="pm-color") Inscrivez vous
+            
+            form(action="/users/auth", method="post")
+                input(type="hidden" name="granttype" value="password")
+                .form-header
+                    h1 Connexion à Easytax
+                .blue-text-field
+                    label(for="identifiant") Identifiant ou Email
+                    input(type="text" name="identifiant" id="identifiant")
+                
+                .blue-text-field
+                    label(for="password") Mot de passe
+                    input(type="password" name="password" id="password")
+
+                input(type="submit" class="btn-yellow", value="Je me connecte" class="sd-bg-color white")
