@@ -21,6 +21,9 @@ main {
     padding: 0px 20px;
     display: flex;
     flex-direction: column;
+    position: sticky;
+    top: 0px;
+    left: 0px;
 }
 
 .nav-bar-item {
@@ -40,14 +43,15 @@ a.active {
     padding: 0px 20px;
 }
 
-.reflexion-img {
+.situation-fiscale-cn  .reflexion-img {
     width: 300px;
     height: 300px;
     border-radius: 300px;
     margin-right: 20px;
+    margin-bottom: 20px;
 }
 
-.illustration-cn {
+.situation-fiscale-cn .illustration-cn {
     width: 100%;
     padding: 20px;
     display: flex;
@@ -60,6 +64,7 @@ a.active {
     flex-direction: column;
     justify-content: space-between;
     height: 200px;
+
 }
 
 h1 {
@@ -72,4 +77,39 @@ h1 {
     color: rgb(14, 52, 78);
     font-weight: 700;
     border-bottom: 1px solid rgb(14, 52, 78);
+}
+
+@media screen and (max-width: 640px){
+    main {
+        display: grid;
+        grid-template-columns: auto;
+        margin: 0px;
+        padding: 20px;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .nav-bar {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        flex-direction: row;
+        overflow-x: scroll;
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .nav-bar-item {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .situation-fiscale-cn .illustration-cn {
+        flex-direction: column;
+    }
+
+    .situation-fiscale-cn .reflexion-img {
+        width: 200px;
+        height: 200px;
+    }
 }
