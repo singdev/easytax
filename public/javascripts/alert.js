@@ -44,7 +44,7 @@ function showSituationFiscalAlerteDialog(user) {
                 </select>
             </div>
 
-            <input class="btn" type="submit" value="Valider"/>
+            <input class="btn-yellow" type="submit" value="Valider"/>
         </form>
     `;
     const element = new DOMParser().parseFromString(template, 'text/html');

@@ -185,3 +185,9 @@ table strong {
     font-size: 18px;
     color: #006EB6;
 }
+
+@media screen and (max-width: 640px){
+    .form-group {
+        width: 90vw;
+    }
+}

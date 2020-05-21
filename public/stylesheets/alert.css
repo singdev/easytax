@@ -1,8 +1,9 @@
 .alert {
-    background-color: #006EB6;
+    background-color: #569ce9;
     padding: 20px;
     transition: 0.4s;
     overflow: hidden;
+    box-shadow: -1px 1px 5px #777777;
 }
 
 .alert p {
@@ -57,4 +58,11 @@ form {
     padding: 20px;
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 640px){
+
+    form {
+        width: 100%;
+    }
 }

@@ -44,3 +44,20 @@ function calculBIC({prix_vente, prix_achat, frais_transformation}) {
 function calculBA(montant_total) {
     return montant_total;
 }
+
+/** situation fiscale société */
+
+function calculCSS({chiffre_affaire}){
+    return chiffre_affaire /100.0;
+}
+
+function calculIS({ is_precedent, benefice_fiscal}){
+    const acompte1 = 25 * is_precedent /100.0;
+    const acompte2 = 33.33 * is_precedent / 100.0;
+    const is = 3*benefice_fiscal/100.0 - (acompte1 + acompte2);
+    return is;
+}
+
+function calculCFB({ contribution}){
+    return contribution;
+}

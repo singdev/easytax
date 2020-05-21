@@ -3,21 +3,16 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
   link(rel="stylesheet", href="/stylesheets/step_bar.css")
-  
 
-  header
-    .logo-cn
-      img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
-    .horizontal-space
-    a(href="/") Quitter
+  include situation_fiscale_header.pug
 
   main
-    include resultat_particulier.pug
     include ../includes/step_bar.pug
-    - var a = [{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""},{title: "RS", details: ""}]
+    - var a = [{title: "RS", details: "Retenue sur salaire"},{title: "RF", details: "Revenues foncier"},{title: "PC", details: ""},{title: "IRVM", details: ""},{title: "BIC", details: ""},{title: "BA", details: ""}]
     +bar(a)
+    include resultat_particulier.pug
     .form-container
-      .div(class="rs current-base")
+      div(class="rs current-base")
         p.question Êtes vous salarié?
         .yes-no-cn
           .form-group
@@ -83,13 +78,13 @@ block content
             label(for="vv-non") Non
 
         p.question Renseignez les champs suivant
-        .text-field-cn
-          .form-group
-            input#vv(type="text" name="valeur_venal")
-            label(for="vv") A combien estimez vous la valeur de ces terrains
-          .form-group
-            input#total_interet(type="text" name="total_interet")
-            label(for="total_interet") total des Intérêts liés aux emprunts réalisés pour construire, acquérir, réparer ou entretenir la propriété
+          .text-field-cn
+            .form-group
+              input#vv(type="text" name="valeur_venal")
+              label(for="vv") A combien estimez vous la valeur de ces terrains
+            .form-group
+              input#total_interet(type="text" name="total_interet")
+              label(for="total_interet") total des Intérêts liés aux emprunts réalisés pour construire, acquérir, réparer ou entretenir la propriété
 
         p.question Avez vous des maisons en location ?
         .yes-no-cn
@@ -164,7 +159,7 @@ block content
           .form-group
             input#vente-non(type="radio", name="q-vente" value="non" onclick="nextQuestion(this.value)")
             label(for="vente-non") Non
-        
+
         p.question Répondez aux questions suivante
         .text-field-cn
           .form-group

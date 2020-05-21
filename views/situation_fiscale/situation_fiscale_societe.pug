@@ -1,20 +1,122 @@
 extends ../layout
 
 block content
-  header
-    nav.menu
-      a(href="#" class="nav-item") Ma fiscalité
-      a(href="#" class="nav-item") Déclaration
-      a(href="#" class="nav-item") Mon profile
-      a(href="/deconnexion" class="nav-item") Déconnexion
-    img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
-    div
-      - var nom = user.nom;
-      h1(class="special") 
-        i(class="fa fa-star")
-        span= nom
-    
-    main
-      p Situation fiscale société
+  link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
+  link(rel="stylesheet", href="/stylesheets/step_bar.css")
 
+  include situation_fiscale_header.pug
+
+  main
+    include ../includes/step_bar.pug
+    - var a = [{title: "CSS", details: ""},{title: "CFP", details: ""},{title: "IS", details: ""},{title: "RF", details: ""}]
+    +bar(a)
+    include resultat_societe.pug
+    .form-container
+      div(class="css current-base")
+        p.question Avez vous réalisé un chiffre d'affaire inferieur à 30 000 000 XAF?
+        .yes-no-cn
+          .form-group
+            input#css-oui(type="radio", name="q-css" value="oui" onclick="nextQuestion(this.value)")
+            label(for="css-oui") Oui
+          .form-group
+            input#css-non(type="radio", name="q-css" value="non" onclick="nextQuestion(this.value)")
+            label(for="css-non") Non
+
+        p.question Renseignez les informations suivante:
+        .text-field-cn
+          .form-group
+            input#chiffre_affaire(type="text" name="chiffre_affaire")
+            label(for="chiffre_affaire") Quel est votre chiffre d'affaire ?
+
+      div(class="cfp")
+        p.question Vous devez payer la CFP, contribution à la formation professionnelle 
+        .text-field-cn
+          .form-group
+            input#contribution_cfp(type="text" name="contribution")
+            label(for="contribution_cfp") Quel est votre contribution?  
+
+      .is
+        p.question Avez vous réalisé un bénéfice positif (bénéfice > 0) cette année ?
+        .yes-no-cn
+          .form-group
+            input#benefice-oui(type="radio", name="benefice" value="oui" onclick="nextQuestion(this.value)")
+            label(for="benefice-oui") Oui
+          .form-group
+            input#benefice-non(type="radio", name="benefice" value="non" onclick="nextQuestion(this.value)")
+            label(for="benefice-non") Non
+
+        p.question Renseignez les champs suivant
+          .text-field-cn
+            .form-group
+              input#is_annee_precedente(type="text" name="is_precedent")
+              - var annee = "IS reversé en " + ((new Date()).getFullYear()-1)
+              label(for="is_annee_precedente")=annee 
+            .form-group
+              input#benefice_fiscal(type="text" name="benefice_fiscal")
+              label(for="benefice_fiscal") Bénéfice net fiscal
       
+      .rf
+        p.question Avez vous des propriétés avec des batîments 
+        .yes-no-cn
+          .form-group
+            input#batiment-oui(type="radio", name="q-batiment" value="oui" onclick="nextQuestion(this.value)")
+            label(for="batiment-oui") Oui
+          .form-group
+            input#batiment-non(type="radio", name="q-batiment" value="non" onclick="nextQuestion(this.value)")
+            label(for="batiment-non") Non
+
+        p.question Renseignez les champs suivant
+        .text-field-cn
+          .form-group
+            input#batiment(type="text" name="valeur_locative")
+            label(for="batiment") Quel est leur valeur locative?  
+
+        p.question Avez vous des terrains nus ?
+        .yes-no-cn
+          .form-group
+            input#vv-oui(type="radio", name="q-vv" value="oui" onclick="nextQuestion(this.value)")
+            label(for="vv-oui") Oui
+          .form-group
+            input#vv-non(type="radio", name="q-vv" value="non" onclick="nextQuestion(this.value)")
+            label(for="vv-non") Non
+
+        p.question Renseignez les champs suivant
+          .text-field-cn
+            .form-group
+              input#vv(type="text" name="valeur_venal")
+              label(for="vv") A combien estimez vous la valeur de ces terrains
+            .form-group
+              input#total_interet(type="text" name="total_interet")
+              label(for="total_interet") total des Intérêts liés aux emprunts réalisés pour construire, acquérir, réparer ou entretenir la propriété
+
+        p.question Avez vous des maisons en location ?
+        .yes-no-cn
+          .form-group
+            input#location-oui(type="radio", name="q-location" value="oui" onclick="nextQuestion(this.value)")
+            label(for="location-oui") Oui
+          .form-group
+            input#location-non(type="radio", name="q-location" value="non" onclick="nextQuestion(this.value)")
+            label(for="location-non") Non
+
+        p.question Renseignez les champs suivant
+        .text-field-cn
+          .form-group
+            input#lm(type="text" name="loyer_mensuel")
+            label(for="lm") Quel est le total des loyés percue
+          .form-group
+            input#recette_brute(type="text" name="recette_brute")
+            label(for="recette_brute") Recettes brutes perçues  en temps que propriétaire
+          .form-group
+            input#charge_proprietaire_par_locataire(type="text" name="charge_proprietaire_par_locataire")
+            label(for="charge_proprietaire_par_locataire") Montant des charges du propriétaire assurées par le locataire
+          .form-group
+            input#depense_proprietaire_pour_locataire(type="text" name="depense_proprietaire_pour_locataire")
+            label(for="depense_proprietaire_pour_locataire") Dépenses supportées par le propriétaire pour le compte des locataires
+
+      section.actions-btn-cn
+        button(onclick="nextQuestion('next')") On conitnue 
+
+  script(src="/javascripts/util/form_step_management.js")
+  script(src="/javascripts/situation_fiscale_societe.js" defer="defer")
+  script(src="/javascripts/step_bar.js")
+  script(src="/javascripts/logic/sfp.js")
