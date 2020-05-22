@@ -1,13 +1,19 @@
 var authController = require('../src/interface_adapter/controller/AuthController');
 var express = require('express');
 var router = express.Router();
+var FormeJuridique = require('../src/enterprise_business_logic/entity/FormeJuridique');
 
 var UpdateUser = require("../src/application_business_logic/use_case/UpdateUserData");
 var GetUser = require('../src/application_business_logic/use_case/GetUser');
 var UserRepository = require('../src/interface_adapter/storage/UserRepoMongoDB');
 
+
 function getStatus(formeJuridique) {
-    if (formeJuridique == "SARL" ||
+    const formeJuridiqueType = FormeJuridique.forme_juridique_type.find(v => v.value == formeJuridique);
+    console.log(formeJuridique);
+    console.log(formeJuridiqueType);
+    return formeJuridiqueType.type;
+    /*if (formeJuridique == "SARL" ||
       formeJuridique == "SUARL" ||
       formeJuridique == "Société Anonyme" ||
       formeJuridique == "Particulier" ||
@@ -15,7 +21,7 @@ function getStatus(formeJuridique) {
       return "p";
     } else {
       return "s";
-    }
+    }*/
   }
 
 

@@ -26,13 +26,13 @@ function showSituationFiscalAlerteDialog(user) {
         "Collectivités locales",
         "Offices publics",
         "Mutuelles scolaires",
-        "Clubs et cercles privés",
-        "GIE",
-        "Entreprises d’hôtellerie et de tourisme"];
+        "Clubs et cercles privés GIE",
+        "Entreprises d’hôtellerie et de tourisme.",
+     ];
 
     let options = "";
     array.forEach(a => {
-        options = options + "\n<option value=" + a + ">" + a + "</option>";
+        options = options + "\n<option value='" + a + "'>" + a + "</option>";
     });
 
     const template = `

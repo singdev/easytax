@@ -8,6 +8,15 @@ const User = require('../../enterprise_business_logic/entity/User');
 const Crypto = require('../../interface_adapter/security/BcryptJS');
 const JWTAccessToken = require('../../interface_adapter/security/JWTAccessToken');
 
+async function renderPageWithUser(req, res, page, title){
+    const accessToken = new JWT();
+    const userRepository = new UserRepository();
+    const decoded = await GetTokenData(req.cookies.auth, { accessToken });
+    const userGet = await GetUser(decoded.uid, { userRepository });
+    const user = new User(userGet[0]);
+    res.render(page, { title: title, user });
+  }
+
 module.exports = {
 
     async createUser(req, res, next) {
@@ -22,7 +31,7 @@ module.exports = {
                 const token = await GetToken(newUser, { accessToken });
                 res.cookie("auth", token);
                 res.redirect('/');
-                res.render('home', { title: newUser.nom + " | " + Easytax });
+                //renderPageWithUser(req, res, 'home/ma_fiscalite', "Easytax")
             } else {
                 res.redirect('/');
                 res.sendStatus(500);
