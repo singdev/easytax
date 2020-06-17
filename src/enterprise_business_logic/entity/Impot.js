@@ -1,0 +1,21 @@
+module.exports = [
+    "IS", 
+    "IRPP", 
+    "TVA", 
+    "Patentes", 
+    "Licences", 
+    "CFPB", 
+    "CFPNB", 
+    "CSS", 
+    "CFP", 
+    "DET",
+    "Taxe de superficie", 
+    "Redevances sur l’extraction des matériaux de carrières",
+    "TCTS", "Taxe municipales sur les carburants",
+    "RUR", "Taxe sur les contrats d’assurances", 
+    "Taxe Forfaitaire d’habitation", 
+    "TSIL", 
+    "FNH", 
+    "TJH", 
+    "TBP"
+]
