@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
  * @param {String} dbName 
  */
 module.exports = (dbName) => {
-    mongoose.connect("mongodb://localhost:27018/" + dbName, {
+    mongoose.connect("mongodb://localhost:27017/" + dbName, {
         useCreateIndex: true,
         useNewUrlParser: true, useFindAndModify: true,
         useUnifiedTopology: true
