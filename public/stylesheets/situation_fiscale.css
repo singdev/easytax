@@ -49,6 +49,9 @@ body {
 }
 
 .bases {
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 100%;
     padding: 40px 20px;
     padding-top: 80px;
@@ -129,6 +132,11 @@ input[type="radio"]+label {
     padding: 8px 32px;
     border-radius: 4px;
     font-weight: bolder;
+}
+
+input[type="radio"]:checked+label {
+    background-color: #006EB6;
+    color: white;
 }
 
 input[type="radio"]+label:hover {

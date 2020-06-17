@@ -13,6 +13,37 @@ block content
     include resultat_particulier.pug
     .form-container
       div(class="rs current-base")
+        p.question Quel est votre situation matrimoniale?
+        .text-field-cn
+          .form-group
+            input#marie(type="radio" name="matrimonial")
+            label(for="marie") Marié
+          .form-group
+            input#celibataire(type="radio" name="matrimonial")
+            label(for="celibataire") Célibataire
+          .form-group
+            input#divorce(type="radio" name="matrimonial")
+            label(for="divorce") Divorcé
+          .form-group
+            input#veuf2(type="radio" name="matrimonial")
+            label(for="veuf2") Veuf après deux ans
+          .form-group
+            input#epouse_salarie(type="radio" name="matrimonial")
+            label(for="epouse_salarie") Epouse salariée
+          .form-group
+            input#polygame(type="radio" name="matrimonial")
+            label(for="polygame") Polygame
+          .form-group
+            input#veuf(type="radio" name="matrimonial")
+            label(for="veuf") Veuf
+        p.question Avez vous des enfants à charge?
+        .text-field-cn
+          .form-group
+            input#enfant-oui(type="radio" name="enfants")
+            label(for="enfant-oui") Oui
+          .form-group
+            input#enfant-non(type="radio" name="enfants")
+            label(for="enfant-non") Non
         p.question Êtes vous salarié?
         .yes-no-cn
           .form-group
@@ -184,4 +215,5 @@ block content
   script(src="/javascripts/util/form_step_management.js")
   script(src="/javascripts/situation_fiscale_particulier.js" defer="defer")
   script(src="/javascripts/step_bar.js")
-  script(src="/javascripts/logic/sfp.js")
+  script(src="/javascripts/logic/calcul_base_imposable_et_impots.js")
+  script(src="/javascripts/logic/determination_quotient_familial.js")
