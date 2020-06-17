@@ -13,7 +13,7 @@ var mongo = require('./src/framework_driver/database/mongoDB/init');
 var app = express();
 
 //Database
-mongo("easytax");
+mongo("easytax-preprod");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
