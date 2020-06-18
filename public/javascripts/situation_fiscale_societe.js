@@ -46,7 +46,7 @@ function ISData(){
 
 function CFPData(){
     const inputRs = document.querySelectorAll(".cfp input[type='text']");
-    const contribution = getValueByName(inputRs, 'contribution');
+    const masse_salariale = getValueByName(inputRs, 'masse_salariale');
     
-    return calculCFB({ contribution });
+    return calculCFB({ masse_salariale });
 }

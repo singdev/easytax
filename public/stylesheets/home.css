@@ -84,26 +84,23 @@ h1 {
         display: grid;
         grid-template-columns: auto;
         margin: 0px;
-        padding: 20px;
+        padding: 8px;
         width: 100vw;
         overflow-x: hidden;
     }
 
     .nav-bar {
         display: grid;
-        grid-template-columns: auto auto auto;
-        flex-direction: row;
+        grid-template-columns: max-content max-content max-content;
         overflow-x: scroll;
+        justify-content: start;
+        align-items: center;
         width: 100%;
         padding: 0px;
         margin: 0px;
+        position: static;
     }
-
-    .nav-bar-item {
-        display: flex;
-        flex-direction: row;
-    }
-
+    
     .situation-fiscale-cn .illustration-cn {
         flex-direction: column;
     }

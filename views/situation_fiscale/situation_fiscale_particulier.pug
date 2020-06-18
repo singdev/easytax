@@ -8,7 +8,7 @@ block content
 
   main
     include ../includes/step_bar.pug
-    - var a = [{title: "RS", details: "Retenue sur salaire"},{title: "RF", details: "Revenues foncier"},{title: "PC", details: ""},{title: "IRVM", details: ""},{title: "BIC", details: ""},{title: "BA", details: ""}]
+    - var a = [{title: "RS", details: "Retenue sur salaire"},{title: "RF", details: "Revenues foncier"},{title: "PVC", details: ""},{title: "IRVM", details: ""},{title: "BIC", details: ""},{title: "BA", details: ""}]
     +bar(a)
     include resultat_particulier.pug
     .form-container
@@ -171,7 +171,7 @@ block content
           .biens
 
       div(class="irvm")
-        p.question Avez vous des actions dans une ou plusieurs sociétés?
+        p.question Possédez vous des revenus issus de placements financiers ? (Actions, obligations, intérêts, etc)
         .yes-no-cn
           .form-group
             input#action-oui(type="radio", name="q-action" value="oui" onclick="nextQuestion(this.value)")
@@ -224,7 +224,7 @@ block content
           label(for="benefice-agricole") Bénéfices    
 
       section.actions-btn-cn
-        button(onclick="previousQuestion('previous')") Reviens en arrière 
+        button(onclick="previousQuestion('previous')") Revenir 
         button(onclick="nextQuestion('next')") On conitnue 
 
   script(src="/javascripts/util/form_step_management.js")

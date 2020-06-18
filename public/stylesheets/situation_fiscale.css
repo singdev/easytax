@@ -195,9 +195,12 @@ input[type="radio"]+label:hover {
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
+
+
+
 table strong {
     font-size: 18px;
-    color: #006EB6;
+    color: #ffffff;
 }
 
 div.question ul {
@@ -224,6 +227,23 @@ div.question p {
     padding-top: 8px;
 }
 
+.result-cn h1 {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 18px;
+    color: #ECA821;
+}
+
+.result-cn table thead {
+    background-color: #004486;
+    color: white;
+}
+
+.result-cn tfoot {
+    background-color: #569ce9;
+}
+
 @media screen and (max-width: 640px){
     .form-group {
         width: 90vw;
@@ -234,4 +254,6 @@ div.question p {
         background-color: white;
         margin-bottom: 0px;
     }
+
+    
 }

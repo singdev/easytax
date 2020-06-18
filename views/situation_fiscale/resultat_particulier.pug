@@ -4,7 +4,7 @@ div(class="result-cn")
 
   h1 Base Imposable
   table
-    tr
+    thead
       th Nom
       th Abbreviation
       th Total
@@ -12,36 +12,50 @@ div(class="result-cn")
     tr
       td Retenue sur salaire
       td RS
-      td.rs-value 0 
+      td
+        span.rs-value 0
+        span FCFA 
     tr
       td Revenue net foncier
       td RF
-      td.rf-value 0 
+      td
+        span.rf-value 0
+        span FCFA 
     tr
       td Plus-value
-      td PC
-      td.pc-value 0 
+      td PVC
+      td
+        span.pc-value 0
+        span FCFA 
     tr
       td Retenue des capitaux
       td IRVM
-      td.irvm-value 0 
+      td
+        span.irvm-value 0 
+        span FCFA
     tr
       td Bénéfice des activités industrielles
       td BIC
-      td.bic-value 0 
+      td
+        span.bic-value 0
+        span FCFA 
     tr
       td Bénéfices des activités agricoles
       td BA
-      td.ba-value 0 
-    tr
+      td
+        span.ba-value 0
+        span FCFA 
+    tfoot
       td
         strong Total
       td
-      td.total-value 0
+      td
+        span.total-value 0
+        span FCFA
 
   h1 Nombre de part
   table
-    tr
+    thead
       th Situation matrimonial
       th Nombre d'enfant
       th Cas particulier
@@ -51,9 +65,12 @@ div(class="result-cn")
       td.nombre_enfant
       td.cas
       td.nombre_part
+        
   
   h1 IRPP
   table
-    tr
-      th Total
-      th.irpp
+    thead
+      th IRPP
+      th
+        span.irpp
+        span FCFA

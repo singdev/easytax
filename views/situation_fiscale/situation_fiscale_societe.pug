@@ -32,8 +32,8 @@ block content
         p.question Vous devez payer la CFP, contribution à la formation professionnelle 
         .text-field-cn
           .form-group
-            input#contribution_cfp(type="text" name="contribution")
-            label(for="contribution_cfp") Quel est votre contribution?  
+            input#masse_salariale(type="text" name="masse_salariale")
+            label(for="masse_salariale") Quel est votre masse salariale?  
 
       .is
         p.question Avez vous réalisé un bénéfice positif (bénéfice > 0) cette année ?
@@ -114,6 +114,7 @@ block content
             label(for="depense_proprietaire_pour_locataire") Dépenses supportées par le propriétaire pour le compte des locataires
 
       section.actions-btn-cn
+        button(onclick="previousQuestion('previous')") Revenir 
         button(onclick="nextQuestion('next')") On conitnue 
 
   script(src="/javascripts/util/form_step_management.js")

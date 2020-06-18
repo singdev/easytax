@@ -58,6 +58,6 @@ function calculIS({ is_precedent, benefice_fiscal}){
     return is;
 }
 
-function calculCFB({ contribution}){
-    return contribution;
+function calculCFB({ masse_salariale}){
+    return 0.5 / masse_salarial * 100;
 }
