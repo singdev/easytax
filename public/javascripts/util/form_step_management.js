@@ -58,6 +58,9 @@ function nextQuestion(value) {
     }
 }
 
+function previousQuestion(){
+}
+
 function showQuestionAndDiv(index) {
     questions[index].classList.add('show-question');
     currentShowDiv = questions[index].nextSibling;

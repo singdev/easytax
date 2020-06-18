@@ -21,20 +21,75 @@ function finish() {
     const IRVM = IRVMData();
     const BIC = BICData();
     const BA = BAData();
-    console.log("RS = " + RS);
-    console.log("RF = " + RF);
-    console.log("PC = " + PC);
-    console.log("IRVM = " + IRVM);
-    console.log("BIC = " + BIC);
-    console.log("BA = " + BA);
+
+    const base_imposable = RS+RF+PC+IRVM+BIC+BA;
+    const K = nombreDePart();
+    const Q = determineCoefiscientFamilial(K, base_imposable);
+    const P = determineIRPPParPart(Q);
+    console.log(P);
+    console.log(Q);
+    const IRPP = K * P;
+
     showResultView();
+    displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable);
+    displayNombreDePart();
+    displayIRPP(IRPP);
+}
+
+function getSituationMatrimonialName(situation_matrimonail){
+    if(situationFamilial[situation_matrimonail]){
+        return situationFamilial[situation_matrimonail].name;
+    } 
+    return null;
+}
+
+function displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable) {
     document.querySelector('.rs-value').innerHTML = RS;
     document.querySelector('.rf-value').innerHTML = RF;
     document.querySelector('.pc-value').innerHTML = PC;
     document.querySelector('.irvm-value').innerHTML = IRVM;
     document.querySelector('.bic-value').innerHTML = BIC;
     document.querySelector('.ba-value').innerHTML = BA;
-    document.querySelector('.total-value').innerHTML = RS+RF+PC+IRVM+BIC+BA;
+    document.querySelector('.total-value').innerHTML = base_imposable;
+}
+
+function displayNombreDePart(){
+    document.querySelector('.situation_matrimonial').innerHTML = getSituationMatrimonialName(getSituationMatrimonial());
+    document.querySelector('.nombre_enfant').innerHTML = getNombreEnfant();
+    document.querySelector('.cas').innerHTML = hasCasParticulier() == 'cas_particulier' ? "Oui" : "Non";
+    document.querySelector('.nombre_part').innerHTML = nombreDePart();
+}
+
+function displayIRPP(IRPP){
+    document.querySelector('.irpp').innerHTML = IRPP;
+}
+
+function nombreDePart(){
+    let situation_matrimonial = getSituationMatrimonial();
+    let nombre_enfant = getNombreEnfant();
+    let cas = hasCasParticulier();
+    const nombre_de_part = determineQuotientFamilial(situation_matrimonial, nombre_enfant, cas);
+
+    return nombre_de_part;
+}
+
+function getSituationMatrimonial(){
+    const situationRadios = document.querySelectorAll('input[name="matrimonial"]');
+    let situation_matrimonial = null;
+    situationRadios.forEach(s => {
+        if(s.checked){
+            situation_matrimonial = s.value;
+        }
+    });
+    return situation_matrimonial;
+}
+
+function getNombreEnfant(){
+    return document.querySelector('input[name="enfants"]').value;
+}
+
+function hasCasParticulier(){
+    return document.querySelector('#cp-oui').checked == false ? 'cas_general' : 'cas_particulier';
 }
 
 function RSData() {

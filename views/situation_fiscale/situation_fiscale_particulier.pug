@@ -16,34 +16,48 @@ block content
         p.question Quel est votre situation matrimoniale?
         .text-field-cn
           .form-group
-            input#marie(type="radio" name="matrimonial")
+            input#marie(type="radio" name="matrimonial" value="marie" checked)
             label(for="marie") Marié
           .form-group
-            input#celibataire(type="radio" name="matrimonial")
+            input#celibataire(type="radio" name="matrimonial" value="celibataire" checked)
             label(for="celibataire") Célibataire
           .form-group
-            input#divorce(type="radio" name="matrimonial")
+            input#divorce(type="radio" name="matrimonial" value="divorce")
             label(for="divorce") Divorcé
           .form-group
-            input#veuf2(type="radio" name="matrimonial")
+            input#veuf2(type="radio" name="matrimonial", value="veuf2")
             label(for="veuf2") Veuf après deux ans
           .form-group
-            input#epouse_salarie(type="radio" name="matrimonial")
+            input#epouse_salarie(type="radio" name="matrimonial", value="epouse_salarie")
             label(for="epouse_salarie") Epouse salariée
           .form-group
-            input#polygame(type="radio" name="matrimonial")
+            input#polygame(type="radio" name="matrimonial", value="polygame")
             label(for="polygame") Polygame
           .form-group
-            input#veuf(type="radio" name="matrimonial")
-            label(for="veuf") Veuf
-        p.question Avez vous des enfants à charge?
+            input#veuf(type="radio" name="matrimonial", value="veuf")
+            label(for="veuf") Veuf (2 premières années)
+        p.question Combien d'enfant à charge avez vous (Mineur dont vous vous en occuper)?
         .text-field-cn
           .form-group
-            input#enfant-oui(type="radio" name="enfants")
-            label(for="enfant-oui") Oui
+            input#enfant(type="number" name="enfants" value="0")
+            label(for="enfant") Nombre d'enfants à charge
+        div.question 
+          p Êtes vous dans l'une des situations suivantes?
+          ul
+            li J'ai au moins un enfant majeur
+            li J'ai au moins un enfant décédé avant 16 ans
+            li Je touche une pension de 40% pour invalidité de guerre ou de travail
+            li Je touche une pension de veuve de guerre
+        .text-field-cn
           .form-group
-            input#enfant-non(type="radio" name="enfants")
-            label(for="enfant-non") Non
+            input#cp-oui(type="radio", name="cas_particulier" value="oui" onclick="nextQuestion(this.value)")
+            label(for="cp-oui") Oui
+          .form-group
+            input#cp-non(type="radio", name="cas_particulier" value="non" onclick="nextQuestion(this.value)")
+            label(for="cp-non") Non
+        .question 
+          p Le faite que vous avez une situation particulière impactera votre nombre de part
+          p Vous pouvez passer à la question suivante         
         p.question Êtes vous salarié?
         .yes-no-cn
           .form-group
@@ -210,10 +224,11 @@ block content
           label(for="benefice-agricole") Bénéfices    
 
       section.actions-btn-cn
+        button(onclick="previousQuestion('previous')") Reviens en arrière 
         button(onclick="nextQuestion('next')") On conitnue 
 
   script(src="/javascripts/util/form_step_management.js")
   script(src="/javascripts/situation_fiscale_particulier.js" defer="defer")
   script(src="/javascripts/step_bar.js")
   script(src="/javascripts/logic/calcul_base_imposable_et_impots.js")
-  script(src="/javascripts/logic/determination_quotient_familial.js")
+  script(src="/javascripts/logic/determination_irpp.js")
