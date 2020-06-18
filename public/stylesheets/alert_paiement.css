@@ -1,0 +1,65 @@
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
+button {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.dialog-content {
+    background-color: #ffffff;
+    border: #cccccc;
+    box-shadow: -1px 2px 10px #222222;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.apc-illustration {
+    background-color: #006EB6;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.apc-illustration i {
+    font-size: 78px;
+}
+
+.apc-illustration h2 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.form-group label {
+    color: black;
+}
+
+.annule-button {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: #777777;
+    text-decoration: underline;
+}
+
+@media screen and (max-width:900px) {
+    .dialog-content {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .apc-illustration i {
+        font-size: 18px;
+    }
+
+    .apc-illustration {
+        flex-direction: row;
+        align-items: center;
+    }
+}

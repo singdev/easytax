@@ -100,6 +100,11 @@ p a {
   opacity: 0.8;
 }
 
+table thead {
+  background-color: #004486;
+  color: white;
+}
+
 button {
   border: none;
   outline: none;
@@ -180,6 +185,35 @@ th, td {
 .form-group {
   display: flex;
   flex-direction: column;
+}
+
+.dialog {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: #00000070;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.show-dialog {
+  display: flex;
+}
+
+.dialog .close {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  color: white;
+  font-size: 36px;
+}
+
+.dialog .close:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 640px) {

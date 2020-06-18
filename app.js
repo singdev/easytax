@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var situationFiscale = require('./routes/situation_fiscale');
+var alertPaiement = require('./routes/alert');
 
 var mongo = require('./src/framework_driver/database/mongoDB/init');
 
@@ -27,7 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/situation-fiscale', situationFiscale)
+app.use('/situation-fiscale', situationFiscale);
+app.use('/alerts', alertPaiement);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

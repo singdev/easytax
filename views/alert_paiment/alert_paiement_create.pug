@@ -1,0 +1,16 @@
+div(class="dialog alert-paiement-create")
+  a(class="close" onclick="closeCreateAlertPaiementDialog()") &times;
+  .dialog-content
+    .apc-illustration
+      i(class="fa fa-clock")
+      h2 Créer une Alerte de paiement
+    form(action="/alerts" method="post")
+      .form-group
+        label Choisissez un impôt
+        select(class="impots" name="impot")
+      .form-group
+        label(for="date_alert") Nombre de jour avant l'alerte
+        input#date_alert(type="number" name="date_alert")
+      button(type="submit") Créer
+
+      a(class="annule-button") Annuler 
