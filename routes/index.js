@@ -33,7 +33,7 @@ async function renderPageWithUser(req, res, page, title, data) {
 }
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
   const accessToken = new JWT();
   const user = await GetTokenData(req.cookies.auth, { accessToken });
 

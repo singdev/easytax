@@ -15,6 +15,16 @@ div(class="dlp alert-paiement-cn mc-it")
       th Date de paiement
       th Date d'alerte
     tbody(class="alerts")
+      each val in data.alerts
+        - var impot = val.impot
+        - var date_limite = new Date(val.date_limite);
+        - var d = date_limite.getDate() + "/" + date_limite.getMonth() + "/" + date_limite.getFullYear();
+        - var d2 = new Date(val.date_alert);
+        - var date_alert = d2.getDate() + "/" + d2.getMonth() + "/" + d2.getFullYear()
+        tr
+          td #{impot}
+          td #{d}
+          td #{date_alert}
 
 include ./alert_paiement_create.pug
 
