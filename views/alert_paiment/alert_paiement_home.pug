@@ -17,8 +17,8 @@ div(class="dlp alert-paiement-cn mc-it")
     tbody(class="alerts")
       each val in data.alerts
         - var impot = val.impot
-        - var date_limite = new Date(val.date_limite);
-        - var d = date_limite.getDate() + "/" + date_limite.getMonth() + "/" + date_limite.getFullYear();
+        - var d = new Date(val.date_limite);
+        - var date_limite = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
         - var d2 = new Date(val.date_alert);
         - var date_alert = d2.getDate() + "/" + d2.getMonth() + "/" + d2.getFullYear()
         tr

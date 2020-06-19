@@ -5,6 +5,9 @@ var router = express.Router();
 const Alert = require('../src/framework_driver/database/mongoDB/models/AlertModel');
 
 router.post('/', authController.verifyAccessToken, async function (req, res, next) {
+    console.log("save user");
+    req.body.user = req.auth.user._id;
+    console.log(req.body);
     const alert = new Alert(req.body);
     try {
         const result = await alert.save();

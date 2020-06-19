@@ -34,14 +34,15 @@ async function renderPageWithUser(req, res, page, title, data) {
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  const accessToken = new JWT();
-  const user = await GetTokenData(req.cookies.auth, { accessToken });
-
-  //Get alert paiement
-  const alerts = await Alert.find({ user:  user._id});
-
   if (req.cookies.auth) {
-    renderHome(req, res, { alerts});
+    const accessToken = new JWT();
+    const user = await GetTokenData(req.cookies.auth, { accessToken });
+    console.log(user);
+    //Get alert paiement
+    const alerts = await Alert.find({ user: user.uid });
+    console.log(alerts);
+    //Render index
+    renderHome(req, res, { alerts });
   } else {
     res.render('adhesion/connexion', { title: 'Connexion | Easytax' });
   }

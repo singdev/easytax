@@ -21,7 +21,8 @@ function showCreateAlertPaiementDialog() {
 }
 
 function loadCreateForm(impot, dayCount) {
-    const date_limite = new Date(new Date().getFullYear(), impot.date_limite.month, impot.date_limite.date);
+    const now = new Date();
+    const date_limite = new Date(now.getFullYear(), impot.date_limite.month, impot.date_limite.date);
     const date_alert = addDays(date_limite, -dayCount);
 
     return { date_limite, date_alert };
@@ -29,24 +30,22 @@ function loadCreateForm(impot, dayCount) {
 
 async function createAlert() {
     const impotOPtion = document.querySelectorAll('.impots option');
-    let selected = null;
+    let impotSelectedValue = null;
     impotOPtion.forEach(io => {
-        if(io.selected){
-            selected = io.value;
+        if(io.impotSelectedValue){
+            impotSelectedValue = io.value;
         }
     });
-    let impots = null;
+    let impotData = null;
     _impots.forEach(i => {
-        console.log(i.value + " " + selected);
-        if(i.value == selected){
-            impots = i;
+        console.log(i.value + " " + impotSelectedValue);
+        if(i.value == impotSelectedValue){
+            impotData = i;
         }
-    })
+    });
     const dayCount = document.querySelector('.date_alert');
-    loadCreateForm(impots, dayCount);
-
     const body = loadCreateForm(impots, dayCount);
-    body.impot = impots.value;
+    body.impot = impotData.value;
 
     const res = await fetch('/alerts', {
         method: 'POST',
@@ -58,7 +57,12 @@ async function createAlert() {
 
     if(res.status == 200){
         console.log("creation done");
+        reloadAlertTable();
     }
+}
+
+function reloadAlertTable(){
+    //TODO fetch and reload table rows
 }
 
 function addDays(date, days) {
