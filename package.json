@@ -1,6 +1,7 @@
 {
   "name": "easytax",
   "version": "0.0.0",
+  "description": "",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
