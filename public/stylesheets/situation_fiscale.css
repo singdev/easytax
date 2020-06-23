@@ -239,6 +239,18 @@ div.question p {
     background-color: #569ce9;
 }
 
+.forfait {
+    display: none;
+}
+
+.show-forfait {
+    display: block;
+}
+
+th span, tr span {
+    padding-left: 8px;
+}
+
 @media screen and (max-width: 640px){
     .form-group {
         width: 90vw;

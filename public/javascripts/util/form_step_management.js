@@ -120,10 +120,12 @@ function showResultView(){
 
 function getValueByName(inputs, name) {
     let v = Array.from(inputs).find(v => v.name == name).value;
-    if(v == "" || isNaN(v)){
+    const noSpaceValue = v.replace(/ /g, "");
+    if(v == "" || isNaN(noSpaceValue)){
         v = 0;
     } else {
-        v = Number.parseInt(v, 10);
+        v = Number.parseInt(noSpaceValue, 10);
+        console.log(v);
     }
     return v;
 }

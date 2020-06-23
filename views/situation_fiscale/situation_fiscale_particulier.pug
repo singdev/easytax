@@ -39,7 +39,7 @@ block content
         p.question Combien d'enfant à charge avez vous (Mineur dont vous vous en occuper)?
         .text-field-cn
           .form-group
-            input#enfant(type="number" name="enfants" value="0")
+            input#enfant(type="number" name="enfants" value="0" min="0")
             label(for="enfant") Nombre d'enfants à charge
         div.question 
           p Êtes vous dans l'une des situations suivantes?
@@ -70,31 +70,31 @@ block content
         p.question Renseignez les informations suivante:
         .text-field-cn
           .form-group
-            input#traitement(type="text" name="traitement")
+            input#traitement(type="text" name="traitement" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="traitement") Traitement
           .form-group
-            input#salaire(type="text" name="salaire")
+            input#salaire(type="text" name="salaire" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="salaire") Salaire
           .form-group
-            input#indemnite(type="text" name="indemnite")
+            input#indemnite(type="text" name="indemnite" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="indemnite") Indemnité
           .form-group
-            input#emolument(type="text" name="emolument")
+            input#emolument(type="text" name="emolument" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="emolument") Emoluments
           .form-group
-            input#avantage(type="text" name="avantage_espece_argent")
+            input#avantage(type="text" name="avantage_espece_argent" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="avantage") Avantage en argent et en nature
           .form-group
-            input#pensions(type="text" name="pension")
+            input#pensions(type="text" name="pension" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="salaire") Pensions
           .form-group
-            input#retenues-retraite(type="text" name="retenu_retraite")
+            input#retenues-retraite(type="text" name="retenu_retraite" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="retenues-retraite") Retenues retraites
           .form-group
-            input#cotisation-assurance-maladie(type="text" name="cotisation_assurance_maladie")
+            input#cotisation-assurance-maladie(type="text" name="cotisation_assurance_maladie" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="cotisation-assurance-maladie") Cotisation assurance maladie
           .form-group
-            input#rente-viagere(type="text" name="rente_viagere")
+            input#rente-viagere(type="text" name="rente_viagere" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="rente-viagere") Rentes viagères
 
       div(class="rf")
@@ -110,7 +110,7 @@ block content
         p.question Renseignez les champs suivant
         .text-field-cn
           .form-group
-            input#batiment(type="text" name="valeur_locative")
+            input#batiment(type="text" name="valeur_locative" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="batiment") Quel est leur valeur locative?  
 
         p.question Avez vous des terrains nus ?
@@ -125,10 +125,10 @@ block content
         p.question Renseignez les champs suivant
           .text-field-cn
             .form-group
-              input#vv(type="text" name="valeur_venal")
+              input#vv(type="text" name="valeur_venal" onkeyup="addSpaceOnNumber(this, this.value)")
               label(for="vv") A combien estimez vous la valeur de ces terrains
             .form-group
-              input#total_interet(type="text" name="total_interet")
+              input#total_interet(type="text" name="total_interet" onkeyup="addSpaceOnNumber(this, this.value)")
               label(for="total_interet") total des Intérêts liés aux emprunts réalisés pour construire, acquérir, réparer ou entretenir la propriété
 
         p.question Avez vous des maisons en location ?
@@ -143,16 +143,16 @@ block content
         p.question Renseignez les champs suivant
         .text-field-cn
           .form-group
-            input#lm(type="text" name="loyer_mensuel")
+            input#lm(type="text" name="loyer_mensuel" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="lm") Quel est le total des loyés percue
           .form-group
-            input#recette_brute(type="text" name="recette_brute")
+            input#recette_brute(type="text" name="recette_brute" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="recette_brute") Recettes brutes perçues  en temps que propriétaire
           .form-group
-            input#charge_proprietaire_par_locataire(type="text" name="charge_proprietaire_par_locataire")
+            input#charge_proprietaire_par_locataire(type="text" name="charge_proprietaire_par_locataire" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="charge_proprietaire_par_locataire") Montant des charges du propriétaire assurées par le locataire
           .form-group
-            input#depense_proprietaire_pour_locataire(type="text" name="depense_proprietaire_pour_locataire")
+            input#depense_proprietaire_pour_locataire(type="text" name="depense_proprietaire_pour_locataire" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="depense_proprietaire_pour_locataire") Dépenses supportées par le propriétaire pour le compte des locataires
 
       div(class="pc")
@@ -183,16 +183,16 @@ block content
         p.question Renseignez les champs suivant
         .text-field-cn
           .form-group
-            input#action(type="text" name="action")
+            input#action(type="text" name="action" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="action") Produits des actions détenues
           .form-group
-            input#obligation(type="text" name="obligation")
+            input#obligation(type="text" name="obligation" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="obligation") Revenus des obligations
           .form-group
-            input#interets_creances(type="text" name="interets_creances")
+            input#interets_creances(type="text" name="interets_creances" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="interets_creances") Intérêts issus des comptes bancaires, des cautions, des dépôts ou des créances
           .form-group
-            input#interets_bon_caisse(type="text" name="interets_bon_caisse")
+            input#interets_bon_caisse(type="text" name="interets_bon_caisse" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="interets_bon_caisse") Intérêts de bon de caisse
 
       .bic
@@ -208,19 +208,19 @@ block content
         p.question Répondez aux questions suivante
         .text-field-cn
           .form-group
-            input#prix_vente(type="text" name="prix_vente")
+            input#prix_vente(type="text" name="prix_vente" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="prix_vente") Prix de vente du produit final
           .form-group
-            input#prix_achat(type="text" name="prix_achat")
+            input#prix_achat(type="text" name="prix_achat" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="prix_achat") Prix d’achat des matières premières
           .form-group
-            input#frais_transformation(type="text" name="frais_transformation")
+            input#frais_transformation(type="text" name="frais_transformation" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="frais_transformation") Frais lié au processus de transformation
 
       .ba
         p.question Quel bénéfice gagnez vous de vos production agricole?
         .form-group
-          input#benefice-agricole(type="text" name="b2")
+          input#benefice-agricole(type="text" name="b2" onkeyup="addSpaceOnNumber(this, this.value)")
           label(for="benefice-agricole") Bénéfices    
 
       section.actions-btn-cn
@@ -228,6 +228,7 @@ block content
         button(onclick="nextQuestion('next')") On conitnue 
 
   script(src="/javascripts/util/form_step_management.js")
+  script(src="/javascripts/util/input_management.js")
   script(src="/javascripts/situation_fiscale_particulier.js" defer)
   script(src="/javascripts/step_bar.js")
   script(src="/javascripts/logic/calcul_base_imposable_et_impots.js")

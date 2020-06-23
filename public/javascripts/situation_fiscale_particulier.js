@@ -6,7 +6,7 @@ function addBien() {
     const cn = document.querySelector('.biens');
     const template = `
         <div class="form-group">
-            <input type="text" name="bien">
+            <input type="text" name="bien" onkeyup="addSpaceOnNumber(this, this.value)">
             <label>Bénéfice issu de la vente du bien</label>
         </div>
     `;
@@ -44,13 +44,13 @@ function getSituationMatrimonialName(situation_matrimonail){
 }
 
 function displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable) {
-    document.querySelector('.rs-value').innerHTML = RS;
-    document.querySelector('.rf-value').innerHTML = RF;
-    document.querySelector('.pc-value').innerHTML = PC;
-    document.querySelector('.irvm-value').innerHTML = IRVM;
-    document.querySelector('.bic-value').innerHTML = BIC;
-    document.querySelector('.ba-value').innerHTML = BA;
-    document.querySelector('.total-value').innerHTML = base_imposable;
+    document.querySelector('.rs-value').innerHTML = addThreeSpace(RS);
+    document.querySelector('.rf-value').innerHTML = addThreeSpace(RF);
+    document.querySelector('.pc-value').innerHTML = addThreeSpace(PC);
+    document.querySelector('.irvm-value').innerHTML = addThreeSpace(IRVM);
+    document.querySelector('.bic-value').innerHTML = addThreeSpace(BIC);
+    document.querySelector('.ba-value').innerHTML = addThreeSpace(BA);
+    document.querySelector('.total-value').innerHTML = addThreeSpace(base_imposable);
 }
 
 function displayNombreDePart(){
@@ -61,8 +61,18 @@ function displayNombreDePart(){
 }
 
 function displayIRPP(IRPP){
-    document.querySelector('.irpp').innerHTML = IRPP;
+    document.querySelector('.irpp').innerHTML = addThreeSpace(IRPP);
+    if(IRPP == 0){
+        displayMiniMumForfaitaire();
+    }
+
 }
+
+function displayMiniMumForfaitaire(){
+    document.querySelector('.forfait').classList.add("show-forfait");
+}
+
+
 
 function nombreDePart(){
     let situation_matrimonial = getSituationMatrimonial();
