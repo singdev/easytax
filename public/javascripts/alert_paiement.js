@@ -1,5 +1,3 @@
-let _impots = [];
-
 window.addEventListener('load', () => {
     loadImpots();
 });

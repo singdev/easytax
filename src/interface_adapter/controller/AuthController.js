@@ -37,7 +37,6 @@ module.exports = {
     async verifyAccessToken(req, res, next) {
         const accessToken = req.cookies.auth;
         try {
-            console.log(accessToken);
             const decoded = await GetTokenData(accessToken, { accessToken: new JWTAccessToken() });
 
             req.auth = {

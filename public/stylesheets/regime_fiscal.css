@@ -1,0 +1,29 @@
+h2 {
+    font-size: 18px;
+    padding-top: 32px;
+    padding-bottom: 16px;
+    text-align: center;
+}
+
+table {
+    margin-bottom: 40px;
+}
+
+.low-priority thead {
+    background-color: #ECA821;
+}
+
+.my-forme-juridique {
+    padding: 4px 32px;
+    color: white;
+    font-size: 12px;
+    background-color: rgb(55, 158, 55);
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.my-forme-juridique:hover {
+    cursor: pointer;
+}

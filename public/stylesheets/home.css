@@ -18,12 +18,11 @@ main {
 }
 
 .nav-bar {
+    position: sticky;
     padding: 0px 20px;
     display: flex;
+    height: fit-content;
     flex-direction: column;
-    position: sticky;
-    top: 0px;
-    left: 0px;
 }
 
 .nav-bar-item {
