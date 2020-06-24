@@ -175,12 +175,15 @@ th, td {
   transition: 0.4s;
 }
 
-.form-group input:focus {
+select option {
+  padding: 16px;
+}
+
+.form-group input:focus, .form-group select:focus {
   outline: none;
   border-color: #ECA821;
   background-color: #eeeeee;
 }
-
 
 .form-group {
   display: flex;
@@ -215,6 +218,8 @@ th, td {
   opacity: 0.5;
   cursor: pointer;
 }
+
+
 
 @media screen and (max-width: 640px) {
   .blue-text-field input {

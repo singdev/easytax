@@ -247,6 +247,26 @@ div.question p {
     display: block;
 }
 
+.isl {
+    display: none;
+}
+
+.irpp-cn {
+    display: block;
+}
+
+.hide-irpp {
+    display: none;
+}
+
+.isl-cn {
+    display: none;
+}
+
+.show-isl {
+    display: block;
+}
+
 th span, tr span {
     padding-left: 8px;
 }

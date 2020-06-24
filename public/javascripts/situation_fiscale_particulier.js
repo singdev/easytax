@@ -1,3 +1,48 @@
+window.addEventListener('load', () => {
+    loadSecteurOnSelecteur();
+    customSelect();
+});
+
+let _secteur;
+function nextQuestionISL(value) {
+    if (_currentBase == 0 && currentQuestion == 0) {
+        const salaire = document.querySelector('#salarie-oui');
+        if (salaire.checked) {
+            stepStack.push({ current: currentQuestion, baseNumber: _currentBase });
+            nextBase();
+
+        } else {
+            nextQuestion('next');
+        }
+    } else if (_currentBase == 0 && currentQuestion == 1) {
+        _secteur = document.querySelector('select[name="secteur"]').value;
+        if (_secteur < 0) {
+            stepStack.push({ current: currentQuestion, baseNumber: _currentBase });
+            nextBase();
+        } else {
+            nextQuestion('next');
+        }
+    } else if (_currentBase == 0 && currentQuestion == 2) {
+        console.log(_secteur);
+        let ville = null;
+        const villesInputs = document.querySelectorAll('input[name="ville_isl"]');
+        villesInputs.forEach(s => {
+            if (s.checked) {
+                ville = situation_matrimonial = s.value;
+            }
+        });
+        const ISL = secteur[_secteur][ville];
+        console.log("ISL = " + ISL);
+        showResultView();
+        document.querySelector('.irpp-cn').classList.add("hide-irpp");
+        document.querySelector('.isl-cn').classList.add("show-isl");
+        document.querySelector('.isl-value').innerHTML = addThreeSpace(ISL);
+
+    } else {
+        nextQuestion(value);
+    }
+}
+
 /*** Initialization */
 nextBase();
 
@@ -22,7 +67,7 @@ function finish() {
     const BIC = BICData();
     const BA = BAData();
 
-    const base_imposable = RS+RF+PC+IRVM+BIC+BA;
+    const base_imposable = RS + RF + PC + IRVM + BIC + BA;
     const K = nombreDePart();
     const Q = determineCoefiscientFamilial(K, base_imposable);
     const P = determineIRPPParPart(Q);
@@ -36,10 +81,10 @@ function finish() {
     displayIRPP(IRPP);
 }
 
-function getSituationMatrimonialName(situation_matrimonail){
-    if(situationFamilial[situation_matrimonail]){
+function getSituationMatrimonialName(situation_matrimonail) {
+    if (situationFamilial[situation_matrimonail]) {
         return situationFamilial[situation_matrimonail].name;
-    } 
+    }
     return null;
 }
 
@@ -53,28 +98,28 @@ function displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable) {
     document.querySelector('.total-value').innerHTML = addThreeSpace(base_imposable);
 }
 
-function displayNombreDePart(){
+function displayNombreDePart() {
     document.querySelector('.situation_matrimonial').innerHTML = getSituationMatrimonialName(getSituationMatrimonial());
     document.querySelector('.nombre_enfant').innerHTML = getNombreEnfant();
     document.querySelector('.cas').innerHTML = hasCasParticulier() == 'cas_particulier' ? "Oui" : "Non";
     document.querySelector('.nombre_part').innerHTML = nombreDePart();
 }
 
-function displayIRPP(IRPP){
+function displayIRPP(IRPP) {
     document.querySelector('.irpp').innerHTML = addThreeSpace(IRPP);
-    if(IRPP == 0){
+    if (IRPP == 0) {
         displayMiniMumForfaitaire();
     }
 
 }
 
-function displayMiniMumForfaitaire(){
+function displayMiniMumForfaitaire() {
     document.querySelector('.forfait').classList.add("show-forfait");
 }
 
 
 
-function nombreDePart(){
+function nombreDePart() {
     let situation_matrimonial = getSituationMatrimonial();
     let nombre_enfant = getNombreEnfant();
     let cas = hasCasParticulier();
@@ -83,27 +128,27 @@ function nombreDePart(){
     return nombre_de_part;
 }
 
-function getSituationMatrimonial(){
+function getSituationMatrimonial() {
     const situationRadios = document.querySelectorAll('input[name="matrimonial"]');
     let situation_matrimonial = null;
     situationRadios.forEach(s => {
-        if(s.checked){
+        if (s.checked) {
             situation_matrimonial = s.value;
         }
     });
     return situation_matrimonial;
 }
 
-function getNombreEnfant(){
+function getNombreEnfant() {
     return document.querySelector('input[name="enfants"]').value;
 }
 
-function hasCasParticulier(){
+function hasCasParticulier() {
     return document.querySelector('#cp-oui').checked == false ? 'cas_general' : 'cas_particulier';
 }
 
 function RSData() {
-    const inputRs = document.querySelectorAll(".rs input[type='text']");
+    const inputRs = document.querySelectorAll(".q input[type='text']");
     const traitement = getValueByName(inputRs, 'traitement');
     const emolument = getValueByName(inputRs, 'emolument');
     const salaire = getValueByName(inputRs, 'salaire');
@@ -143,7 +188,7 @@ function PCData() {
     const biens = [];
     inputRs.forEach(i => {
         let v = i.value;
-        if(v == "" || isNaN(v)){
+        if (v == "" || isNaN(v)) {
             v = 0;
         } else {
             v = Number.parseInt(v, 10);

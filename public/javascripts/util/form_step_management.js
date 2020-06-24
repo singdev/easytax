@@ -49,7 +49,6 @@ function getBaseQuestionCount(index) {
     return q;
 }
 
-
 function initQuestion(currentBaseIndex) {
     questions = getBaseQuestionCount(currentBaseIndex);
     currentQuestion = 0;
