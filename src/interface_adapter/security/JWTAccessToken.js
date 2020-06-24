@@ -6,8 +6,6 @@ const JWT_SECRETE_KEY = "yohannmonfils2020";
 module.exports = class extends AccessToken {
 
     async generateAccessToken(payload){
-        console.log(payload);
-        console.log("generation d'un token");
         const token = await  jwt.sign(payload, JWT_SECRETE_KEY);
         return token;
     }

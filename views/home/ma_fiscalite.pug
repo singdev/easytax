@@ -3,6 +3,8 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/stylesheets/home.css")
   link(rel="stylesheet", href="/stylesheets/alert.css")
+  link(rel="stylesheet", href="/stylesheets/alert_paiement.css")
+
   
   include ../includes/main_header.pug
   +header('home')
@@ -27,10 +29,8 @@ block content
 
     .main-content
       include ../situation_fiscale/situation_fiscale_home.pug
-      div(class="rf mc-it")
-        p Régime fiscal
-      div(class="dlp mc-it")
-        p Date limite de paiement
+      include ../regime_fiscal/regime_fiscal_home.pug
+      include ../alert_paiment/alert_paiement_home.pug
   
   script(src="/javascripts/home.js")
   script(src="/javascripts/alert.js")

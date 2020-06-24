@@ -49,6 +49,9 @@ body {
 }
 
 .bases {
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 100%;
     padding: 40px 20px;
     padding-top: 80px;
@@ -111,11 +114,11 @@ header div {
 }
 
 .question {
-    font-size: 24px;
+    font-size: 18px;
     color: #000000;
     padding: 20px;
     text-align: center;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 input[type="radio"] {
@@ -129,6 +132,11 @@ input[type="radio"]+label {
     padding: 8px 32px;
     border-radius: 4px;
     font-weight: bolder;
+}
+
+input[type="radio"]:checked+label {
+    background-color: #006EB6;
+    color: white;
 }
 
 input[type="radio"]+label:hover {
@@ -158,9 +166,15 @@ input[type="radio"]+label:hover {
 }
 
 .actions-btn-cn {
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 20px;
     margin-bottom: 40px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
 }
 
 .hide {
@@ -181,13 +195,92 @@ input[type="radio"]+label:hover {
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
+
+
+
 table strong {
     font-size: 18px;
-    color: #006EB6;
+    color: #ffffff;
+}
+
+div.question ul {
+    text-align: left;
+    font-size: 8;
+    color: #777777;
+    padding-top: 16px;
+}
+
+div.question ul li {
+    font-size: 8;
+}
+
+div.question {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.question p {
+    font-size: 18px;
+    padding-top: 8px;
+}
+
+.result-cn h1 {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 18px;
+    color: #ECA821;
+}
+
+.result-cn tfoot {
+    background-color: #569ce9;
+}
+
+.forfait {
+    display: none;
+}
+
+.show-forfait {
+    display: block;
+}
+
+.isl {
+    display: none;
+}
+
+.irpp-cn {
+    display: block;
+}
+
+.hide-irpp {
+    display: none;
+}
+
+.isl-cn {
+    display: none;
+}
+
+.show-isl {
+    display: block;
+}
+
+th span, tr span {
+    padding-left: 8px;
 }
 
 @media screen and (max-width: 640px){
     .form-group {
         width: 90vw;
     }
+
+    .actions-btn-cn {
+        padding: 16px;
+        background-color: white;
+        margin-bottom: 0px;
+    }
+
+    
 }

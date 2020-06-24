@@ -6,11 +6,10 @@ function finish(){
     const is = ISData();
     const cfp = CFPData();
     showResultView();
-    document.querySelector('.css-value').innerHTML = css;
-    document.querySelector('.rf-value').innerHTML = rf;
-    document.querySelector('.is-value').innerHTML = is;
-    document.querySelector('.cfp-value').innerHTML = cfp;
-    document.querySelector('.total-value').innerHTML = css + rf + is + cfp;
+    document.querySelector('.css-value').innerHTML = addThreeSpace(css);
+    document.querySelector('.rf-value').innerHTML = addThreeSpace(rf);
+    document.querySelector('.is-value').innerHTML = addThreeSpace(is);
+    document.querySelector('.cfp-value').innerHTML = addThreeSpace(cfp);
 }
 
 function RFData() {
@@ -46,7 +45,7 @@ function ISData(){
 
 function CFPData(){
     const inputRs = document.querySelectorAll(".cfp input[type='text']");
-    const contribution = getValueByName(inputRs, 'contribution');
+    const masse_salariale = getValueByName(inputRs, 'masse_salariale');
     
-    return calculCFB({ contribution });
+    return calculCFB({ masse_salariale });
 }

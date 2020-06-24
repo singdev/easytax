@@ -5,9 +5,9 @@ div(class="sf situation-fiscale-cn mc-it active")
   .illustration-cn
     img(class="reflexion-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80", alt="Illustration")
     .details
-      p 
-        span Votre situation fiscale, c’est la somme que vous devez reverser à l’état. La somme est déterminée en fonction de plusieurs critères.
+      p(style="text-align: justify;")
+        span(style="margin-bottom: 8px;") Votre situation fiscale, c’est la somme que vous devez reverser à l’état. La somme est déterminée en fonction de plusieurs critères.
         br
         span Répondez simplement à un questionnaire et nous vous donnerons le montant exacte que vous devez à l’état. 
       - var str = JSON.stringify(user);
-      a(href="#" onclick="showSituationFiscalAlerteDialog("+str+")" class="btn") Déterminer ma situation fiscale
+      a(href="#" onclick="showSituationFiscalAlerteDialog("+str+")" class="btn-yellow") Déterminer ma situation fiscale

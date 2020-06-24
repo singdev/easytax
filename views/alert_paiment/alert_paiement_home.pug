@@ -1,0 +1,31 @@
+div(class="dlp alert-paiement-cn mc-it")
+  h1 
+    i(class="far fa-star")
+    span Alerte avant la date limite de paiement des impôts
+
+  p Vous avez des échéance consernant le paiement de vos impôts. Nous pouvons vous alerter quelque jour avant et vous évitez des pénalités.
+  br
+  p Pour cela, paramétrez juste le tableau suivant en ajoutant de nouvelles alertes ou en modifiant les dates de répétition. 
+
+  button(onclick="showCreateAlertPaiementDialog()") Ajouter une alerte
+
+  table
+    thead
+      th Impôts
+      th Date de paiement
+      th Date d'alerte
+    tbody(class="alerts")
+      each val in data.alerts
+        - var impot = val.impot
+        - var d = new Date(val.date_limite);
+        - var date_limite = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
+        - var d2 = new Date(val.date_alert);
+        - var date_alert = d2.getDate() + "/" + d2.getMonth() + "/" + d2.getFullYear()
+        tr
+          td #{impot}
+          td #{d}
+          td #{date_alert}
+
+include ./alert_paiement_create.pug
+
+script(src="/javascripts/alert_paiement.js")

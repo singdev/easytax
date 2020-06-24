@@ -18,7 +18,6 @@ module.exports = {
             const crypto = new Crypto();
 
             const user = await AuthUser(req.body.identifiant, req.body.password, { userRepository, crypto });
-            console.log(user);
             if (user) {
                 const token = await GetToken(user, { accessToken });
                 res.cookie("auth", token);
