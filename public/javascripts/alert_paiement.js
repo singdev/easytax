@@ -68,7 +68,7 @@ function displayImpotAlertTableRow(impots) {
         td.innerHTML = impot;
         const button = document.createElement("button");
         button.innerHTML = "Paramétrer l'alerte";
-        button.addEventListener('click', {
+        button.addEventListener('click', () =>{
             //TODO display Create Impot dialog for current impot
             displayDialogForImpot(impot);
         });

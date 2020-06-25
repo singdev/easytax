@@ -10,13 +10,6 @@
     display: block;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    padding: 0px 80px;
-    margin-top: 80px;
-}
-
 .nav-bar {
     position: sticky;
     padding: 0px 20px;
@@ -98,7 +91,6 @@ h1 {
         width: 100%;
         padding: 0px;
         margin: 0px;
-        position: static;
     }
     
     .situation-fiscale-cn .illustration-cn {

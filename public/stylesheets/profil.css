@@ -1,0 +1,86 @@
+
+.main-header {
+    border-bottom: 4px solid #b57900;
+    font-weight: 500;
+    background-color: white;
+}
+
+.main-header span {
+    display: inline-block;
+    padding: 8px 64px;
+    background-color: #b57900;
+    color: white;
+    font-size: 24px;
+}
+
+main {
+    padding: 0px 80px;
+    margin-top: 80px;
+}
+
+.action-button {
+    padding: 40px 16px;
+}
+
+button {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 16px;
+}
+
+.profil-data {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+}
+
+.profil-data input, select {
+    border: 1px solid #006EB6;
+    padding: 4px 8px;
+    margin: 0px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+.profil-data label {
+    padding: 0px;
+    margin: 0px;
+    color: #004486;
+    font-weight: 700;
+}
+
+.data {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    justify-content: center;
+}
+
+@media screen and (max-width: 800px){
+    .data {
+        grid-template-columns: 100%;
+    }
+
+    main {
+        padding: 20px;
+        margin-top: 100px;
+    }
+
+    .update-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        box-shadow: 5px 3px 20px #cccccc;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+    }
+
+    .update-button span {
+        display: none;
+    }
+
+}
