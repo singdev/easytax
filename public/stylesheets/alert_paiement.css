@@ -48,6 +48,20 @@ button {
     text-decoration: underline;
 }
 
+.alerts button {
+    font-size: 14px;
+    background-color: #b57900;
+}
+
+.alerts td:nth-child(4){
+    text-align: center;
+    padding: 0px;
+}
+
+button {
+    margin: 8px;
+}
+
 @media screen and (max-width:900px) {
     .dialog-content {
         flex-direction: column;

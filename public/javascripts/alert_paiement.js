@@ -1,66 +1,92 @@
-window.addEventListener('load', () => {
-    loadImpots();
+//Déterminer l'ensemble des impôts succeptiblent d'être payé (en fonction de la forme juridique)
+//Afficher toute les lignes
+//Remplir les dates pour les alertes qui ont été enregistré
+
+const IMPOT_ALERT_PARTICULIER = ["TSIL", "RS", "BIC", "BNC", "BA", "CFPB", "CFPNB", "TS"];
+const IMPOT_ALERT_SOCIETE = ["CSS", "CFP", "IS", "CFPB", "CFPNB", "TS"];
+
+window.addEventListener('load', async () => {
+    await fetchUser();
+    await fetchFormeJuridique();
+    checkUserImpot();
 });
 
+async function fetchUser() {
+    try {
+        const res = await fetch("/api/users/auth");
+        if (res.status == 200) {
+            _user = await res.json();
+            console.log(_user);
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function fetchFormeJuridique() {
+    try {
+        const res = await fetch("/api/forme-juridique");
+        if (res.status == 200) {
+            _formeJuridiques = await res.json();
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+function checkUserImpot() {
+    if (_user.formeJuridique) {
+        const impots = getImpotByFormJuridique(_user.formeJuridique);
+        displayImpotAlertTableRow(impots);
+    } else {
+        //TODO display loadFormJuridique dialog
+        //Afficher le bouton choisissez votre forme juridique
+    }
+}
+
+function getImpotByFormJuridique(formeJuridique) {
+    const fm = _formeJuridiques.find(f => f.value == formeJuridique);
+    const status = fm.type;
+
+    if (status == "p") {
+        return IMPOT_ALERT_PARTICULIER;
+    } else {
+        return IMPOT_ALERT_SOCIETE;
+    }
+}
+
+function displayImpotAlertTableRow(impots) {
+    const container = document.querySelector(".alerts");
+
+    for (let i = 0; i < impots.length; i++) {
+        const impot = impots[i];
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        const td1 = document.createElement("td");
+        const td2 = document.createElement("td");
+        const td3 = document.createElement("td");
+        td.innerHTML = impot;
+        const button = document.createElement("button");
+        button.innerHTML = "Paramétrer l'alerte";
+        button.addEventListener('click', {
+            //TODO display Create Impot dialog for current impot
+            displayDialogForImpot(impot);
+        });
+        td3.appendChild(button)
+        tr.appendChild(td);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        container.appendChild(tr);
+    }
+}
 
 function showCreateAlertPaiementDialog() {
     document.querySelector('.alert-paiement-create').classList.add('show-dialog');
-    const select = document.querySelector('.impots');
-    while (select.firstChild) {
-        select.removeChild(select.firstChild);
-    }
-
-    _impots.forEach(impot => {
-        const option = document.createElement('option');
-        option.value = impot.value;
-        option.innerHTML = impot.value;
-        select.appendChild(option);
-    });
 }
 
-function loadCreateForm(impot, dayCount) {
-    const now = new Date();
-    const date_limite = new Date(now.getFullYear(), impot.date_limite.month, impot.date_limite.date);
-    const date_alert = addDays(date_limite, -dayCount);
-
-    return { date_limite, date_alert };
-}
-
-async function createAlert() {
-    const impotOPtion = document.querySelectorAll('.impots option');
-    let impotSelectedValue = null;
-    impotOPtion.forEach(io => {
-        if(io.impotSelectedValue){
-            impotSelectedValue = io.value;
-        }
-    });
-    let impotData = null;
-    _impots.forEach(i => {
-        console.log(i.value + " " + impotSelectedValue);
-        if(i.value == impotSelectedValue){
-            impotData = i;
-        }
-    });
-    const dayCount = document.querySelector('.date_alert');
-    const body = loadCreateForm(impots, dayCount);
-    body.impot = impotData.value;
-
-    const res = await fetch('/alerts', {
-        method: 'POST',
-        headers: {
-            "content-type": "application/json"
-        },
-        body: JSON.stringify(body)
-    });
-
-    if(res.status == 200){
-        console.log("creation done");
-        reloadAlertTable();
-    }
-}
-
-function reloadAlertTable(){
-    //TODO fetch and reload table rows
+function closeCreateAlertPaiementDialog() {
+    document.querySelector('.alert-paiement-create').classList.remove('show-dialog');
 }
 
 function addDays(date, days) {
@@ -69,16 +95,40 @@ function addDays(date, days) {
     return result;
 }
 
-function closeCreateAlertPaiementDialog() {
-    document.querySelector('.alert-paiement-create').classList.remove('show-dialog');
+function displayDialogForImpot(impot) {
+    if (impot == "TSIL") {
+        displayTSIL();
+    } else if (impot == "RS") {
+        displayRS();
+    } else if (impot == "BIC" || impot == "BNC" || impot == "BIC") {
+        displayIRPP();
+    } else if (impot == "CFPB") {
+        displayCFPB();
+    } else if (impot == "CFPNB") {
+        displayCFPNB();
+    }
 }
 
-async function loadImpots() {
-    try {
-        res = await fetch("/api/impots");
-        _impots = await res.json();
-    } catch (err) {
-        console.log(err);
-    }
+function displayTSIL() {
+    
+}
+
+function displayIRPP() {
+
+}
+
+function displayCFPB() {
+
+}
+
+function displayCFPNB() {
+
+}
+
+function displayTS() {
+
+}
+
+function displayRS() {
 
 }
