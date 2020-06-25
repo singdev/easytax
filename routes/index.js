@@ -79,6 +79,10 @@ router.get('/profil', function (req, res, next) {
   renderProfil(req, res);
 });
 
+router.get('/profil-situtation-fiscale', function (req, res, next) {
+  renderPageWithUser(req, res, 'situation_fiscale/situation_fiscale_view', 'Situation fiscale | Easytax');
+});
+
 
 
 module.exports = router;

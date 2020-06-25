@@ -1,10 +1,9 @@
 extends ../layout
 
 block content
+  link(rel="stylesheet", href="/stylesheets/profil.css")
   link(rel="stylesheet", href="/stylesheets/home.css")
   link(rel="stylesheet", href="/stylesheets/alert.css")
-  link(rel="stylesheet", href="/stylesheets/profil.css")
-  link(rel="stylesheet", href="/stylesheets/dialog.css")
 
   include ../includes/main_header.pug
   +header('profil')
@@ -20,6 +19,11 @@ block content
       button(class="change-password" onclick="displayUpdatePassword()")
         i(class="fa fa-lock")
         span Changer de mot de passe
+
+      if user.situationFiscale !== null
+        button(class="situation-fiscale" onclick="window.open('/profil-situtation-fiscale', '_blank')")
+          i(class="fa fa-poll")
+          span Ma situation fiscal
     .data
       .profil-data
         label Identifiant
@@ -35,7 +39,7 @@ block content
 
       .profil-data
         label Forme juridique
-        select(type="text" name="formeJuridique" value=user.formeJuridique)
+        select(name="formeJuridique" value=user.formeJuridique)
 
       .profil-data
         label Domaine d'activité
@@ -51,7 +55,7 @@ block content
 
       .profil-data
         label Situation géographique
-        select(type="text" name="situationGeographique" value=user.situationGeographique)
+        select(name="situationGeographique" value=user.situationGeographique)
           option(value="undefined") Nom défini
           option(value="Estuaire") Estuaire
           option(value="Haut-Ogooué") Haut-Ogoué
@@ -59,8 +63,8 @@ block content
           option(value="Nyanga") Nyanga
           option(value="Ngounié") Ngounié
           option(value="Ogooué - Ivindo") Ogoué-Ivindo
-          option(value="Ogooué Maritime") Ogoué-Maritime
-          option(value="Ogooué - Lolo") Ogoué-Lolo
+          option(value="Ogooué Maritime") Ogoué Maritime
+          option(value="Ogooué - Lolo") Ogoué - Lolo
           option(value="Woleu - Ntem") Woleu-Ntem
 
       .profil-data

@@ -113,6 +113,8 @@ button {
   border-radius: 4px;
   padding: 8px 3px;
   transition: 0.4s;
+  padding: 8px 16px;
+  font-size: 14px;
 }
 
 button:hover {

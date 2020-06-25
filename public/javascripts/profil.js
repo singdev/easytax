@@ -59,6 +59,7 @@ async function updateProfil(){
     inputs.forEach(i => {
         data[i.name] = i.value;
     })
+    console.log(data);
     const res = await fetch("/api/users", {
         method: 'PUT',
         headers: {
@@ -67,6 +68,6 @@ async function updateProfil(){
         body: JSON.stringify(data)
     });
     if(res.status ==200){
-        window.location.reload();
+        alert("Mise à jour effectuée");
     }
 }

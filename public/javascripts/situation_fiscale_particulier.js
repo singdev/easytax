@@ -1,3 +1,17 @@
+
+async function updateUserSituationFiscale(situationFiscale) {
+    const res = await fetch("/api/users", {
+        method: 'PUT',
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({ situationFiscale })
+    });
+    if (res.status == 2020) {
+        console.log("OK");
+    }
+}
+
 window.addEventListener('load', () => {
     loadSecteurOnSelecteur();
     customSelect();
@@ -32,16 +46,20 @@ function nextQuestionISL(value) {
             }
         });
         const ISL = secteur[_secteur][ville];
-        console.log("ISL = " + ISL);
         showResultView();
         document.querySelector('.irpp-cn').classList.add("hide-irpp");
         document.querySelector('.isl-cn').classList.add("show-isl");
         document.querySelector('.isl-value').innerHTML = addThreeSpace(ISL);
-
+        situationFiscale = {
+            ISL
+        };
+        updateUserSituationFiscale(JSON.stringify(situationFiscale));
     } else {
         nextQuestion(value);
     }
 }
+
+
 
 /*** Initialization */
 nextBase();
@@ -71,14 +89,23 @@ function finish() {
     const K = nombreDePart();
     const Q = determineCoefiscientFamilial(K, base_imposable);
     const P = determineIRPPParPart(Q);
-    console.log(P);
-    console.log(Q);
     const IRPP = K * P;
 
     showResultView();
     displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable);
     displayNombreDePart();
     displayIRPP(IRPP);
+
+    const situationFiscale = {
+        base_imposable: {
+            RS, RF, PC, IRVM, BIC, BA
+        },
+        quotient_familial: {
+            K,
+        },
+        IRPP
+    }
+    updateUserSituationFiscale(JSON.stringify(situationFiscale));
 }
 
 function getSituationMatrimonialName(situation_matrimonail) {

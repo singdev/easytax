@@ -21,6 +21,7 @@ router.put('/', authController.verifyAccessToken, async (req, res, next) => {
     if(req.body.password){
         req.body.password = await bcrypt.hash(req.body.password);
     }
+    console.log(req.body);
     const result = await UpdateUserData(req.auth.credentials.uid, req.body, { userRepository });
     res.json(result);
 });
