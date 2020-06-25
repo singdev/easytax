@@ -1,7 +1,30 @@
-
 window.addEventListener('load', async () => {
     fetchUser();
 })
+
+
+function verifyAndUpdatePassword(){
+    const password = document.querySelector('input[name="password"]').value;
+    const confPassword = document.querySelector('input[name="confPassword"]').value;
+    console.log(confPassword);
+    console.log(password);
+    if(password.length < 6){
+        alert("Minimum 6 caractères");
+    }
+    if(password == confPassword){
+        updateProfil();
+    } else {
+        alert("Les mot de passe doivent être identique");
+    }
+}
+
+function displayUpdatePassword(){
+    document.querySelector('.update-password').classList.add("show-dialog");
+}
+
+function closeDialog(){
+    document.querySelector('.update-password').classList.remove("show-dialog");
+}
 
 async function fetchUser(){
     user =  await (await fetch("/api/users/auth")).json();

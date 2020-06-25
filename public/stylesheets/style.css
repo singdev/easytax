@@ -200,6 +200,7 @@ select option {
   justify-content: center;
   align-items: center;
   display: none;
+  z-index: 50000000;
 }
 
 .show-dialog {

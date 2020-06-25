@@ -4,6 +4,7 @@ block content
   link(rel="stylesheet", href="/stylesheets/home.css")
   link(rel="stylesheet", href="/stylesheets/alert.css")
   link(rel="stylesheet", href="/stylesheets/profil.css")
+  link(rel="stylesheet", href="/stylesheets/dialog.css")
 
   include ../includes/main_header.pug
   +header('profil')
@@ -16,6 +17,9 @@ block content
       button(class="update-button" onclick="updateProfil()")
         i(class="fa fa-edit")
         span Enregistrer les modifications
+      button(class="change-password" onclick="displayUpdatePassword()")
+        i(class="fa fa-lock")
+        span Changer de mot de passe
     .data
       .profil-data
         label Identifiant
@@ -89,4 +93,5 @@ block content
         label Nombre de personne à charge
         input(type="text" name="nombrePersonneACharge")
 
+  include ../includes/update_password.pug
   script(src="/javascripts/profil.js")
