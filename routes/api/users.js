@@ -4,6 +4,8 @@ const router = express.Router();
 const Bcrypt = require('../../src/interface_adapter/security/BcryptJS');
 
 const authController = require('../../src/interface_adapter/controller/AuthController');
+const userController = require('../../src/interface_adapter/controller/UserController');
+
 const GetUser = require('../../src/application_business_logic/use_case/GetUser');
 const UpdateUserData = require('../../src/application_business_logic/use_case/UpdateUserData');
 
@@ -25,5 +27,7 @@ router.put('/', authController.verifyAccessToken, async (req, res, next) => {
     const result = await UpdateUserData(req.auth.credentials.uid, req.body, { userRepository });
     res.json(result);
 });
+
+router.get('/forgot-password/:email', userController.forgotPassword);
 
 module.exports = router;

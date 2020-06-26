@@ -88,5 +88,10 @@ router.get('/forgot-password', function (req, res, next) {
   res.render('adhesion/forgot_password', { title: "Mot de passe oublié"})
 });
 
+router.get('/users/forgot-password/:token', function (req, res, next) {
+  const token = req.params.token;
+  res.cookie("auth", token);
+  res.render('adhesion/change_forgot_password', { title: "Mot de passe oublié"})
+});
 
 module.exports = router;

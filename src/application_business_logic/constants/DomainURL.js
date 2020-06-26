@@ -1,0 +1,1 @@
+module.exports = process.env.EASYTAX_DOMAIN || 'localhost:3131';
