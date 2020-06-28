@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url(https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+    background: url(https://images.unsplash.com/photo-1500354960738-4c480ed785bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -101,6 +101,10 @@ input[type="submit"]{
     margin: 20px;
 }
 
+.adhesion-dialog {
+    display: flex;
+}
+
 @media screen and (max-width: 640px){
     .welcome-container  > * {
         display: none;
@@ -148,5 +152,9 @@ input[type="submit"]{
 
     .blue-text-field, input[type="submit"]{
         width: 100%;
+    }
+
+    .blue-text-field input {
+        color: black;
     }
 }

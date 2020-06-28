@@ -4,10 +4,10 @@ div(class="dialog alert-paiement-create")
     .apc-illustration
       i(class="fa fa-clock")
       h2 Créer une Alerte de paiement
-    form
-      .form-group
-        label Choisissez un impôt
-        select(class="impots" name="impot")
+    div
+      .date-limite
+        p
+        button(click="") Déterminer la date limite
       .form-group
         label(for="date_alert") Nombre de jour avant l'alerte
         input#date_alert(type="number" name="date_alert")

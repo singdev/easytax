@@ -8,6 +8,7 @@ var JWT = require('../src/interface_adapter/security/JWTAccessToken');
 var GetUser = require('../src/application_business_logic/use_case/GetUser');
 var UserRepository = require('../src/interface_adapter/storage/UserRepoMongoDB');
 var User = require('../src/enterprise_business_logic/entity/User');
+const { render } = require('pug');
 
 function renderHome(req, res, data) {
   renderPageWithUser(req, res, 'home/ma_fiscalite', 'Easytax', data);
@@ -79,6 +80,18 @@ router.get('/profil', function (req, res, next) {
   renderProfil(req, res);
 });
 
+router.get('/profil-situtation-fiscale', function (req, res, next) {
+  renderPageWithUser(req, res, 'situation_fiscale/situation_fiscale_view', 'Situation fiscale | Easytax');
+});
 
+router.get('/forgot-password', function (req, res, next) {
+  res.render('adhesion/forgot_password', { title: "Mot de passe oublié"})
+});
+
+router.get('/users/forgot-password/:token', function (req, res, next) {
+  const token = req.params.token;
+  res.cookie("auth", token);
+  res.render('adhesion/change_forgot_password', { title: "Mot de passe oublié"})
+});
 
 module.exports = router;

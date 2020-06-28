@@ -7,25 +7,17 @@ div(class="dlp alert-paiement-cn mc-it")
   br
   p Pour cela, paramétrez juste le tableau suivant en ajoutant de nouvelles alertes ou en modifiant les dates de répétition. 
 
-  button(onclick="showCreateAlertPaiementDialog()") Ajouter une alerte
 
   table
     thead
       th Impôts
       th Date de paiement
       th Date d'alerte
+      th Actions
     tbody(class="alerts")
-      each val in data.alerts
-        - var impot = val.impot
-        - var d = new Date(val.date_limite);
-        - var date_limite = d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
-        - var d2 = new Date(val.date_alert);
-        - var date_alert = d2.getDate() + "/" + d2.getMonth() + "/" + d2.getFullYear()
-        tr
-          td #{impot}
-          td #{d}
-          td #{date_alert}
+
 
 include ./alert_paiement_create.pug
+include ../includes/update_forme_juridique_dialog.pug
 
 script(src="/javascripts/alert_paiement.js")

@@ -1,15 +1,33 @@
 nextBase();
 
+async function updateUserSituationFiscale(situationFiscale) {
+    const res = await fetch("/api/users", {
+        method: 'PUT',
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({ situationFiscale })
+    });
+    if (res.status == 2020) {
+        console.log("OK");
+    }
+}
+
 function finish(){
-    const css = CSSData();
-    const rf = RFData();
-    const is = ISData();
-    const cfp = CFPData();
+    const css = addThreeSpace(CSSData());
+    const rf = addThreeSpace(RFData());
+    const is = addThreeSpace(ISData());
+    const cfp = addThreeSpace(CFPData());
     showResultView();
-    document.querySelector('.css-value').innerHTML = addThreeSpace(css);
-    document.querySelector('.rf-value').innerHTML = addThreeSpace(rf);
-    document.querySelector('.is-value').innerHTML = addThreeSpace(is);
-    document.querySelector('.cfp-value').innerHTML = addThreeSpace(cfp);
+    document.querySelector('.css-value').innerHTML = css;
+    document.querySelector('.rf-value').innerHTML = rf;
+    document.querySelector('.is-value').innerHTML = is;
+    document.querySelector('.cfp-value').innerHTML = cfp;
+
+    const situationFiscal = {
+        css, rf, is, cfp
+    }
+    updateUserSituationFiscale(JSON.stringify(situationFiscal));
 }
 
 function RFData() {

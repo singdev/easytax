@@ -1,5 +1,29 @@
+link(rel="stylesheet" href="/stylesheets/regime_fiscal.css")
+
 div(class="rf regime-fiscal-cn mc-it")
   h1 
     i(class="far fa-star")
     span Mon régime fiscal
-  p Le regime fiscal c'est l'ensemble des impôts que vous devez payer en fonction de votre forme juridique et votre secteur d'activité
+  p Le regime fiscal c'est l'ensemble des impôts que vous devez payer en fonction de votre forme juridique.
+
+  p.my-forme-juridique(title="Votre forme juridique")
+
+  h2 Impôt à payer obligatoirement
+  table#impots-obligatoire
+    thead
+      th Impôt
+      th Article du code
+    tbody
+      
+
+  h2 Impôt à payer uniquement dans des cas particuliers
+  table#impots-not-obligatoire(class="low-priority")
+    thead
+      th Impôt
+      th Dans quelle condition payer?
+      th Article du code
+    tbody
+
+include ../includes/update_forme_juridique_dialog.pug
+
+script(src="/javascripts/regime_fiscal.js")
