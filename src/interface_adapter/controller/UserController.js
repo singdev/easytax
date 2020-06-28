@@ -13,6 +13,7 @@ const UserRepoMongo = require('../storage/UserRepoMongoDB');
 const User = require('../../enterprise_business_logic/entity/User');
 const Crypto = require('../../interface_adapter/security/BcryptJS');
 const JWTAccessToken = require('../../interface_adapter/security/JWTAccessToken');
+const { render } = require('pug');
 
 async function renderPageWithUser(req, res, page, title) {
     const accessToken = new JWT();
@@ -39,8 +40,8 @@ module.exports = {
                 res.redirect('/');
                 //renderPageWithUser(req, res, 'home/ma_fiscalite', "Easytax")
             } else {
-                res.redirect('/');
-                res.sendStatus(500);
+                const errorMessage = "Cette utilisateur existe déjà ";
+                res.render("adhesion/inscription", { title: "Inscription | Eeasytax", error: "Un utilisateur avec ce nom existe déjà"});
             }
         } catch (err) {
             console.log(err);

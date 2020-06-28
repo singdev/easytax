@@ -4,6 +4,8 @@ block content
   link(rel="stylesheet", href="/stylesheets/profil.css")
   link(rel="stylesheet", href="/stylesheets/home.css")
   link(rel="stylesheet", href="/stylesheets/alert.css")
+  link(rel='stylesheet', href='/stylesheets/dialog.css')
+
 
   include ../includes/main_header.pug
   +header('profil')
@@ -77,11 +79,11 @@ block content
 
       .profil-data
         label Adresse Email
-        input(type="text" name="email" value=user.email)
+        input(type="email" name="email" value=user.email)
 
       .profil-data
         label Date de création
-        input(type="text" name="dateCreation")
+        input(type="date" name="dateCreation")
 
       .profil-data
         label Nombre d'employé

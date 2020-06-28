@@ -9,16 +9,18 @@ block content
                 p Vous avez déjà un compte?
                     a(href="/connexion" class="pm-color") Connectez vous
             
-            form(action="/users", method="post")
+            form(action="/users", method="post" onsubmit="onSubmitInscription()")
                 .form-header
                     h1 Inscription à Easytax
                 .blue-text-field
                     label(for="nom") Nom ou raison social
-                    input(type="text" name="nom" id="nom")
-                
+                    input(type="text" onkeyup="onChangeNomField(this, this.value)" name="nom" id="nom")
+                    span(class="message-nom") Ce champ est très important !
+
                 .blue-text-field
                     label(for="password") Choisissez un mot de passe pour votre compte
-                    input(type="password" name="password" id="password")
+                    input(type="password" onkeyup="onChangePasswordField(this, this.value)" name="password" id="password")
+                    span(class="message-password hide-element") Minimum 6 caractères
                 
                 .blue-text-field
                     label(for="nomdirigeant") Nom du dirigeant
@@ -26,15 +28,24 @@ block content
 
                 .blue-text-field
                     label(for="email") Adresse Email
-                    input(type="email" name="email" id="email")
-                
+                    input(type="email" onkeyup="onChangeEmailField(this, this.value)" name="email" id="email")
+                    span(class="message-email hide-element") Le bon format est x@y.z
+
                 .blue-text-field
                     label(for="telephone") Numéro de téléphone
-                    input(type="tel" name="telephone" id="telephone")
+                    input(type="tel" name="telephone" onkeyup="onChangePhoneField(this, this.value)" id="telephone")
+                    span(class="message-phone hide-element") Le bon format est 0xx yyy zzz
 
-                input(type="submit" class="btn-yellow", value="Je m'inscris" class="sd-bg-color white")
+                input(type="submit" disabled class="btn-yellow", value="Je m'inscris" class="sd-bg-color white")
 
                 p(class="small-info") En cliquant sur je m'inscris, vous acceptez la
                     a(href="#" class="sd-color") politique de confidentialité
                     span et les
                     a(href="#" class="sd-color") conditions d'utilisation de easytax
+
+        if error
+          include error_dialog.pug
+          +error(error)
+
+        script(src="/javascripts/util/input_management.js")        
+        script(src="/javascripts/adhesion.js")

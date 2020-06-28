@@ -1,0 +1,10 @@
+mixin error(message)
+  div(class="dialog adhesion-dialog")
+  a(class="close" onclick="closeDialog()") &times;
+  .dialog-content
+    .apc-illustration
+      i(class="fa fa-warning")
+      h2 Accès à la plateforme
+    div
+      p=message
+      button(onclick="closeDialog()") J'ai compris
