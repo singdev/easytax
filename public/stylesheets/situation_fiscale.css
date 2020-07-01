@@ -49,9 +49,6 @@ body {
 }
 
 .bases {
-    position: sticky;
-    top: 0;
-    left: 0;
     width: 100%;
     padding: 40px 20px;
     padding-top: 80px;
@@ -83,13 +80,11 @@ header div {
     text-align: end;
 }
 
-
-
-.form-container > div {
+.form-container>div {
     display: none;
 }
 
-.form-container > .current-base {
+.form-container>.current-base {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -97,19 +92,19 @@ header div {
     align-items: center;
 }
 
-.current-base > div {
+.current-base>div {
     display: none;
 }
 
-.current-base > .question {
+.current-base>.question {
     display: none;
 }
 
-.current-base > .show-div {
+.current-base>.show-div {
     display: flex;
 }
 
-.current-base > .show-question {
+.current-base>.show-question {
     display: block;
 }
 
@@ -182,7 +177,7 @@ input[type="radio"]+label:hover {
 }
 
 .result-cn {
-    padding: 40px;
+    padding: 20px;
     padding-top: 80px;
 }
 
@@ -194,9 +189,9 @@ input[type="radio"]+label:hover {
     padding-bottom: 0px;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
-
-
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 table strong {
     font-size: 18px;
@@ -271,16 +266,21 @@ th span, tr span {
     padding-left: 8px;
 }
 
-@media screen and (max-width: 640px){
+@media screen and (max-width: 1024px) {
     .form-group {
         width: 90vw;
     }
-
     .actions-btn-cn {
         padding: 16px;
         background-color: white;
         margin-bottom: 0px;
     }
+    .bases {
+        position: static;
+    }
 
-    
+    td {
+        page-break-inside: avoid !important;
+        white-space: nowrap;
+    }
 }
