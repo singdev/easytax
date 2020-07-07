@@ -29,11 +29,15 @@ block content
       a(href="#" id="dlp" class="nav-bar-item" onclick="enableNavBarItem(this)") 
         i(class="fa fa-clock")
         span Date limite de paiement
+      a(href="#" id="ifp" class="nav-bar-item" onclick="enableNavBarItem(this)") 
+        i(class="fa fa-user")
+        span Interlocuteur fiscal
 
     .main-content
       include ../situation_fiscale/situation_fiscale_home.pug
       include ../regime_fiscal/regime_fiscal_home.pug
       include ../alert_paiment/alert_paiement_home.pug
+      include ../interlocuteur_fiscal/interlocuteur_fiscal_home.pug
   
   script(src="/javascripts/home.js")
   script(src="/javascripts/alert.js")

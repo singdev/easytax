@@ -90,6 +90,7 @@ header div {
     justify-content: center;
     width: 100vw;
     align-items: center;
+    margin-bottom: 80px;
 }
 
 .current-base>div {
