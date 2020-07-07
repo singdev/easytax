@@ -1,16 +1,16 @@
 extends ../layout
 
 block content
+  link(rel="stylesheet", href="/stylesheets/custom-select.css")
   link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
   link(rel="stylesheet", href="/stylesheets/step_bar.css")
-  link(rel="stylesheet", href="/stylesheets/custom-select.css")
 
 
   include situation_fiscale_header.pug
 
   main
     include ../includes/step_bar.pug
-    - var a = [{title: "ISL", details: "Impôt Synthétique Libératoire"}, {title: "QF", details: "Nombre de parts"}, {title: "RS", details: "Retenue sur salaire"},{title: "RF", details: "Revenues foncier"},{title: "PVC", details: ""},{title: "IRVM", details: ""},{title: "BIC", details: ""},{title: "BA", details: ""}]
+    - var a = [{title: "ISL", details: "Impôt Synthétique Libératoire"}, {title: "QF", details: "Nombre de parts"}, {title: "RS", details: "Retenue sur salaire"},{title: "RF", details: "Revenues foncier"},{title: "PVC", details: ""},{title: "IRVM", details: ""},{title: "BIC", details: ""}, {title: "Patente", details:""}, {title: "BA", details: ""}]
     +bar(a)
     include resultat_particulier.pug
     .form-container
@@ -239,6 +239,25 @@ block content
             input#frais_transformation(type="text" name="frais_transformation" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="frais_transformation") Frais lié au processus de transformation
 
+      .patente
+        p.question Exercez vous une activité personnelle dans l'un des secteurs suivant? (Sélectionnez le secteur similaire au votre, si il n'y en a aucun continuer simplement)
+        div(class="custom-select" width="400px")
+          select(name="patente")
+            option(value="-1") Je n'ai aucune activité similaire à celles listées ci desous
+
+        p.question Dans quel ville Exercez vous?
+        .text-field-cn
+          .form-group
+            input#lbv_pog_p(type="radio" name="ville_patente" value="lbv_pog" checked)
+            label(for="lbv_pog_p") Libreville, Port-Gentil
+          .form-group
+            input#autre_commune_p(type="radio" name="ville_patente" value="autre_commune" checked)
+            label(for="autre_commune_p") Autres communes
+          .form-group
+            input#departement_p(type="radio" name="ville_patente" value="departement")
+            label(for="departement_p")  Départements
+
+
       .ba
         p.question Quel bénéfice gagnez vous de vos production agricole?
         .form-group
@@ -250,6 +269,7 @@ block content
         button(onclick="nextQuestionISL('next')") On conitnue 
 
   script(src="/javascripts/logic/secteur.js")
+  script(src="/javascripts/logic/patente_table.js")
   script(src="/javascripts/util/form_step_management.js")
   script(src="/javascripts/util/input_management.js")
   script(src="/javascripts/situation_fiscale_particulier.js" defer)

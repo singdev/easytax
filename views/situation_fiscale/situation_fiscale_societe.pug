@@ -3,12 +3,13 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
   link(rel="stylesheet", href="/stylesheets/step_bar.css")
+  link(rel="stylesheet", href="/stylesheets/custom-select.css")
 
   include situation_fiscale_header.pug
 
   main
     include ../includes/step_bar.pug
-    - var a = [{title: "CSS", details: ""},{title: "CFP", details: ""},{title: "IS", details: ""},{title: "RF", details: ""}]
+    - var a = [{title: "CSS", details: ""},{title: "CFP", details: ""},{title: "IS", details: ""},{title: "RF", details: ""}, {title: "Patente", details: ""}]
     +bar(a)
     include resultat_societe.pug
     .form-container
@@ -54,7 +55,7 @@ block content
             .form-group
               input#benefice_fiscal(type="text" name="benefice_fiscal" onkeyup="addSpaceOnNumber(this, this.value)")
               label(for="benefice_fiscal") Bénéfice net fiscal
-      
+
       .rf
         p.question Avez vous des propriétés avec des batîments 
         .yes-no-cn
@@ -113,11 +114,31 @@ block content
             input#depense_proprietaire_pour_locataire(type="text" name="depense_proprietaire_pour_locataire" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="depense_proprietaire_pour_locataire") Dépenses supportées par le propriétaire pour le compte des locataires
 
+      .patente
+        p.question Exercez vous une activité personnelle dans l'un des secteurs suivant? (Sélectionnez le secteur similaire au votre, si il n'y en a aucun continuer simplement)
+          div(class="custom-select" width="400px")
+            select(name="patente")
+              option(value="-1") Je n'ai aucune activité similaire à celles listées ci desous
+
+        p.question Dans quel ville Exercez vous?
+        .text-field-cn
+          .form-group
+            input#lbv_pog_p(type="radio" name="ville_patente" value="lbv_pog" checked)
+            label(for="lbv_pog_p") Libreville, Port-Gentil
+          .form-group
+            input#autre_commune_p(type="radio" name="ville_patente" value="autre_commune" checked)
+            label(for="autre_commune_p") Autres communes
+          .form-group
+            input#departement_p(type="radio" name="ville_patente" value="departement")
+            label(for="departement_p")  Départements            
+
       section.actions-btn-cn
         button(onclick="previousQuestion('previous')") Revenir 
         button(onclick="nextQuestion('next')") On conitnue 
 
   script(src="/javascripts/util/form_step_management.js")
+  script(src="/javascripts/logic/patente_table.js")
+  script(src="/javascripts/util/custom-select.js")
   script(src="/javascripts/util/input_management.js")
   script(src="/javascripts/situation_fiscale_societe.js" defer="defer")
   script(src="/javascripts/step_bar.js")

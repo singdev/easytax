@@ -1,3 +1,4 @@
+let _patente = null;
 
 async function updateUserSituationFiscale(situationFiscale) {
     const res = await fetch("/api/users", {
@@ -14,6 +15,7 @@ async function updateUserSituationFiscale(situationFiscale) {
 
 window.addEventListener('load', () => {
     loadSecteurOnSelecteur();
+    loadPatente();
     customSelect();
 });
 
@@ -41,7 +43,7 @@ function nextQuestionISL(value) {
         const villesInputs = document.querySelectorAll('input[name="ville_isl"]');
         villesInputs.forEach(s => {
             if (s.checked) {
-                ville = situation_matrimonial = s.value;
+                ville = s.value;
             }
         });
         const ISL = secteur[_secteur][ville];
@@ -53,12 +55,38 @@ function nextQuestionISL(value) {
             ISL
         };
         updateUserSituationFiscale(JSON.stringify(situationFiscale));
+    } else if(_currentBase == _bases.length - 2 && currentQuestion == 0) {
+        _patente = document.querySelector('select[name="patente"]').value;
+        if (_patente < 0) {
+            stepStack.push({ current: currentQuestion, baseNumber: _currentBase });
+            nextBase();
+        } else {
+            nextQuestion('next');
+        }
     } else {
         nextQuestion(value);
     }
 }
 
+function calculatePatente(){
+    if(_patente >= 0){
+        let ville = null;
+        const villesInputs = document.querySelectorAll('input[name="ville_patente"]');
+        villesInputs.forEach(s => {
+            if (s.checked) {
+                ville = s.value;
+            }
+        });
+        const PATENTE = patentes[_patente][ville];
+        displayPatente(PATENTE);
+        return PATENTE;
+    }
+    return 0;
+}
 
+function displayPatente(PATENTE){
+  document.querySelector('.res_patente').innerHTML = addThreeSpace(PATENTE);
+}
 
 /*** Initialization */
 nextBase();
@@ -102,6 +130,7 @@ function finish() {
     displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable);
     displayNombreDePart();
     displayIRPP(IRPP);
+    const PATENTE = calculatePatente();
 
     const situationFiscale = {
         base_imposable: {
@@ -110,7 +139,8 @@ function finish() {
         quotient_familial: {
             K,
         },
-        IRPP
+        IRPP,
+        PATENTE
     }
     updateUserSituationFiscale(JSON.stringify(situationFiscale));
 }

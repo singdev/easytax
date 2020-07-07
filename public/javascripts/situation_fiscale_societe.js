@@ -1,5 +1,9 @@
 nextBase();
 
+window.addEventListener('load', () => {
+    loadPatente();
+});
+
 async function updateUserSituationFiscale(situationFiscale) {
     const res = await fetch("/api/users", {
         method: 'PUT',
@@ -13,7 +17,7 @@ async function updateUserSituationFiscale(situationFiscale) {
     }
 }
 
-function finish(){
+function finish() {
     const css = addThreeSpace(CSSData());
     const rf = addThreeSpace(RFData());
     const is = addThreeSpace(ISData());
@@ -47,23 +51,23 @@ function RFData() {
     });
 }
 
-function CSSData(){
+function CSSData() {
     const inputRs = document.querySelectorAll(".css input[type='text']");
     const chiffre_affaire = getValueByName(inputRs, 'chiffre_affaire');
-    return calculCSS({chiffre_affaire});
+    return calculCSS({ chiffre_affaire });
 }
 
-function ISData(){
+function ISData() {
     const inputRs = document.querySelectorAll(".is input[type='text']");
     const is_precedent = getValueByName(inputRs, 'is_precedent');
     const benefice_fiscal = getValueByName(inputRs, 'benefice_fiscal');
 
-    return calculIS({is_precedent, benefice_fiscal});
+    return calculIS({ is_precedent, benefice_fiscal });
 }
 
-function CFPData(){
+function CFPData() {
     const inputRs = document.querySelectorAll(".cfp input[type='text']");
     const masse_salariale = getValueByName(inputRs, 'masse_salariale');
-    
+
     return calculCFB({ masse_salariale });
 }
