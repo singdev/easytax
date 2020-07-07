@@ -9,6 +9,7 @@ async function updateFormeJuridique() {
             })
         });
         if (res.status == 200) {
+            window.location.reload();
             closeUpdateFormJuridiqueDialog();
             displayImpotsObligatoire();
         }
