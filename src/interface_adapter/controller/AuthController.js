@@ -16,7 +16,7 @@ module.exports = {
             const userRepository = new UserRepoMongo();
             const accessToken = new JWTAccessToken();
             const crypto = new Crypto();
-
+            console.log(req.body);
             const user = await AuthUser(req.body.identifiant, req.body.password, { userRepository, crypto });
             if (user) {
                 const token = await GetToken(user, { accessToken });
@@ -24,13 +24,13 @@ module.exports = {
                 res.redirect('/');
                 res.render('home', { title: user.nom + " | " + "Easytax" });
             } else {
+                res.status(401);
                 res.redirect('/');
-                res.sendStatus(401);
             }
         } catch (err) {
             console.log(err);
-            res.redirect('/');
             res.sendStatus(403);
+            res.redirect('/');
         }
     },
 
