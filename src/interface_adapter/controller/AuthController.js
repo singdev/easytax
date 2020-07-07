@@ -22,15 +22,14 @@ module.exports = {
                 const token = await GetToken(user, { accessToken });
                 res.cookie("auth", token);
                 res.redirect('/');
-                res.render('home', { title: user.nom + " | " + "Easytax" });
             } else {
+                res.status(401);
                 res.redirect('/');
-                res.sendStatus(401);
             }
         } catch (err) {
             console.log(err);
+            res.status(403);
             res.redirect('/');
-            res.sendStatus(403);
         }
     },
 

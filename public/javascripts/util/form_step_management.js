@@ -38,8 +38,6 @@ function hideAllBase() {
 }
 
 function showBase(index) {
-    console.log(index);
-    console.log(index);
     _bases[index].classList.add('current-base');
     updateProgressBar(index);
 }
@@ -57,7 +55,6 @@ function initQuestion(currentBaseIndex) {
 }
 
 function nextQuestion(value) {
-    console.log(stepStack);
     stepStack.push({ current: currentQuestion, baseNumber: _currentBase});
     if (value.includes("oui") || value == "next") {
         currentQuestion++;
@@ -78,7 +75,6 @@ function setCurrentQuestion(index){
 
 function previousQuestion(){
     const previous = stepStack.pop();
-    console.log(previous);
     if(previous == null){
         return;
     }
@@ -124,7 +120,6 @@ function getValueByName(inputs, name) {
         v = 0;
     } else {
         v = Number.parseInt(noSpaceValue, 10);
-        console.log(v);
     }
     return v;
 }

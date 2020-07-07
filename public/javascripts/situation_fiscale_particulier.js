@@ -37,7 +37,6 @@ function nextQuestionISL(value) {
             nextQuestion('next');
         }
     } else if (_currentBase == 0 && currentQuestion == 2) {
-        console.log(_secteur);
         let ville = null;
         const villesInputs = document.querySelectorAll('input[name="ville_isl"]');
         villesInputs.forEach(s => {
@@ -78,14 +77,22 @@ function addBien() {
 }
 
 function finish() {
-    const RS = RSData();
-    const RF = RFData();
-    const PC = PCData();
-    const IRVM = IRVMData();
-    const BIC = BICData();
-    const BA = BAData();
+    const RS = Number.parseInt(RSData());
+    const RF = Number.parseInt(RFData());
+    const PC = Number.parseInt(PCData());
+    const IRVM = Number.parseInt(IRVMData());
+    const BIC = Number.parseInt(BICData());
+    const BA = Number.parseInt(BAData());
 
     const base_imposable = RS + RF + PC + IRVM + BIC + BA;
+    console.log("Base imposable: " + base_imposable);
+    console.log(RS);
+    console.log(RF);
+    console.log(PC);
+    console.log(BIC);
+    console.log(IRVM);
+    console.log(BA);
+
     const K = nombreDePart();
     const Q = determineCoefiscientFamilial(K, base_imposable);
     const P = determineIRPPParPart(Q);
@@ -116,13 +123,13 @@ function getSituationMatrimonialName(situation_matrimonail) {
 }
 
 function displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable) {
-    document.querySelector('.rs-value').innerHTML = addThreeSpace(RS);
-    document.querySelector('.rf-value').innerHTML = addThreeSpace(RF);
-    document.querySelector('.pc-value').innerHTML = addThreeSpace(PC);
-    document.querySelector('.irvm-value').innerHTML = addThreeSpace(IRVM);
-    document.querySelector('.bic-value').innerHTML = addThreeSpace(BIC);
-    document.querySelector('.ba-value').innerHTML = addThreeSpace(BA);
-    document.querySelector('.total-value').innerHTML = addThreeSpace(base_imposable);
+    document.querySelector('.rs-value').innerHTML = (RS < 0 ? "- " : "") + addThreeSpace(RS);
+    document.querySelector('.rf-value').innerHTML = (RF < 0 ? "- " : "") + addThreeSpace(RF);
+    document.querySelector('.pc-value').innerHTML = (PC < 0 ? "- " : "") + addThreeSpace(PC);
+    document.querySelector('.irvm-value').innerHTML = (IRVM < 0 ? "- " : "") + addThreeSpace(IRVM);
+    document.querySelector('.bic-value').innerHTML = (BIC < 0 ? "- " : "") + addThreeSpace(BIC);
+    document.querySelector('.ba-value').innerHTML = (BA < 0 ? "- " : "") + addThreeSpace(BA);
+    document.querySelector('.total-value').innerHTML = (base_imposable < 0 ? "- " : "") + addThreeSpace(base_imposable);
 }
 
 function displayNombreDePart() {
@@ -214,14 +221,15 @@ function PCData() {
     const inputRs = document.querySelectorAll(".biens input[name='bien']");
     const biens = [];
     inputRs.forEach(i => {
-        let v = i.value;
+        let v = i.value.replace(/ /g, "");
         if (v == "" || isNaN(v)) {
             v = 0;
         } else {
-            v = Number.parseInt(v, 10);
+            v = Number.parseInt(v);
         }
         biens.push(v);
     });
+    console.log(biens);
     return calculPC(biens);
 }
 

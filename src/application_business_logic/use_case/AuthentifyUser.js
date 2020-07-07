@@ -12,6 +12,9 @@ module.exports = async (identifiant, password, { userRepository, crypto}) => {
     if(userFound == null){
         throw Error("User not found");
     }
+    console.log(identifiant + " " + password);
+    console.log(userFound);
+    console.log(userFound.password);
     const comparaisonResult = await crypto.compare(password, userFound.password);
     return comparaisonResult ? userFound : null;
 }

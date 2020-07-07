@@ -28,7 +28,27 @@ function closeDialog(){
 
 async function fetchUser(){
     user =  await (await fetch("/api/users/auth")).json();
-    fetchFormJuridique(user.formeJuridique)
+    fetchFormJuridique(user.formeJuridique);
+    placeholdNombreEmploye(user.nombreEmployes)
+    placeholdSituationGeographique(user.situationGeographique);
+}
+
+async function placeholdSituationGeographique(situationGeographique){
+    const options = document.querySelectorAll('select[name="situationGeographique"] option');
+    options.forEach(o => {
+        if(o.value.replace(/ /g, "") == situationGeographique.replace(/ /g, "")){
+            o.selected = true;
+        }
+    })
+}
+
+function placeholdNombreEmploye(nbEmploye){
+    const options = document.querySelectorAll('select[name="nombreEmployes"] option');
+    options.forEach(o => {
+        if(o.value.replace(/ /g, "") == nbEmploye.replace(/ /g, "")){
+            o.selected = true;
+        }
+    })
 }
 
 async function fetchFormJuridique(formeJuridique){

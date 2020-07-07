@@ -20,7 +20,11 @@ module.exports = class extends UserRepository {
     }
 
     async updateUser(id, data) {
-        const updateUser = await UserModel.findOneAndUpdate({ _id: id }, data);
+        if (!data.password) {
+            const u = await UserModel.findOne({ _id: id });
+            data.password = u.password;
+        }
+        const updateUser = await UserModel.findOneAndUpdate({ _id: id }, { $set: data }, { new: true });
         return updateUser;
     }
 

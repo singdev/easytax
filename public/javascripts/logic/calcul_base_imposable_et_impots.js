@@ -17,9 +17,9 @@ function calculRF({ recette_brute,
     valeur_locative,
     loyer_mensuel }) {
     const revenu_foncier_brute = recette_brute - depense_proprietaire_pour_locataire + charge_proprietaire_par_locataire;
-    const tsil = 3 * 4 * 15 * loyer_mensuel / 100.0;
-    const cfpb = valeur_locative;
-    const cfpnb = valeur_venal;
+    const tsil = 15 * loyer_mensuel / 100;
+    const cfpb = valeur_locative - 25 * valeur_locative/100;
+    const cfpnb = 80/100 *(10/100 * valeur_venal);
     const total_charge_propriete = total_interet + tsil + cfpnb + cfpb + 30 * revenu_foncier_brute / 100.0;
     return revenu_foncier_brute - total_charge_propriete;
 }
@@ -32,12 +32,12 @@ function calculPC(biens) {
     return count;
 }
 
-function calculIRVM({ action, obligation, interets_creances, interets_bon_caisse}) {
+function calculIRVM({ action, obligation, interets_creances, interets_bon_caisse }) {
     const op = action + obligation + interets_creances + interets_bon_caisse;
     return 20 * op / 100.0;
 }
 
-function calculBIC({prix_vente, prix_achat, frais_transformation}) {
+function calculBIC({ prix_vente, prix_achat, frais_transformation }) {
     return prix_vente - prix_achat - frais_transformation;
 }
 
@@ -47,17 +47,17 @@ function calculBA(montant_total) {
 
 /** situation fiscale société */
 
-function calculCSS({chiffre_affaire}){
-    return chiffre_affaire /100.0;
+function calculCSS({ chiffre_affaire }) {
+    return chiffre_affaire / 100.0;
 }
 
-function calculIS({ is_precedent, benefice_fiscal}){
-    const acompte1 = 25 * is_precedent /100.0;
+function calculIS({ is_precedent, benefice_fiscal }) {
+    const acompte1 = 25 * is_precedent / 100.0;
     const acompte2 = 33.33 * is_precedent / 100.0;
-    const is = 3*benefice_fiscal/100.0 - (acompte1 + acompte2);
+    const is = 3 * benefice_fiscal / 100.0 - (acompte1 + acompte2);
     return is;
 }
 
-function calculCFB({ masse_salariale}){
-    return 0.5 /  100 * masse_salariale;
+function calculCFB({ masse_salariale }) {
+    return 0.5 / 100 * masse_salariale;
 }

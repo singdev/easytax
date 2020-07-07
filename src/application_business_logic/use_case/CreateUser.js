@@ -32,13 +32,12 @@ function generateId(name) {
  * @param {User} user
  */
 module.exports = async (user, { userRepository, crypto }) => {
-
     console.log(user);
     if (!user.password || !user.nom || !user.telephone || !user.email) {
         throw Error("Missing data");
     }
     user.identifiant = generateId(user.nom);
     user.password = await crypto.hash(user.password);
-
+    console.log(user);
     return userRepository.addUser(user);
 }

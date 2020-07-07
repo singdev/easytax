@@ -49,7 +49,7 @@ block content
 
       .profil-data
         label Numéro du fonctionnaire
-        input(type="text" name="numeroFonctionnaire" value=user.numeroFonctionnaire)
+        input(type="number" name="numeroFonctionnaire" value=user.numeroFonctionnaire)
 
       .profil-data
         label Numéro de CNAMGS
@@ -83,7 +83,9 @@ block content
 
       .profil-data
         label Date de création
-        input(type="date" name="dateCreation")
+        - let d = new Date(user.dateCreation);
+        - let date = d.getFullYear()  + "-" + (d.getMonth() < 10 ? "0" : "") + d.getMonth() + "-" + (d.getDate() < 10 ? "0" : "") + d.getDate();
+        input(type="date" name="dateCreation" value=date)
 
       .profil-data
         label Nombre d'employé
@@ -97,7 +99,7 @@ block content
 
       .profil-data
         label Nombre de personne à charge
-        input(type="text" name="nombrePersonneACharge")
+        input(type="number" name="nombrePersonneACharge" value=user.nombrePersonneACharge)
 
   include ../includes/update_password.pug
   script(src="/javascripts/profil.js")
