@@ -1,7 +1,9 @@
 nextBase();
+let _patente = null;
 
 window.addEventListener('load', () => {
     loadPatente();
+    customSelect();
 });
 
 async function updateUserSituationFiscale(situationFiscale) {
@@ -17,19 +19,54 @@ async function updateUserSituationFiscale(situationFiscale) {
     }
 }
 
+function nextQuestionConditional(value) {
+    if (_currentBase == _bases.length - 2 && currentQuestion == 0) {
+        _patente = document.querySelector('select[name="patente"]').value;
+        if (_patente < 0) {
+            stepStack.push({ current: currentQuestion, baseNumber: _currentBase });
+            nextBase();
+        } else {
+            nextQuestion('next');
+        }
+    } else {
+        nextQuestion(value);
+    }
+}
+
+function calculatePatente(){
+    if(_patente >= 0){
+        let ville = null;
+        const villesInputs = document.querySelectorAll('input[name="ville_patente"]');
+        villesInputs.forEach(s => {
+            if (s.checked) {
+                ville = s.value;
+            }
+        });
+        const PATENTE = patentes[_patente][ville];
+        displayPatente(PATENTE);
+        return PATENTE;
+    }
+    return 0;
+}
+
+function displayPatente(PATENTE){
+  document.querySelector('.res_patente').innerHTML = addThreeSpace(PATENTE);
+}
+
 function finish() {
     const css = addThreeSpace(CSSData());
     const rf = addThreeSpace(RFData());
     const is = addThreeSpace(ISData());
     const cfp = addThreeSpace(CFPData());
     showResultView();
+    const PATENTE = calculatePatente();
     document.querySelector('.css-value').innerHTML = css;
     document.querySelector('.rf-value').innerHTML = rf;
     document.querySelector('.is-value').innerHTML = is;
     document.querySelector('.cfp-value').innerHTML = cfp;
 
     const situationFiscal = {
-        css, rf, is, cfp
+        css, rf, is, cfp, PATENTE
     }
     updateUserSituationFiscale(JSON.stringify(situationFiscal));
 }

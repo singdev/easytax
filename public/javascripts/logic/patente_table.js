@@ -1,6 +1,10 @@
 function loadPatente(){
     const select = document.querySelector('select[name="patente"]');
     let i = 0;
+    const option = document.createElement('option');
+    option.value = -1;
+    option.innerHTML = "Je n'ai pas de profession similaire à celle cité ici.";
+    select.appendChild(option);    
     patentes.forEach(s => {
         const option = document.createElement('option');
         option.value = i++;
