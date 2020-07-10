@@ -1,0 +1,16 @@
+div(class="dialog alert-paiement-update")
+  a(class="close" onclick="closeUpdateAlertPaiementDialog()") &times;
+  .dialog-content
+    .apc-illustration
+      i(class="fa fa-clock")
+      h2.dialog-impot
+       
+    .main-dialog
+      h2 Date de paiement
+      .date-limite
+
+      h2 Date d'alerte
+      .form-group
+        label(for="date_alert") Nombre de jour avant l'alerte
+        input#date_alert(type="number" name="date_alert")
+      button(onclick="createAlertPaiement()") Créer

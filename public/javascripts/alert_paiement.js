@@ -2,12 +2,12 @@
 //Afficher toute les lignes
 //Remplir les dates pour les alertes qui ont été enregistré
 
-const IMPOT_ALERT_PARTICULIER = ["TSIL", "RS", "BIC", "BNC", "BA", "CFPB", "CFPNB", "TS"];
-const IMPOT_ALERT_SOCIETE = ["CSS", "CFP", "IS", "CFPB", "CFPNB", "TS"];
+let _formJuridiqueAlert = null;
+let _userAlert = null;
 
 window.addEventListener('load', async () => {
-    await fetchUser();
-    await fetchFormeJuridique();
+    _userAlert = await fetchUser();
+    _formJuridiqueAlert = await fetchFormeJuridique();
     checkUserImpot();
 });
 
@@ -15,11 +15,11 @@ async function fetchUser() {
     try {
         const res = await fetch("/api/users/auth");
         if (res.status == 200) {
-            _user = await res.json();
-            console.log(_user);
+            return await res.json();
         }
     } catch (err) {
         console.log(err);
+        return null;
     }
 }
 
@@ -27,39 +27,42 @@ async function fetchFormeJuridique() {
     try {
         const res = await fetch("/api/forme-juridique");
         if (res.status == 200) {
-            _formeJuridiques = await res.json();
+            return await res.json();
         }
     } catch (err) {
         console.log(err);
+        return null;
     }
 }
 
 function checkUserImpot() {
-    if (_user.formeJuridique) {
-        const impots = getImpotByFormJuridique(_user.formeJuridique);
+    if (_userAlert.formeJuridique) {
+        const impots = getImpotByFormJuridique(_userAlert.formeJuridique);
+        console.log(impots);
         displayImpotAlertTableRow(impots);
-    } else {
-        //TODO display loadFormJuridique dialog
-        //Afficher le bouton choisissez votre forme juridique
     }
 }
 
 function getImpotByFormJuridique(formeJuridique) {
-    const fm = _formeJuridiques.find(f => f.value == formeJuridique);
-    const status = fm.type;
-
-    if (status == "p") {
-        return IMPOT_ALERT_PARTICULIER;
-    } else {
-        return IMPOT_ALERT_SOCIETE;
+    const fm = _formJuridiqueAlert.find(f => f.value == formeJuridique);
+    const impots = [];
+    for (let i = 0; i < fm.impot.length; i++) {
+        if (fm.impot[i] != false && fm.impot[i] != undefined) {
+            if (_impots[i].alert) {
+                _impots[i].alert.echeance.forEach(e => {
+                    impots.push(e);
+                })
+            }
+        }
     }
+    return impots;
 }
 
 function displayImpotAlertTableRow(impots) {
     const container = document.querySelector(".alerts");
 
     for (let i = 0; i < impots.length; i++) {
-        const impot = impots[i];
+        const impot = impots[i].title;
         const tr = document.createElement("tr");
         const td = document.createElement("td");
         const td1 = document.createElement("td");
@@ -68,9 +71,8 @@ function displayImpotAlertTableRow(impots) {
         td.innerHTML = impot;
         const button = document.createElement("button");
         button.innerHTML = "Paramétrer l'alerte";
-        button.addEventListener('click', () =>{
-            //TODO display Create Impot dialog for current impot
-            displayDialogForImpot(impot);
+        button.addEventListener('click', () => {
+            showUpdateAlertPaiementDialog(impots[i]);
         });
         td3.appendChild(button)
         tr.appendChild(td);
@@ -81,54 +83,64 @@ function displayImpotAlertTableRow(impots) {
     }
 }
 
-function showCreateAlertPaiementDialog() {
-    document.querySelector('.alert-paiement-create').classList.add('show-dialog');
+const MONTHS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+function showUpdateAlertPaiementDialog(echeance) {
+    document.querySelector('.alert-paiement-update').classList.add('show-dialog');
+    const container = document.querySelector('.date-limite');
+    document.querySelector('.dialog-impot').innerHTML = echeance.title;
+    if (echeance.question) {
+        container.innerHTML = `
+          <p class="date">${echeance.date} <span class="month-value">---</span> ${echeance.year}</p>
+          <div class="form-group">
+          <label>${echeance.question}</label>
+          <select name="month" onchange="updateDatePaiement(this)">
+          <option value="0">Janvier</option>
+          <option value="1">Février</option>
+          <option value="2">Mars</option>
+          <option value="3">Avril</option>
+          <option value="4">Mai</option>
+          <option value="5">Juin</option>
+          <option value="6">Juillet</option>
+          <option value="7">Août</option>
+          <option value="8">Septembre</option>
+          <option value="9">Octobre</option>
+          <option value="10">Novembre</option>
+          </select>
+          </div>
+        `;
+    } else {
+        container.classList.add("date");
+        container.innerHTML = `${echeance.date} <span class="month-value">${MONTHS[echeance.month]}</span> ${echeance.year}`;
+    }
 }
 
-function closeCreateAlertPaiementDialog() {
-    document.querySelector('.alert-paiement-create').classList.remove('show-dialog');
+function updateDatePaiement(e) {
+    document.querySelector('.month-value').innerHTML = MONTHS[Number.parseInt(e.value) + 1];
+}
+
+function closeUpdateAlertPaiementDialog() {
+    document.querySelector('.alert-paiement-update').classList.remove('show-dialog');
 }
 
 function addDays(date, days) {
-    var result = new Date(date);
+    var result = new Date(date.toISOString());
     result.setDate(result.getDate() + days);
     return result;
 }
 
-function displayDialogForImpot(impot) {
-    if (impot == "TSIL") {
-        displayTSIL();
-    } else if (impot == "RS") {
-        displayRS();
-    } else if (impot == "BIC" || impot == "BNC" || impot == "BIC") {
-        displayIRPP();
-    } else if (impot == "CFPB") {
-        displayCFPB();
-    } else if (impot == "CFPNB") {
-        displayCFPNB();
-    }
-}
-
-function displayTSIL() {
+async function createAlertPaiement() {
+    const alertNumber = -document.querySelector('#date_alert').value;
+    console.log(alertNumber);
+    const datePaiementStrSplits = document.querySelector('.date').innerHTML.split(' ');
     
-}
+    const str = document.querySelector('.month-value').innerHTML.replace(/ /g, "");
+    const m = MONTHS.indexOf(str);
+    const month = (m < 10 ? "0":"") + m;
+    const date = (datePaiementStrSplits[0] < 10 ? "0":"") + datePaiementStrSplits[0];
+    const year = datePaiementStrSplits[datePaiementStrSplits.length-1];
 
-function displayIRPP() {
-
-}
-
-function displayCFPB() {
-
-}
-
-function displayCFPNB() {
-
-}
-
-function displayTS() {
-
-}
-
-function displayRS() {
-
+    const date_limite = new Date(`${year}-${month}-${date}`);
+    const date_alert = addDays(datePaiement, alertNumber);
+    const impot = document.querySelector('.dialog-impot')
 }

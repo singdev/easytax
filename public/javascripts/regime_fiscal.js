@@ -2,30 +2,97 @@ let _formeJuridiques = [];
 let _user = null;
 
 const _impots = [
-    { name: "IS", article: "" },
+    {
+        name: "IS", article: "", alert: {
+            echeance_count: 3,
+            echeance: [
+                { title: "Premier acompte IS", date: 30, month: 10, year: new Date().getFullYear() },
+                { title: "Deuxième acompte acompte IS", date: 30, month: 0, year: new Date().getFullYear() + 1 },
+                { title: "Solde IS", date: 30, month: 3, year: new Date().getFullYear() + 1 },
+            ]
+        }
+    },
     { name: "IRPP", article: "" },
-    { name: "TVA", article: "" },
-    { name: "Patentes", article: "" },
+    {
+        name: "TVA", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "TVA", date: 20, month: new Date().getMonth() + 1, year: new Date().getFullYear() },
+            ]
+        }
+    },
+    {
+        name: "Patente", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "Patente", date: 28, month: 1, year: new Date().getFullYear() + (new Date().getMonth() < 1 ? 0 : 1) }
+            ]
+        }
+    },
     { name: "Licences", article: "" },
-    { name: "CFPB", article: "" },
+    {
+        name: "CFPB", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "CFPB", date: 31, month: 2, year: new Date().getFullYear() + (new Date().getMonth() < 2 ? 0 : 1) }
+            ]
+        }
+    },
     { name: "CFPNB", article: "" },
     { name: "CSS", article: "" },
     { name: "CFP", article: "" },
     { name: "DET", article: "" },
-    { name: "Taxe de superficie", article: "" },
+    {
+        name: "Taxe de superficie", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "TS", date: 31, month: 2, year: new Date().getFullYear() + (new Date().getMonth() < 2 ? 0 : 1) }
+            ]
+        }
+    },
     { name: "Redevances sur l’extraction des matériaux de carrières", article: "" },
-    { name: "TCTS", article: "" },
-    { name: "Taxe municipales sur les carburants", article: "" },
+    {
+        name: "TCTS", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "TCTS", date: 15, year: new Date().getFullYear(), question: "Quel étais le mois de la retenu à la source ?" }
+            ]
+        }
+    },
+    {
+        name: "Taxe municipales sur les carburants", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "Taxe municipales sur les carburants", date: 25, year: new Date().getFullYear(), question: "Quel est le mois auquel vous avez été livré ?" }
+            ]
+        }
+    },
     { name: "RUR", article: "" },
-    { name: "Taxe sur les contrats d’assurances", article: "" },
+    {
+        name: "Taxe sur les contrats d’assurances", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "Taxe sur les contrats d'assurances", date: 15, month: (new Date().getDate() < 15 ? 0 : 1) + new Date().getMonth(), year: new Date().getFullYear() }
+            ]
+        }
+    },
     { name: "Taxe Forfaitaire d’habitation", article: "" },
-    { name: "TSIL", article: "" }, { name: "FNH", article: "" },
-    { name: "TJH", article: "" }, { name: "TBP", article: "" },
+    { name: "TSIL", article: "" },
+    {
+        name: "FNH", article: "", alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "FNH", date: 15, year: new Date().getFullYear(), question: "Quel étais le mois de la retenu à la source ?" }
+            ]
+        }
+    },
+    { name: "TJH", article: "" },
+    { name: "TBP", article: "" },
 ];
 
 window.addEventListener('load', async () => {
-    await fetchUserData();
-    await fetchFormeJuridique();
+    _user = await fetchUserData();
+    _formeJuridiques = await fetchFormeJuridique();
     checkUserFormJuridique();
 })
 
@@ -33,11 +100,11 @@ async function fetchUserData() {
     try {
         const res = await fetch('/api/users/auth');
         if (res.status == 200) {
-            _user = await res.json();
-            console.log(_user);
+            return await res.json();
         }
     } catch (err) {
         console.log(err);
+        return null;
     }
 }
 
@@ -45,11 +112,11 @@ async function fetchFormeJuridique() {
     try {
         const res = await fetch('/api/forme-juridique');
         if (res.status == 200) {
-            _formeJuridiques = await res.json();
-            console.log(_formeJuridiques);
+            return await res.json();
         }
     } catch (err) {
         console.log(err);
+        return null;
     }
 }
 
@@ -78,15 +145,15 @@ function addFormeJuridiqueOptionOnSelect() {
     })
 }
 
-function displayImpot(){
-    document.querySelector('.my-forme-juridique').innerHTML = "<strong>" + _user.formeJuridique + "</strong>" 
+function displayImpot() {
+    document.querySelector('.my-forme-juridique').innerHTML = "<strong>" + _user.formeJuridique + "</strong>"
     displayImpotsObligatoire();
     displayImpotNotObligatoire();
 }
 
 function displayImpotsObligatoire() {
     const container = document.querySelector('#impots-obligatoire');
-
+    console.log(_formeJuridiques);
     const formeJuridiqueData = _formeJuridiques.find(fm => fm.value == _user.formeJuridique);
     console.log(formeJuridiqueData);
     if (formeJuridiqueData) {
@@ -108,7 +175,7 @@ function displayImpotsObligatoire() {
     }
 }
 
-function displayImpotNotObligatoire(){
+function displayImpotNotObligatoire() {
     const container = document.querySelector('#impots-not-obligatoire');
 
     const formeJuridiqueData = _formeJuridiques.find(fm => fm.value == _user.formeJuridique);
