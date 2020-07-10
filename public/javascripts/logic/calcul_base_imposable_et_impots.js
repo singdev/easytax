@@ -17,7 +17,7 @@ function calculRF({ recette_brute,
     valeur_locative,
     loyer_mensuel }) {
     const revenu_foncier_brute = recette_brute - depense_proprietaire_pour_locataire + charge_proprietaire_par_locataire;
-    const tsil = 15 * loyer_mensuel / 100;
+    const tsil = 12 * 15 * loyer_mensuel / 100;
     const cfpb = valeur_locative - 25 * valeur_locative/100;
     const cfpnb = 80/100 *(10/100 * valeur_venal);
     const total_charge_propriete = total_interet + tsil + cfpnb + cfpb + 30 * revenu_foncier_brute / 100.0;

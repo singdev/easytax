@@ -112,7 +112,8 @@ function finish() {
     const BIC = Number.parseInt(BICData());
     const BA = Number.parseInt(BAData());
 
-    const base_imposable = RS + RF + PC + IRVM + BIC + BA;
+    let rf = RF < 0 ? 0 : RF;
+    const base_imposable = RS + rf + PC + IRVM + BIC + BA;
     console.log("Base imposable: " + base_imposable);
     console.log(RS);
     console.log(RF);
@@ -154,7 +155,7 @@ function getSituationMatrimonialName(situation_matrimonail) {
 
 function displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable) {
     document.querySelector('.rs-value').innerHTML = (RS < 0 ? "- " : "") + addThreeSpace(RS);
-    document.querySelector('.rf-value').innerHTML = (RF < 0 ? "- " : "") + addThreeSpace(RF);
+    document.querySelector('.rf-value').innerHTML = (RF < 0 ? "0 ( Cet impôt sera reconduit l'année prochaine )" : + addThreeSpace(RF));
     document.querySelector('.pc-value').innerHTML = (PC < 0 ? "- " : "") + addThreeSpace(PC);
     document.querySelector('.irvm-value').innerHTML = (IRVM < 0 ? "- " : "") + addThreeSpace(IRVM);
     document.querySelector('.bic-value').innerHTML = (BIC < 0 ? "- " : "") + addThreeSpace(BIC);
@@ -232,13 +233,13 @@ function RSData() {
 
 function RFData() {
     const inputRs = document.querySelectorAll(".rf input[type='text']");
-    const recette_brute = getValueByName(inputRs, 'recette_brute');
     const charge_proprietaire_par_locataire = getValueByName(inputRs, 'charge_proprietaire_par_locataire');
     const depense_proprietaire_pour_locataire = getValueByName(inputRs, 'depense_proprietaire_pour_locataire');
     const total_interet = getValueByName(inputRs, 'total_interet');
     const valeur_venal = getValueByName(inputRs, 'valeur_venal');
     const valeur_locative = getValueByName(inputRs, 'valeur_locative');
     const loyer_mensuel = getValueByName(inputRs, 'loyer_mensuel');
+    const recette_brute = loyer_mensuel * 12;
 
     return calculRF({
         recette_brute, charge_proprietaire_par_locataire,
