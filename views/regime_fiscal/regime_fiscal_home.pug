@@ -9,20 +9,23 @@ div(class="rf regime-fiscal-cn mc-it")
   p.my-forme-juridique(title="Votre forme juridique")
 
   h2 Impôt à payer obligatoirement
-  table#impots-obligatoire
-    thead
-      th Impôt
-      th Article du code
-    tbody
-      
+
+  div(style="overflow-x: scroll; width: 100%;")
+    table#impots-obligatoire
+      thead
+        th Impôt
+        th Article du code
+      tbody
+
 
   h2 Impôt à payer uniquement dans des cas particuliers
-  table#impots-not-obligatoire(class="low-priority")
-    thead
-      th Impôt
-      th Dans quelle condition payer?
-      th Article du code
-    tbody
+  div(style="overflow-x:auto; width:100%;")
+    table#impots-not-obligatoire(class="low-priority")
+      thead
+        th Impôt
+        th Dans quelle condition payer?
+        th Article du code
+      tbody
 
 include ../includes/update_forme_juridique_dialog.pug
 

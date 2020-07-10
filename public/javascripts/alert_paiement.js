@@ -1,15 +1,44 @@
-//Déterminer l'ensemble des impôts succeptiblent d'être payé (en fonction de la forme juridique)
-//Afficher toute les lignes
-//Remplir les dates pour les alertes qui ont été enregistré
-
 let _formJuridiqueAlert = null;
 let _userAlert = null;
+let _alert = [];
 
 window.addEventListener('load', async () => {
     _userAlert = await fetchUser();
     _formJuridiqueAlert = await fetchFormeJuridique();
+    _alert = await fetchAlert();
+    _alert.forEach(async a => {
+        const da = new Date(a.date_alert);
+        const now = new Date();
+        if (a.active && da.getDate() == now.getDate() && da.getMonth() == now.getMonth() && now.getFullYear()) {
+            await updateAlert(a._id, { active: false });
+            await postNotification(a);
+        }
+    });
+    reloadNotification();
     checkUserImpot();
 });
+
+async function postNotification(alert) {
+    const res = await fetch("/api/notifications", {
+        method: 'post',
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+            title: "Alerte de paiement",
+            content: "Attention! Vous devez payer l'impot "
+                + alert.impot.toUpperCase() + " le " + toStringData(alert.date_limite)
+        })
+    });
+    if (res.status == 200) {
+    }
+}
+
+async function updateAlert(id, data) {
+    const res = await fetch("/api/alerts/" + id, {
+        method: "put",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(data)
+    })
+}
 
 async function fetchUser() {
     try {
@@ -18,7 +47,17 @@ async function fetchUser() {
             return await res.json();
         }
     } catch (err) {
-        console.log(err);
+        return null;
+    }
+}
+
+async function fetchAlert() {
+    try {
+        const res = await fetch("/api/alerts");
+        if (res) {
+            return await res.json();
+        }
+    } catch (err) {
         return null;
     }
 }
@@ -30,7 +69,6 @@ async function fetchFormeJuridique() {
             return await res.json();
         }
     } catch (err) {
-        console.log(err);
         return null;
     }
 }
@@ -38,7 +76,6 @@ async function fetchFormeJuridique() {
 function checkUserImpot() {
     if (_userAlert.formeJuridique) {
         const impots = getImpotByFormJuridique(_userAlert.formeJuridique);
-        console.log(impots);
         displayImpotAlertTableRow(impots);
     }
 }
@@ -60,7 +97,6 @@ function getImpotByFormJuridique(formeJuridique) {
 
 function displayImpotAlertTableRow(impots) {
     const container = document.querySelector(".alerts");
-
     for (let i = 0; i < impots.length; i++) {
         const impot = impots[i].title;
         const tr = document.createElement("tr");
@@ -69,18 +105,30 @@ function displayImpotAlertTableRow(impots) {
         const td2 = document.createElement("td");
         const td3 = document.createElement("td");
         td.innerHTML = impot;
-        const button = document.createElement("button");
-        button.innerHTML = "Paramétrer l'alerte";
-        button.addEventListener('click', () => {
-            showUpdateAlertPaiementDialog(impots[i]);
-        });
-        td3.appendChild(button)
+        const alert = _alert.find(a => a.impot == impot);
+        if (alert) {
+            td1.innerHTML = toStringData(alert.date_limite);
+            td2.innerHTML = toStringData(alert.date_alert);
+        } else {
+            const button = document.createElement("button");
+            button.innerHTML = "Paramétrer l'alerte";
+            button.addEventListener('click', () => {
+                showUpdateAlertPaiementDialog(impots[i]);
+            });
+            td3.appendChild(button)
+        }
         tr.appendChild(td);
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
         container.appendChild(tr);
     }
+}
+
+function toStringData(date) {
+    let d = new Date(date);
+    let str = (d.getDate() < 10 ? "0" : "") + d.getDate() + "/" + (d.getMonth() < 10 ? "0" : "") + d.getMonth() + "/" + d.getFullYear();
+    return str;
 }
 
 const MONTHS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
@@ -124,23 +172,54 @@ function closeUpdateAlertPaiementDialog() {
 }
 
 function addDays(date, days) {
-    var result = new Date(date.toISOString());
+    var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
 }
 
 async function createAlertPaiement() {
     const alertNumber = -document.querySelector('#date_alert').value;
-    console.log(alertNumber);
     const datePaiementStrSplits = document.querySelector('.date').innerHTML.split(' ');
-    
+
     const str = document.querySelector('.month-value').innerHTML.replace(/ /g, "");
     const m = MONTHS.indexOf(str);
-    const month = (m < 10 ? "0":"") + m;
-    const date = (datePaiementStrSplits[0] < 10 ? "0":"") + datePaiementStrSplits[0];
-    const year = datePaiementStrSplits[datePaiementStrSplits.length-1];
+    const month = (m < 10 ? "0" : "") + m;
+    const date = (datePaiementStrSplits[0] < 10 ? "0" : "") + datePaiementStrSplits[0];
+    const year = datePaiementStrSplits[datePaiementStrSplits.length - 1];
 
     const date_limite = new Date(`${year}-${month}-${date}`);
-    const date_alert = addDays(datePaiement, alertNumber);
-    const impot = document.querySelector('.dialog-impot')
+    const date_alert = addDays(date_limite, alertNumber);
+    const impot = document.querySelector('.dialog-impot').innerHTML;
+    closeUpdateAlertPaiementDialog();
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000)
+    postAlert({ date_limite, date_alert, impot });
+}
+
+async function postAlert({ date_limite, date_alert, impot }) {
+    try {
+        const res = await fetch('/api/alerts', {
+            method: 'post',
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                date_limite, date_alert, impot
+            })
+        });
+        if (res.status == 200) {
+            const alerts = await res.json();
+            window.location.reload();
+        } else {
+            window.alert("Oups, une erreur c'est produit");
+        }
+        window.location.reload();
+    } catch (err) {
+    }
+}
+
+async function deleteAllAlert(){
+   const res = await fetch("/api/alerts/all", {
+       method: 'delete',
+   });
+   window.location.reload();
 }

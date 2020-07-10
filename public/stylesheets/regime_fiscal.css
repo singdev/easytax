@@ -27,3 +27,13 @@ table {
 .my-forme-juridique:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width: 1024px){
+    .regime-fiscal-cn {
+        width: 90vw;
+    }
+
+    table {
+        width: 100%;
+    }
+}

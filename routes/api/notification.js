@@ -2,13 +2,13 @@ const authController = require('../../src/interface_adapter/controller/AuthContr
 const express = require('express');
 const router = express.Router();
 
-const Alert = require('../../src/framework_driver/database/mongoDB/models/AlertModel');
+const Notification = require('../../src/framework_driver/database/mongoDB/models/NotificationModel');
 
 router.post('/', authController.verifyAccessToken, async function (req, res, next) {
     req.body.user = req.auth.credentials.uid;
-    const alert = new Alert(req.body);
+    const notification = new Notification(req.body);
     try {
-        const result = await alert.save();
+        const result = await notification.save();
     } catch (err) {
         console.log(err);
         res.sendStatus(500);
@@ -16,14 +16,13 @@ router.post('/', authController.verifyAccessToken, async function (req, res, nex
 });
 
 router.get('/', authController.verifyAccessToken, async function (req, res, next) {
-    console.log(req.auth);
-    const alerts = await Alert.find({ user: req.auth.credentials.uid });
-    res.send(alerts);
+    const notifcations = await Notification.find({ user: req.auth.credentials.uid });
+    res.send(notifcations);
 });
 
 router.put('/:id', authController.verifyAccessToken, async function (req, res, next) {
     try {
-        const result = await Alert.findOneAndUpdate({ _id: req.params.id },  req.body);
+        const result = await Notification.findOneAndUpdate({ _id: req.params.id }, req.body);
         res.send(result);
     } catch (err) {
         console.log(err);
@@ -33,7 +32,7 @@ router.put('/:id', authController.verifyAccessToken, async function (req, res, n
 
 router.delete('/all', authController.verifyAccessToken, async function(req, res, next){
     try {
-      const result = await Alert.deleteMany({ user: req.auth.credentials.uid });
+      const result = await Notification.findAndDelete({ user: req.auth.credentials.uid });
       res.send(result);
     } catch(err){
        console.log(err);

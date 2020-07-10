@@ -103,7 +103,6 @@ async function fetchUserData() {
             return await res.json();
         }
     } catch (err) {
-        console.log(err);
         return null;
     }
 }
@@ -115,7 +114,6 @@ async function fetchFormeJuridique() {
             return await res.json();
         }
     } catch (err) {
-        console.log(err);
         return null;
     }
 }
@@ -153,9 +151,7 @@ function displayImpot() {
 
 function displayImpotsObligatoire() {
     const container = document.querySelector('#impots-obligatoire');
-    console.log(_formeJuridiques);
     const formeJuridiqueData = _formeJuridiques.find(fm => fm.value == _user.formeJuridique);
-    console.log(formeJuridiqueData);
     if (formeJuridiqueData) {
         const impotStates = formeJuridiqueData.impot;
         for (let i = 0; i < impotStates.length; i++) {
@@ -177,9 +173,7 @@ function displayImpotsObligatoire() {
 
 function displayImpotNotObligatoire() {
     const container = document.querySelector('#impots-not-obligatoire');
-
     const formeJuridiqueData = _formeJuridiques.find(fm => fm.value == _user.formeJuridique);
-    console.log(formeJuridiqueData);
     if (formeJuridiqueData) {
         const impotStates = formeJuridiqueData.impot;
         for (let i = 0; i < impotStates.length; i++) {

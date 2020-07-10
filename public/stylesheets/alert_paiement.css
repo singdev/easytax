@@ -33,3 +33,15 @@ button {
 button {
     margin: 8px;
 }
+
+@media screen and (max-width: 1024px){
+    .alert-paiement-cn {
+       width: 90vw;
+       padding: 16px;
+       margin-left: 0px;
+    }
+
+    table {
+        width: 100%;
+    }
+}

@@ -8,14 +8,15 @@ div(class="dlp alert-paiement-cn mc-it")
   p Pour cela, paramétrez juste le tableau suivant en ajoutant de nouvelles alertes ou en modifiant les dates de répétition. 
 
 
-  table
-    thead
-      th Impôts
-      th Date de paiement
-      th Date d'alerte
-      th Actions
-    tbody(class="alerts")
-
+  button(style="margin-left: 0px;" onclick="deleteAllAlert()") Réinitialiser le tableau
+  div(style="overflow-x:auto;")
+    table
+      thead
+        th Impôts
+        th Date de paiement
+        th Date d'alerte
+        th Actions
+      tbody(class="alerts")
 
 include ./alert_paiement_update.pug
 include ../includes/update_forme_juridique_dialog.pug

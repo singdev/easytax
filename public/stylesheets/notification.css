@@ -1,0 +1,98 @@
+.notification-count {
+  background-color: tomato;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 10px;
+  position: relative;
+  right: 12px;
+  bottom: 11px;
+}
+
+.notification-icon {
+    display: inline-block;
+}
+
+.notification-icon i {
+    font-size: 24px;
+}
+
+.notification-icon:hover {
+    cursor: pointer;
+}
+
+.notification-icon:hover i {
+    color: #cccccc;
+}
+
+.notification-panel {
+    position: fixed;
+    right: -250px;
+    top: 48px;
+    width: 250px;
+    height: 100vh;
+    background-color: #569ce9;
+    box-shadow: -5px 2px 5px #cccccc;
+    overflow-y: scroll;
+    opacity: 0;
+    padding: 16px;
+    padding-top: 60px;
+}
+
+.notification-show {
+    right: 0px;
+
+    opacity: 1;
+}
+
+.notification {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 2px 1px 5px #444444;
+    margin-bottom: 16px;
+    padding: 8px;
+}
+
+.notification-title {
+    color: blue;
+    font-size: 12px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.notification-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.notification-actions button {
+    border: none;
+    background-color: #d69797;
+    color: #720c0c;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 2px 16px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.notification button.isRead {
+    background-color: rgb(128, 209, 128);
+    color: green;
+}
+
+@media screen and (max-width: 900px){
+    .notification-panel{
+        padding-top: 120px;
+        z-index: 20;
+    }
+}

@@ -1,6 +1,7 @@
 
 mixin header(current)
   link(rel="stylesheet", href="/stylesheets/header.css")
+  link(rel="stylesheet", href="/stylesheets/notification.css")
 
   header
     img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
@@ -12,11 +13,18 @@ mixin header(current)
   
     - var nom = user.nom;
     - var id = user.identifiant;
-    h1(class="special") 
+    h1(class="special" onclick="toggleNotificationPanel()")
+      .notification-icon 
+        i(class="fas fa-bell")
+        span(class="notification-count") 0
       span= nom
       span (
       span(class="identifiant")= id
       span )
+
+  include notification_panel.pug
+
+  script(src="/javascripts/notification.js")
 
 mixin navitem(identifiant, navTitle, icon, current, link)
   if current == identifiant
