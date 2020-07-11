@@ -8,7 +8,7 @@ mixin header(current)
     nav.menu
       +navitem('home', 'Ma fiscalité', "fa fa-poll", current,"/")
       +navitem('declaration', 'Déclaration', "fa fa-pencil-alt", current,"/declaration")
-      +navitem('profil', 'Profil', "fas fa-user-circle", current, "/profil")
+      +navitem('profil', 'Mon compte client', "fas fa-user-circle", current, "/profil")
       +navitem('deconnexion', 'Déconnexion', 'fas fa-sign-out-alt', current, "/deconnexion")
   
     - var nom = user.nom;

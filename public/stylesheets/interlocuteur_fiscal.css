@@ -1,0 +1,65 @@
+.form-container-2 {
+    display: none;
+}
+
+.current-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.ifu-result {
+    display: none;
+}
+
+.show-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.ifu-result p {
+    width: 50%;
+    text-align: center;
+    font-size: 24px;
+}
+
+strong {
+    color: #006EB6;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.response {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.actions-btn-cn {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+}
+
+@media screen and (max-width: 1024px){
+    .ifu-result p {
+        width: 90%;
+        font-size: 16px;
+    }
+}
+

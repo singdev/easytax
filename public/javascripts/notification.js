@@ -21,6 +21,9 @@ async function reloadNotification() {
       }
     })
     document.querySelector('.notification-count').innerHTML = count;
+    if(count == 0){
+      document.querySelector('.notification-count').style.display = 'none';
+    }
   }
 }
 

@@ -1,0 +1,88 @@
+extends ../layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/custom-select.css")
+  link(rel="stylesheet", href="/stylesheets/style.css")
+  link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
+  link(rel="stylesheet", href="/stylesheets/interlocuteur_fiscal.css")
+
+  include ../situation_fiscale/situation_fiscale_header.pug
+
+  main
+    h1(class="sd-color" style="text-align:center; font-size: 24px;") Détermination de votre interlocuteur fiscale
+    .form-container-2
+      .question Dans quel partie de Libreville votre quartier est il situé?
+      .response
+        .form-group
+          input#lbv_nord(type="radio" name="lbv" value="lbv_nord")
+          label(for="lbv_nord") Livreville nord
+
+        .form-group
+          input#lbv_sud(type="radio" name="lbv" value="lbv_sud")
+          label(for="lbv_sud") Livreville sud
+
+    .form-container-2
+      .question Dans quel cas vous situez vous parmi les propositions suivantes?
+      .response
+        .form-group
+          input#creation(type="radio" name="situation" value="creation")
+          label(for="creation") Je viens de créer mon entreprise
+
+        .form-group
+          input#ca_80(type="radio" name="situation" value="ca_80")
+          label(for="ca_80") Mon chiffre d'affaire est inférieur à 80 Millions de FCFA
+
+        .form-group
+          input#ca_80_15(type="radio" name="situation" value="ca_80_15")
+          label(for="ca_80_15") Mon chiffre d'affaire est compris entre 80 Millions de FCFA et 1,5 Milliards de FCFA
+
+        .form-group
+          input#ca_15(type="radio" name="situation" value="ca_15")
+          label(for="ca_15") Mon chiffre d'affaire est supérieur à 1,5 Milliards de FCFA
+
+
+    .form-container-2
+      .question Quel est votre secteur d'activité?
+      .response
+        .form-group
+          select(name="ca_80_15")
+            option(value="IFU-1") BTP- GENIE CIVIL-EAU -ELECTRICITE
+            option(value="IFU-2") COMMERCE- NÉGOCE-HOTEL-RESTAURANT
+            option(value="IFU-3") BOIS-FORET-INDUSTRIE
+            option(value="IFU-4") PROFESSIONS LIBÉRALES ET ASSIMILÉS 
+            option(value="IFU-5") AUTRES SERVICES
+
+    .form-container-2
+      .question Quel est votre secteur d'activité?
+      .response
+        .form-group
+          select(name="ca_15")
+            option(value="IFU-1") mine et pétrole (prospection,  exploitation...etc)
+            option(value="IFU-2") forêt (exploitation, ventes, ...etc)
+            option(value="IFU-3") établissements financiers (banques, assurances,  établissements de crédit...etc)
+            option(value="IFU-4") Commerces (achat revente. importations, exportations...etc)
+            option(value="IFU-5") Autres services ( c'est ici qu'on met toutes les activités atypiques comme PMUG ou les ambassades qui veulent des exemptions de travail...etc)
+            option(value="IFU-6") transport et Télécom ( transporteurs terrestres,  aériens,  ferroviaire,  et gabon Télécom et  airtel)
+            option(value="IFU-7")  sous traitant pétroliers ( entreprises qui sont engagées par des grandes sociétés pétrolières pour effectuer une tâche bien précise à sa place)
+
+
+    .ifu-result
+      p Pour payer vos impôts, vous devez vous rendre à 
+        strong.zone
+        span Et l'IFU en charge de votre dossier est 
+        strong.ifu
+
+
+    .form-container-2
+      .question Quel est votre quartier?
+      .response
+        .form-group
+          select(name="quartier")
+
+
+    section.actions-btn-cn
+      button(onclick="previousQuestion()") Précédent 
+      button(onclick="nextQuestion()") Suivant 
+
+
+  script(src="javascripts/interlocuteur_fiscal.js")

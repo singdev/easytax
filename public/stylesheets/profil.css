@@ -1,6 +1,6 @@
 
 .main-header {
-    border-bottom: 4px solid #b57900;
+    border-bottom: 2px solid #ECA821;
     font-weight: 500;
     background-color: white;
 }
@@ -8,9 +8,9 @@
 .main-header span {
     display: inline-block;
     padding: 8px 64px;
-    background-color: #b57900;
+    background-color: #ECA821;
     color: white;
-    font-size: 24px;
+    font-size: 16px;
 }
 
 main {

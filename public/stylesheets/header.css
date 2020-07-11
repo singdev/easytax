@@ -34,7 +34,10 @@ header h1 .identifiant {
 
 .special {
     flex-grow: 10;
-    text-align: end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 span, i {
@@ -61,7 +64,7 @@ header .nav-item:hover {
 }
 
 header .nav-item-current {
-    border-bottom: 4px solid white;
+    border-bottom: 2px solid white;
 }
 
 header nav {
