@@ -1,0 +1,24 @@
+main {
+    margin-top: 95px;
+    padding: 16px;
+}
+
+.form-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.form-list li {
+    padding: 16px;
+}
+
+main > div {
+    display: none;
+}
+
+main > .current-declaration {
+    display: block;
+}
