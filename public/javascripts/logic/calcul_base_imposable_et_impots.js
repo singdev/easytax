@@ -61,3 +61,18 @@ function calculIS({ is_precedent, benefice_fiscal }) {
 function calculCFB({ masse_salariale }) {
     return 0.5 / 100 * masse_salariale;
 }
+
+function calculCFPNB(valeur_venal){
+    const cfpnb = 80/100 *(10/100 * valeur_venal);
+    return cfpnb;
+}
+
+function calculTSIL(loyer_mensuel){
+    const tsil = 12 * 15 * loyer_mensuel / 100;
+    return tsil;
+}
+
+function calculCFPB(valeur_locative){
+    const cfpb = valeur_locative - 25 * valeur_locative/100;
+    return cfpb;
+}

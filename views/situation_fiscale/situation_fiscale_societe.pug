@@ -9,7 +9,7 @@ block content
 
   main
     include ../includes/step_bar.pug
-    - var a = [{title: "CSS", details: ""},{title: "CFP", details: ""},{title: "IS", details: ""},{title: "Patente", details: ""}, {title: "RF", details: ""}]
+    - var a = [{title: "CSS", details: ""},{title: "CFP", details: ""},{title: "IS", details: ""},{title: "Patente", details: ""}, {title: "CFPB", details: ""}, {title: "CFPNB", details: ""}, {title: "TSIL", details: ""}]
     +bar(a)
     include resultat_societe.pug
     .form-container
@@ -74,7 +74,7 @@ block content
             input#departement_p(type="radio" name="ville_patente" value="departement")
             label(for="departement_p")  Départements   
 
-      .rf
+      .cfpb
         p.question Avez vous des propriétés avec des batîments 
         .yes-no-cn
           .form-group
@@ -90,6 +90,7 @@ block content
             input#batiment(type="text" name="valeur_locative" onkeyup="addSpaceOnNumber(this, this.value)")
             label(for="batiment") Quel est leur valeur locative?  
 
+      .cfpnb
         p.question Avez vous des terrains nus ?
         .yes-no-cn
           .form-group
@@ -104,10 +105,8 @@ block content
             .form-group
               input#vv(type="text" name="valeur_venal" onkeyup="addSpaceOnNumber(this, this.value)")
               label(for="vv") A combien estimez vous la valeur de ces terrains
-            .form-group
-              input#total_interet(type="text" name="total_interet" onkeyup="addSpaceOnNumber(this, this.value)")
-              label(for="total_interet") total des Intérêts liés aux emprunts réalisés pour construire, acquérir, réparer ou entretenir la propriété
 
+      .tsil
         p.question Avez vous des maisons en location ?
         .yes-no-cn
           .form-group
@@ -121,16 +120,7 @@ block content
         .text-field-cn
           .form-group
             input#lm(type="text" name="loyer_mensuel" onkeyup="addSpaceOnNumber(this, this.value)")
-            label(for="lm") Quel est le total des loyés percue
-          .form-group
-            input#recette_brute(type="text" name="recette_brute" onkeyup="addSpaceOnNumber(this, this.value)")
-            label(for="recette_brute") Recettes brutes perçues  en temps que propriétaire
-          .form-group
-            input#charge_proprietaire_par_locataire(type="text" name="charge_proprietaire_par_locataire" onkeyup="addSpaceOnNumber(this, this.value)")
-            label(for="charge_proprietaire_par_locataire") Montant des charges du propriétaire assurées par le locataire
-          .form-group
-            input#depense_proprietaire_pour_locataire(type="text" name="depense_proprietaire_pour_locataire" onkeyup="addSpaceOnNumber(this, this.value)")
-            label(for="depense_proprietaire_pour_locataire") Dépenses supportées par le propriétaire pour le compte des locataires
+            label(for="lm") Quel est le total des loyés percue par mois
 
       section.actions-btn-cn
         button(onclick="previousQuestion('previous')") Revenir 

@@ -155,7 +155,7 @@ function getSituationMatrimonialName(situation_matrimonail) {
 
 function displayBaseImposable(RS, RF, PC, IRVM, BIC, BA, base_imposable) {
     document.querySelector('.rs-value').innerHTML = (RS < 0 ? "- " : "") + addThreeSpace(RS);
-    document.querySelector('.rf-value').innerHTML = (RF < 0 ? "0 ( Cet impôt sera reconduit l'année prochaine )" : + addThreeSpace(RF));
+    document.querySelector('.rf-value').innerHTML = (RF < 0 ? `0 ( Le resultat étant négative (- ${addThreeSpace(RF)}), il sera reconduit l'année prochaine  )` : + addThreeSpace(RF));
     document.querySelector('.pc-value').innerHTML = (PC < 0 ? "- " : "") + addThreeSpace(PC);
     document.querySelector('.irvm-value').innerHTML = (IRVM < 0 ? "- " : "") + addThreeSpace(IRVM);
     document.querySelector('.bic-value').innerHTML = (BIC < 0 ? "- " : "") + addThreeSpace(BIC);

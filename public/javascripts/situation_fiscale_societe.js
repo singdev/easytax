@@ -20,7 +20,7 @@ async function updateUserSituationFiscale(situationFiscale) {
 }
 
 function nextQuestionConditional(value) {
-    if (_currentBase == _bases.length - 2 && currentQuestion == 0) {
+    if (_currentBase == _bases.length - 4 && currentQuestion == 0) {
         _patente = document.querySelector('select[name="patente"]').value;
         if (_patente < 0) {
             stepStack.push({ current: currentQuestion, baseNumber: _currentBase });
@@ -55,37 +55,44 @@ function displayPatente(PATENTE){
 
 function finish() {
     const css = addThreeSpace(CSSData());
-    const rf = addThreeSpace(RFData());
+    const cfpb = addThreeSpace(CFPBData());
+    const cfpnb = addThreeSpace(CFPNBData());
+    const tsil = addThreeSpace(TSILData());
     const is = addThreeSpace(ISData());
     const cfp = addThreeSpace(CFPData());
     showResultView();
     const PATENTE = calculatePatente();
     document.querySelector('.css-value').innerHTML = css;
-    document.querySelector('.rf-value').innerHTML = rf;
+    document.querySelector('.cfpb-value').innerHTML = cfpb;
+    document.querySelector('.cfpnb-value').innerHTML = cfpnb;
+    document.querySelector('.tsil-value').innerHTML = tsil;
     document.querySelector('.is-value').innerHTML = is;
     document.querySelector('.cfp-value').innerHTML = cfp;
 
     const situationFiscal = {
-        css, rf, is, cfp, PATENTE
+        css, is, cfp, PATENTE, cfpnb, cfpb, tsil
     }
+    console.log(situationFiscal);
     updateUserSituationFiscale(JSON.stringify(situationFiscal));
 }
 
-function RFData() {
-    const inputRs = document.querySelectorAll(".rf input[type='text']");
-    const recette_brute = getValueByName(inputRs, 'recette_brute');
-    const charge_proprietaire_par_locataire = getValueByName(inputRs, 'charge_proprietaire_par_locataire');
-    const depense_proprietaire_pour_locataire = getValueByName(inputRs, 'depense_proprietaire_pour_locataire');
-    const total_interet = getValueByName(inputRs, 'total_interet');
-    const valeur_venal = getValueByName(inputRs, 'valeur_venal');
+function CFPBData(){
+    const inputRs = document.querySelectorAll(".cfpb input[type='text']");
     const valeur_locative = getValueByName(inputRs, 'valeur_locative');
-    const loyer_mensuel = getValueByName(inputRs, 'loyer_mensuel');
 
-    return calculRF({
-        recette_brute, charge_proprietaire_par_locataire,
-        depense_proprietaire_pour_locataire, total_interet,
-        valeur_locative, valeur_venal, loyer_mensuel
-    });
+    return calculCFPB(valeur_locative);
+}
+
+function CFPNBData(){
+    const inputRs = document.querySelectorAll(".cfpnb input[type='text']");
+    const valeur_venal = getValueByName(inputRs, 'valeur_venal');
+    return calculCFPNB(valeur_venal);
+}
+
+function TSILData(){
+    const inputRs = document.querySelectorAll(".tsil input[type='text']");
+    const loyer_mensuel = getValueByName(inputRs, 'loyer_mensuel');
+    return calculTSIL(loyer_mensuel)
 }
 
 function CSSData() {
