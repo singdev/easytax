@@ -18,6 +18,10 @@ function renderProfil(req, res) {
   renderPageWithUser(req, res, 'home/profil', 'Easytax');
 }
 
+function renderFacturation(req, res){
+  renderPageWithUser(req, res, 'home/facturation', 'Easytax');
+}
+
 function renderDeclaration(req, res) {
   renderPageWithUser(req, res, 'home/declaration', 'Easytax');
 }
@@ -78,6 +82,10 @@ router.get('/declaration', function (req, res, next) {
 
 router.get('/profil', function (req, res, next) {
   renderProfil(req, res);
+});
+
+router.get('/facturation', function (req, res, next) {
+  renderFacturation(req, res);
 });
 
 router.get('/profil-situtation-fiscale', function (req, res, next) {

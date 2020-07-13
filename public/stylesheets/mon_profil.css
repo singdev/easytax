@@ -1,0 +1,13 @@
+.tabitem {
+    background-color: transparent;
+    color: #ECA821;
+    font-size: 16px;
+    padding: 8px 64px;
+    text-decoration: none;
+}
+
+.tabitem-selected {
+    display: inline-block;
+    background-color: #ECA821;
+    color: white;
+}
