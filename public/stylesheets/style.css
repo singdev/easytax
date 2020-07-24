@@ -199,9 +199,11 @@ select option {
   width: 100vw;
   height: 100vh;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   display: none;
   z-index: 50000000;
+  overflow-y: scroll;
+  padding-top: 60px;
 }
 
 .show-dialog {
