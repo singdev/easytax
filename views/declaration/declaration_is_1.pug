@@ -1,3 +1,52 @@
+link(rel="stylesheet" href="/stylesheets/profil.css")
+link(rel='stylesheet', href='/stylesheets/mon_profil.css')
+
 h2 Champs du formulaire premier acompte IS
 
+.form-ctn
+  .form-group
+    input(type="text" name="raison_social")
+    label Raison social
+
+  .form-group
+    input(type="text" name="sigle")
+    label Sigle
+
+  .form-group
+    input(type="text" name="raison_social")
+    label Boite postal
+
+  .form-group
+    input(type="text" name="telephone")
+    label Téléphone
+
+  .form-group
+    input(type="text" name="email")
+    label Adresse Email
+
+  .form-group
+    input(type="text" name="ville")
+    label Ville
+
+  .form-group
+    input(type="text" name="telecopie")
+    label Télécopie
+
+  .form-group
+    input(type="text" name="site_internet")
+    label Site internet
+
+  .form-group
+    input(type="text" name="code_residence")
+    label Code de résidence 
+      em (Résidence d’affectation de l’impôt)
+
+  .form-group
+    input(type="text" name="is_precedent")
+    label Impôt sur les Sociétés dû au titre de l’exercice précédent
+
+.actions
+  button Générer le document de déclaration
+
+include declaration_is_1_fiche.pug
 

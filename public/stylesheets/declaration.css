@@ -22,3 +22,25 @@ main > div {
 main > .current-declaration {
     display: block;
 }
+
+.form-group label {
+    color: black;
+    padding-top: 8px;
+}
+
+.form-group {
+    flex-direction: column-reverse;
+}
+
+.form-ctn {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: center;
+}
+
+.actions {
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
