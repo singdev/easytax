@@ -1,4 +1,5 @@
 link(rel='stylesheet', href='/stylesheets/page.css')
+link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
 
 .fiche
   .page
@@ -6,10 +7,11 @@ link(rel='stylesheet', href='/stylesheets/page.css')
       div
         h1 République Gabonaise
         h2 Ministère de l'économie
+        h3 - - - - - - - - - - - - - - -
         h3 Direction Générale des Impôts
         h4 BP 37 / 45 - Libreville
         h4 Tel: 79.53.76 ou 79.53.77 
-    
+      .space
       .cache-service
         p Date de réunion et cachet du service
     
@@ -27,8 +29,8 @@ link(rel='stylesheet', href='/stylesheets/page.css')
     
     .doc-nif
       p
-       strong N° du contribuable:
-       span.nif
+       strong N° du contribuable:  
+       span.nif    |__|__|__|__|__| |__|
       em (Numéro d’Identification Fiscale (NIF))
     
     .doc-step-1
@@ -36,42 +38,102 @@ link(rel='stylesheet', href='/stylesheets/page.css')
         h2 1- Identification du contribuable
         .identification-content
           .key-value
-            p.key Raison social
+            p.key Raison social :
             p.raison_social(class="value")
 
           .quatre
             .key-value
-              p.key Sigle
+              p.key Sigle :
               p.sigle(class="value")
             
             .key-value
-              p.key Ville
+              p.key Ville :
               p.ville(class="value")
             
             .key-value
-              p.key Boite postal
+              p.key Boite postal :
               p.boite_postal(class="value")
             
             .key-value
-              p.key Télécopie
+              p.key Télécopie :
               p.telecopie(class="value")
             
             .key-value
-              p.key Téléphone
+              p.key Téléphone :
               p.telecopie(class="value")
             
             .key-value
-              p.key Site internet
+              p.key Site internet :
               p.site_internet(class="value")
             
             .key-value
-              p.key Adresse Email
+              p.key Adresse Email :
               p.email(class="value")
             
             .key-value
-              p.key Code de résidence
+              p.key(class="code-residence")
+                span Code de résidence :
+                em (Résidence d’affectation de l’impôt) 
               p.code_residence(class="value")
              
       .reserver
         p Cadre réservé à l’administration
+
+    .doc-step-2
+      h2 2- Détermination de l’impôt à payer
+      table
+        thead
+          tr
+            th Acompte
+            th Impôt sur les Sociétés dû au titre de l’exercice précédent
+            th Taux
+            th Montant de l’acompte
+            th Code rubrique
+        tbody
+          tr
+            td.acompte 1er Acompte
+            td.impot
+            td.taux 25 %
+            td.montant
+            td.code_rubrique
+
+    .doc-step-3
+      h2 3- Règlement de l’impôt
+      p Mode de versement
+      ul
+        li
+          p espèces
+          .little-rect
+        li
+         p chèque (< 100 000 000 FCFA)
+         .little-rect
+         p Numero de chèque :
+
+      p Banque:
+      ul
+        li
+          p virement (>= 100 000 000 FCFA)
+          .little-rect 
+          p date :
+        li
+         p IBAN
+        li
+         p SWIFT
     
+    .doc-bottom
+      .quittance
+        p.border n° de quittance:
+        p.cachet-quittance Cachet de la recette
+      .space
+      .signature
+        p.border
+          span Fait à
+          span.signature-ville
+          span , le
+          span.signature-date
+        p Signature et cachet du contribuable
+    
+    .doc-foot
+      p
+        strong Rappel:
+        span Le dépôt de la déclaration doit obligatoirement s’accompagner du paiement de l’impôt dû Date limite de dépôt (art. 21 du CGI) -1 er acompte : au plus tard le 30 novembre de l’exercice pour lequel l’acompte est payé

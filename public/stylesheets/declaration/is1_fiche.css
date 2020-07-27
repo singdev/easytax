@@ -1,0 +1,205 @@
+p, th, td {
+    font-size: 14px;
+}
+
+.doc-head {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    text-align: center;
+}
+
+.cache-service {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.doc-head h2, .doc-head h1, .doc-head h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.doc-head h2, .doc-head h3 {
+    font-size: 14px;
+}
+
+.doc-title {
+    text-align: center;
+    padding: 8px;
+}
+
+.doc-title h1 {
+    font-size: 18px;
+}
+
+.doc-nif {
+    padding-left: 10%;
+    padding-top: 0px;
+}
+
+.nif {
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.doc-title h2 {
+    font-size: 16px;
+}
+
+.doc-date p {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+.doc-date {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+}
+
+.doc-nif em {
+    font-size: 11px;
+}
+
+.doc-step-1 {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin: 16px;
+}
+
+.doc-step-1 .identification h2, .doc-step-2 h2, .doc-step-3 h2 {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.reserver {
+    padding: 8px;
+    border: 1px solid black;
+    border-left: 1px solid black;
+
+}
+
+.reserver p {
+    text-align: center;
+}
+
+.identification-content {
+    padding: 16px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.quatre {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.code-residence {
+    display: flex;
+    flex-direction: column;
+}
+
+.code-residence em {
+    font-size: 12px;
+}
+
+.doc-step-2 {
+    padding: 16px;
+    margin-top: 8px;
+}
+
+.doc-step-2 h2, .doc-step-3 h2 {
+    border-right: 1px solid black;
+}
+
+table thead {
+    background-color: transparent;
+    color: black;
+    border-color: black;
+}
+
+th, td {
+    border-color: black;
+    font-weight: normal;
+}
+
+.doc-step-3 {
+    margin: 8px 16px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.doc-step-3 h2 {
+    border-left: none;
+    border-right: none;
+}
+
+.doc-step-3 > p {
+    padding: 4px;
+}
+
+.doc-step-3 ul {
+    padding: 4px;
+    margin-left: 10%;
+    width: 60%;
+}
+
+.doc-step-3 ul li {
+    display: grid;
+    grid-template-columns: 60% 5% 35%;
+    align-items: center;
+}
+
+.little-rect {
+    border: 1px solid black;
+    width: 16px;
+    height: 16px;
+}
+
+.doc-foot p {
+    font-size: 10px;
+    width: 80%;
+    padding: 8px;
+    border-top: 1px solid black;
+    margin-top: 8px;
+}
+
+.doc-bottom {
+    display: grid;
+    margin: 0px 16px;
+    grid-template-columns: 40% 20% 40%;
+}
+
+.doc-bottom p {
+    text-align: center;
+}
+
+.doc-bottom .border {
+    padding-left: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid black;
+    text-align: left;
+}
+
+.doc-bottom > div {
+    border: 1px solid black;
+    height: 100px;
+}
+
+.doc-bottom .space {
+    border: none;
+}
+
+.doc-foot {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
