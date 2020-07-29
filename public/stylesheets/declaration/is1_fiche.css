@@ -203,3 +203,8 @@ th, td {
     flex-direction: row;
     justify-content: center;
 }
+
+.signature-ville {
+    width: 40%;
+    display: inline-block;
+}
