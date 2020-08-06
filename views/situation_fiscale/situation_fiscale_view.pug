@@ -3,10 +3,11 @@ extends ../layout
 block content
   link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
 
+  p.empty_sf(style="padding: 20px; color: black;")
+
   div(class="result-cn societe")
     p Situation fiscale de
       strong(style="padding-left: 4px;") #{user.nom}
-
     table
       thead
         th Impôt
@@ -45,8 +46,6 @@ block content
 
   .particulier
     div(class="result-cn")
-      p Situation fiscale de
-        strong(style="padding-left: 4px;") #{user.nom}
       .irpp-cn
         h1 Base Imposable
         table
@@ -122,6 +121,18 @@ block content
               th
                 span.isl-value
                 span FCFA
+
+  .penalites(style="padding: 20px;")
+    p.empty_p
+    h1(class="pm-color") Vos pénalités
+
+    table
+      thead(style="background-color: red;")
+        tr
+          th Impôt
+          th Pénalités
+      tbody
+
 
   p(style="text-align:center; padding-bottom: 20px;").easytax Généré avec l'application easytax
     script(src="/javascripts/util/input_management.js")

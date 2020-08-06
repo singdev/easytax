@@ -2,7 +2,19 @@ let _user = null;
 
 window.addEventListener('load', async () => {
     await fetchUserData();
-    load();
+    if(_user.situationFiscale){
+      load();
+    } else {
+        document.querySelector('.societe').style.display = 'none';
+        document.querySelector('.particulier').style.display = 'none';
+        document.querySelector('.empty_sf').innerHTML = "Vous n'avez pas encore Déterminé le montant des impôts que vous devez payer !";
+    } 
+
+    if(_user.penalites){
+        loadPenalites();
+    } else {
+        document.querySelector('.empty_p').innerHTML = "Vous n'avez pas encore Déterminé vos pénalités";
+    }
 })
 
 async function fetchUserData() {
@@ -15,6 +27,23 @@ async function fetchUserData() {
     } catch (err) {
         console.log(err);
     }
+}
+
+function loadPenalites(){
+    const _penalites = JSON.parse(_user.penalites);
+    const tbody = document.querySelector('.penalites tbody');
+
+    _penalites.forEach(p => {
+        const tr = document.createElement('tr');
+        const td_impot = document.createElement('td');
+        const td_penalite = document.createElement('td');
+        td_impot.innerHTML = p.impot.title;
+        td_penalite.innerHTML = p.penalite;
+
+        tr.appendChild(td_impot);
+        tr.appendChild(td_penalite);
+        tbody.appendChild(tr);
+    })
 }
 
 function load() {

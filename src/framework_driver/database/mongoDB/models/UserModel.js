@@ -68,5 +68,6 @@ module.exports = mongoose.model('User', Schema({
       ]
    },
    situationFiscale: { type: String},
+   penalites: { type: String},
    nombrePersonneACharge: { type: Number },
 }));

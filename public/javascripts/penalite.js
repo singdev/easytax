@@ -31,6 +31,7 @@ window.addEventListener('load', async () => {
     checkUserFormJuridique();
     checkUserImpot();
     nextQuestion();
+    console.log(_user);
 })
 
 /**
@@ -122,9 +123,8 @@ function previousQuestion() {
 }
 
 function finish() {
-    document.querySelector('.termine').addEventListener('click', () => {
-        console.log(_penalites);
-    });
+    displayResult();
+    savePenalite();
 }
 
 function displayBars() {
@@ -153,7 +153,8 @@ function displayContent() {
     const impot = _impots_penalite[currentImpotIndex];
     document.querySelector('.impot-question').innerHTML = impot.title;
     const valider = document.querySelector('.valider');
-    
+    const passer = document.querySelector('.passer');
+    passer.onclick = () => nextQuestion();
     valider.onclick = () => {
         while(nextContent.firstChild){
             nextContent.removeChild(nextContent.firstChild);
@@ -181,7 +182,7 @@ function displayContent() {
                 const montant = document.querySelector('input[name="montant"]').value.trim().replace(/ /g, "");
                 let penalite = 0.03 * montant;
                 console.log(penalite);
-                for(let x = 0; x < monthCount; x++){
+                for(let x = 1; x < monthCount; x++){
                     penalite += 0.1 * montant;
                 }
                 const rubrique = _penalites.find(imp => imp.impot == impot);
@@ -204,4 +205,35 @@ function monthDiff(d1, d2) {
     months -= d1.getMonth();
     months += d2.getMonth();
     return months <= 0 ? 0 : months;
+}
+
+function displayResult(){
+    document.querySelector('main').style.display = 'none';
+
+    document.querySelector('.result').style.display = 'block';
+    const tbody = document.querySelector('.result tbody');
+
+    _penalites.forEach(p => {
+        const tr = document.createElement('tr');
+        const td_impot = document.createElement('td');
+        const td_penalite = document.createElement('td');
+        td_impot.innerHTML = p.impot.title;
+        td_penalite.innerHTML = p.penalite;
+
+        tr.appendChild(td_impot);
+        tr.appendChild(td_penalite);
+        tbody.appendChild(tr);
+    })
+}
+
+async function savePenalite(){
+    const res = await fetch("/api/users", {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json'},
+        body: JSON.stringify({ penalites: JSON.stringify(_penalites) })
+    });
+    
+    if(res.status == 200){
+        window.alert("Vos informations sur la pénalité ont été enregistré dans votre compte utilisateur");
+    }
 }

@@ -8,6 +8,17 @@ block content
 
   include situation_fiscale_header.pug
 
+  .result
+    
+    h1(class="pm-color") Vos pénalités
+
+    table
+      thead
+        tr
+          th Impôt
+          th Pénalités
+      tbody
+
   main
     .impots
 
@@ -21,7 +32,8 @@ block content
           input(type="date" name="date")
           label Dernier paiement
 
-        button(class="btn-yellow valider") Valider
+        button(class="valider") Valider
+        button(class="passer btn-yellow" style='margin-top: 20px;') Passer
 
         .next-ctn
       .actions
