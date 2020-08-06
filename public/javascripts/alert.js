@@ -1,5 +1,4 @@
 function showSituationFiscalAlerteDialog(user) {
-    console.log(user);
     const userData = user;
     if(userData.formeJuridique){
         window.location = "/situation-fiscale";

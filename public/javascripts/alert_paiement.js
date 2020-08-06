@@ -1,3 +1,28 @@
+/**
+ * Documentation
+ * ______________
+ * 
+ * 
+ * La liste des impôts avec leur date limite de paiement ce trouve dans le fichier
+ * regime_fiscal.js
+ * 
+ * Il est structuré comme suite pour chaque impôt:
+ * 
+ * Exemple pour l'IS
+ * {
+ *   "name": "IS",
+ *   "article" : "lorem ipsu ...",
+ *   "alert": {
+ *          echeance_count: 3,
+            echeance: [
+                { title: "Premier acompte IS", date: 30, month: 10, year: new Date().getFullYear() },
+                { title: "Deuxième acompte acompte IS", date: 30, month: 0, year: new Date().getFullYear() + 1 },
+                { title: "Solde IS", date: 30, month: 3, year: new Date().getFullYear() + 1 },
+            ]
+ *   }
+ * }
+ */
+
 let _formJuridiqueAlert = null;
 let _userAlert = null;
 let _alert = [];

@@ -1,6 +1,7 @@
 let _formeJuridiques = [];
 let _user = null;
-//<><>
+
+
 const _impots = [
     {
         name: "IS", article: `

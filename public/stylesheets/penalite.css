@@ -1,0 +1,63 @@
+main {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.impots {
+    padding: 16px;
+    background-color: #004486;
+}
+
+.impots p {
+    margin: 4px;
+    padding: 8px;
+    color: white;
+    background-color: #006EB6;
+}
+
+.impots p.current-impot {
+    background-color: #ECA821;
+}
+
+.form-ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@media screen and (max-width: 800px){
+
+    .impots {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        overflow-x: scroll;
+    }
+
+    .impots p {
+        text-align: center;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow-x: hidden;
+    }
+}

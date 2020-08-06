@@ -40,4 +40,10 @@ router.post('/forme-juridique', authController.verifyAccessToken, async function
     }
   });
 
+
+  router.get('/penalite', authController.verifyAccessToken, async function (req, res, next) {
+    const userRepository = new UserRepository();
+    const user = await GetUser(req.auth.credentials.uid, { userRepository });
+    res.render('situation_fiscale/penalite', { user: user[0], title: "Calcul des pénalité | Easytax"})
+  });
   module.exports = router;

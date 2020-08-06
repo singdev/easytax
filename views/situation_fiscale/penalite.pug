@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/penalite.css")
+  link(rel="stylesheet", href="/stylesheets/situation_fiscale.css")
+  link(rel="stylesheet", href="/stylesheets/step_bar.css")
+
+
+  include situation_fiscale_header.pug
+
+  main
+    .impots
+
+    .content
+      .form-content
+        h1.question Quel est la date à laquelle vous avez payé 
+          strong.impot-question(style="padding: 0px 4px;" class="pm-color")
+          span La dernière fois ?
+
+        .form-group
+          input(type="date" name="date")
+          label Dernier paiement
+
+        button(class="btn-yellow valider") Valider
+
+        .next-ctn
+      .actions
+
+  include ../includes/update_forme_juridique_dialog.pug
+
+  script(src="/javascripts/util/input_management.js")
+  script(src="/javascripts/regime_fiscal.js")
+  script(src="/javascripts/penalite.js")
