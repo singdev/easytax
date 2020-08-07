@@ -44,3 +44,14 @@ main > .current-declaration {
     flex-direction: row;
     justify-content: center;
 }
+
+.key-value {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.key-value .value {
+    padding-left: 4px;
+    color: blue;
+}

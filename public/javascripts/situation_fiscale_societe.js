@@ -1,5 +1,6 @@
 nextBase();
 let _patente = null;
+let is_precedent;
 
 window.addEventListener('load', () => {
     loadPatente();
@@ -70,7 +71,7 @@ function finish() {
     document.querySelector('.cfp-value').innerHTML = cfp;
 
     const situationFiscal = {
-        css, is, cfp, PATENTE, cfpnb, cfpb, tsil
+        css, is, cfp, PATENTE, cfpnb, cfpb, tsil, is_precedent
     }
     console.log(situationFiscal);
     updateUserSituationFiscale(JSON.stringify(situationFiscal));
@@ -103,7 +104,7 @@ function CSSData() {
 
 function ISData() {
     const inputRs = document.querySelectorAll(".is input[type='text']");
-    const is_precedent = getValueByName(inputRs, 'is_precedent');
+    is_precedent = getValueByName(inputRs, 'is_precedent');
     const benefice_fiscal = getValueByName(inputRs, 'benefice_fiscal');
 
     return calculIS({ is_precedent, benefice_fiscal });

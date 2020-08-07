@@ -1,5 +1,7 @@
 link(rel="stylesheet" href="/stylesheets/profil.css")
 link(rel='stylesheet', href='/stylesheets/mon_profil.css')
+link(rel='stylesheet', href='/stylesheets/page.css')
+link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
 
 h2 Champs du formulaire premier acompte IS
 
@@ -13,7 +15,7 @@ h2 Champs du formulaire premier acompte IS
     label Sigle
 
   .form-group
-    input(type="text" name="raison_social")
+    input(type="text" name="boite_postal")
     label Boite postal
 
   .form-group
@@ -46,7 +48,9 @@ h2 Champs du formulaire premier acompte IS
     label Impôt sur les Sociétés dû au titre de l’exercice précédent
 
 .actions
-  button Générer le document de déclaration
+  button(onclick="remplir(25, 0)") Générer le document de déclaration
 
 include declaration_is_1_fiche.pug
 
+.actions
+  button(onclick="printDiv('page')") Imprimer le document de déclaration

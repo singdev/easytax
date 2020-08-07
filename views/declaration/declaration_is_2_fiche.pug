@@ -1,8 +1,5 @@
-link(rel='stylesheet', href='/stylesheets/page.css')
-link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
-
 .fiche
-  .page
+  .page(id="page2")
     .doc-head
       div
         h1 République Gabonaise
@@ -60,7 +57,7 @@ link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
             
             .key-value
               p.key Téléphone :
-              p.telecopie(class="value")
+              p.telephone(class="value")
             
             .key-value
               p.key Site internet :
@@ -94,9 +91,9 @@ link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
             td.acompte 2
              sup ème
              span Acompte
-            td.impot
+            td.impot(style="color: blue; text-align:center")
             td.taux 33.3 %
-            td.montant
+            td.montant(style="color: blue; text-align:center")
             td.code_rubrique
 
     .doc-step-3

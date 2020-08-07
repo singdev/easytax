@@ -1,7 +1,8 @@
+
 link(rel="stylesheet" href="/stylesheets/profil.css")
 link(rel='stylesheet', href='/stylesheets/mon_profil.css')
 
-h2 Champs du formulaire deuxième acompte IS
+h2 Champs du formulaire solde IS
 
 .form-ctn
   .form-group
@@ -13,7 +14,7 @@ h2 Champs du formulaire deuxième acompte IS
     label Sigle
 
   .form-group
-    input(type="text" name="raison_social")
+    input(type="text" name="boite_postal")
     label Boite postal
 
   .form-group
@@ -42,20 +43,14 @@ h2 Champs du formulaire deuxième acompte IS
       em (Résidence d’affectation de l’impôt)
 
   .form-group
-    input(type="text" name="is_du")
-    label IS dû au titre de l'exercice
+    input(type="text" name="is_precedent")
+    label Impôt sur les Sociétés dû au titre de l’exercice précédent
 
-  .form-group
-    input(type="text" name="is_paye")
-    label Total des acomptes déjà payé
-
-  .form-group
-    input(type="text" name="solde")
-    label Solde à payer
-    
 .actions
-  button Générer le document de déclaration
+  button(onclick="remplir(0.333, 1)") Générer le document de déclaration
 
 include declaration_is_2_fiche.pug
 
+.actions
+  button(onclick="printDiv('page2')") Imprimer le document de déclaration
 

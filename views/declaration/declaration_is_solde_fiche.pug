@@ -1,8 +1,5 @@
-link(rel='stylesheet', href='/stylesheets/page.css')
-link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
-
 .fiche
-  .page
+  .page(id="page_s")
     .doc-head
       div
         h1 République Gabonaise
@@ -58,7 +55,7 @@ link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
             
             .key-value
               p.key Téléphone :
-              p.telecopie(class="value")
+              p.telephone(class="value")
             
             .key-value
               p.key Site internet :
@@ -88,9 +85,9 @@ link(rel='stylesheet', href='/stylesheets/declaration/is1_fiche.css')
             th Code nature
         tbody
           tr
-            td.titre_exercice
-            td.total_payer
-            td.total_paye
+            td.titre_exercice(style="color: blue; text-align: center;")
+            td.total_payer(style="color: blue; text-align: center;")
+            td.total_paye(style="color: blue; text-align: center;")
             td 
               strong 03
 
