@@ -1,6 +1,7 @@
 
 let _user = null;
 let _situation_fiscal;
+let _location;
 
 window.addEventListener('load', async () => {
     load(0);
@@ -17,6 +18,7 @@ window.addEventListener('load', async () => {
 
 async function load(index) {
     _user = await fetchUserData();
+    _location = await fetchLocation();
     console.log(_user.situationFiscale);
     if (_user.situationFiscale) {
         _situation_fiscal = JSON.parse(_user.situationFiscale);
@@ -24,10 +26,24 @@ async function load(index) {
     autoCompleteField(index);
 }
 
+async function fetchLocation(){
+    try {
+        const res = await fetch("");
+        if(res.status == 200){
+            return await res.json();
+        } else {
+            return null;
+        }
+    } catch(err){
+        console.log(err);
+        return null;
+    }
+}
+
 function autoCompleteField(i) {
     document.querySelectorAll('input[name="raison_social"]')[i].value = _user.nom;
     document.querySelectorAll('input[name="telephone"]')[i].value = _user.telephone;
-    document.querySelectorAll('input[name="ville"]')[i].value = _user.ville;
+    document.querySelectorAll('input[name="ville"]')[i].value = _location ? _location.city : "";
     document.querySelectorAll('input[name="email"]')[i].value = _user.email;
 
     if (_situation_fiscal) {
