@@ -1,0 +1,255 @@
+.fiche(class="fiche-irpp")
+  .page(id="page")
+    .doc-head
+      div
+        h1 République Gabonaise
+        h2 Ministère de l'économie
+        h3 - - - - - - - - - - - - - - -
+        h3 Direction Générale des Impôts
+        h4 BP 37 / 45 - Libreville
+        h4 Tel: 79.53.76 ou 79.53.77 
+      .space
+      .cache-service
+        p Date de réunion et cachet du service
+
+    .doc-title
+      h1 Déclaration
+      p (À établir en deux exemplaires)
+      h2 Impôt sur le revenu des personnes physiques (Assistants techniques)
+
+    .doc-date(style="padding: 4px;")
+      p Année: 
+        strong.annee
+        em (exercice au titre duquel les impositions sont dues)
+
+
+
+    .doc-step-1
+      .public
+        h3 I - dentification du contribuable, Chef de famille
+        .doc-nif
+          p
+            strong N° du contribuable:  
+            span.nif    |__|__|__|__|__| |__|
+          em (Numéro d’Identification Fiscale (NIF))
+
+        .grid-2
+          .key-value
+            p.key
+              span Nom : M, Mme, Mlle
+              em (rayer les mentions inutiles)
+            p.nom
+          .key-value
+            p.key 
+              span Prénom :
+            p.prenom
+          .key-value
+            p.key
+              span Nationalité : 
+              em (souligner le prénom usuel)
+            p.nationalite
+          .key-value
+            p.key Date et lieu de naissance :
+            p.date_naissance
+          .key-value
+            p.key Quartier :
+            p.quartier
+          .key-value
+            p.key Boîte postale :
+            p.boite_postale
+          .key-value
+            p.key Ville :
+            p.ville
+          .key-value
+            p.key Arrondissement :
+            p.arrondissement
+          .key-value
+            p.key Télécopie :
+            p.telecopie 
+          .key-value
+            p.key Téléphone :
+            p.telephone
+          .key-value
+            p.key Site Internet :
+            p.site_internet
+          .key-value
+            p.key Adresse E. mail :
+            p.email
+          .key-value
+            p.key
+              span Code de résidence :
+              em (Résidence d’affectation de l’impôt)
+            p.email
+      .reserve
+        p.title Cadre réservé à l’Administration
+
+    .doc-step-22
+      h3 II - Situation de famille au 1 er janvier de l’année des revenus
+        em (ou au 31 décembre si la situation vous est plus favorable) (cocher une seule selon votre situation familiale)
+      .public
+        .grid-3
+          p - marié:
+          .little-rect
+          ul
+            li Date et lieu du mariage :
+            li Nom et prénom du conjoint :
+            li Date de naissance
+            li
+              p
+                strong N° du contribuable:  
+                span.nif    |__|__|__|__|__| |__|
+              em (Numéro d’Identification Fiscale (NIF))
+
+          p - célibataire :
+          .little-rect
+          ul
+
+          p - veuf :
+          .little-rect
+          ul
+            li Date du décès du conjoint :
+          p - divorcé ou séparé de corps :
+          .little-rect
+          ul
+            li Date du divorce ou de l’acte constatant la séparation :
+
+      h3(style="border-top: 1px solid black;") Enfants à charge au 1 er janvier de l’année des revenus
+        em (ou au 31 décembre si situation vous est plus favorable) (Le nombre d’enfants pris en compte dans le foyer fiscal est limité à six (6))
+
+      .enfant-charges
+        table.enfants-tab
+          thead
+            tr
+              th Nom et prénom
+              th Lien de parenté
+              th Date et lieu de naissance ou mention « infirme »
+          tbody
+            for i in [1, 2, 3, 4, 5, 6]
+              tr 
+                td #{i}
+                td
+                td
+
+        .enfant-info
+          p 
+            strong Sont considérés à charge : 
+          p 
+            strong Les enfants :
+          ul
+            li - les enfants légitimes reconnus ou adoptifs de moins de 21 ans au 1er janvier de l’année d’imposition ou de moins de 28 ans s’ils poursuivent leurs études (joindre un certificat de scolarité) ;
+            li - infirmes quel que soit leur âge s’ils sont à la charge des parents ;
+            li - orphelins recueillis dans votre foyer fiscal pour lesquels vous ne demandez pas une imposition distincte.
+
+
+    .footer
+      p 1
+
+
+  .page(id="page-2")
+    .revenus
+      .public
+      
+        h3 A - Traitements, salaires, pensions et rentes viagères 
+        h4(style="text-align: center") Vous même
+        p(style="text-align:center; font-size: 10px;")
+          strong (Dans l’hypothèse où les deux conjoints sont assistants techniques, globaliser ci-après le calcul du revenu taxable des deux conjoints)
+
+
+        p Profession exercée (chef de famille) :
+        p Profession exercée ( conjoint A.T.) :
+        p Nom et adresse de l’employeur (chef de famille) :
+        p Nom et adresse de l’employeur ( conjoint A.T.) :
+
+        p 
+          span 1- sommes perçues en 20__ ( Montant communiqué par le Service de Coopération et d’Action Culturelle de l’Ambassade de France) :
+          .medium-rect
+        p
+          span 2 – à déduire retraite et sécurité sociale, contribution solidarité
+          .medium-rect
+        p
+          span 3 – à déduire abattement exceptionnel de 40% 3 = (1 – 2) x 40%
+          .medium-rect
+
+        p
+          span 4 – à déduire : 20% pour les frais professionnels :(limité à 10.000.000 Fcfa) 4 = (1 – 2 – 3) x20%
+          .medium-rect
+
+        p
+          span 5 - Revenu net taxable : (5 = 1 – (2 + 3 + 4)
+          .medium-rect
+
+        p
+          span 6 – IRPP retenue par votre employeur
+          .medium-rect
+
+        h4(style="text-align: center") Votre épouse (employée localement)
+
+        p Profession exercée :
+        p Nom et adresse de l’employeur :
+        p NIF de l’employeur : I__I__I__I__I__I__I I__I
+
+        p 
+          span 7 – sommes perçues en 20__ (total brut communiqué par l’employeur y compris les indemnités d’éloignement et avantages divers) :
+          .medium-rect
+
+        p
+          span 8 – à déduire : Taxe complémentaire sur les traitements et salaires retenue au cours de l’année 20__ :
+          .medium-rect
+
+        p
+          span 9 – Revenu brut imposable : (9 = 7 – 8)
+          .medium-rect
+
+        p
+          span 10 - à déduire : 20% pour les frais professionnels (limité à 10.000.000 Fcfa) (taux de 25% pour les membres du gouvernement et du parlement)
+          .medium-rect
+
+        p 
+          span 11 – Revenu net taxable : (11 = 9 – 10)
+          .medium-rect
+
+        p
+          span 12 – IRPP retenu par l’employeur durant l’année :
+            .medium-rect
+
+        h4(style="text-align: center") Vos enfants déclarés à charge (employés localement)
+        p(style="text-align: center; font-size: 10px") (globaliser les traitements et salaires de tous vos enfants à charge exerçant une activité salarié)
+
+        p Profession exercée :
+        p Nom et adresse de l’employeur :
+        p NIF de l’employeur : I__I__I__I__I__I__I I__I
+
+        p
+          span 13 – sommes perçues en 20__ : (total brut communiqué par l’employeur y compris les indemnités d’éloignement et avantages divers)
+          .medium-rect
+
+        p
+          span 14 – à déduire : Taxe complémentaire sur les traitements et salaires retenue au cours de l’année 20__
+          .medium-rect
+
+        p
+          span 15 – Revenu brut imposable : (15 = 13 – 14)
+          .medium-rect
+
+        p
+          span 16 – à déduire : 20% pour les frais professionnels : (limité à 10.000.000 Fcfa) (taux de 25% pour les membres du gouvernement et du parlement)
+          .medium-rect
+
+        p 
+          span 17 – Revenu net taxable :
+          .medium-rect
+
+        p 
+          span 18 – IRPP retenu par l’employeur durant l’année : (17 = 15 – 16)
+          .medium-rect
+
+        p 
+          span 19 – Total des traitements et salaires nets taxables : (19 = 5+11+17)
+          .medium-rect
+
+        p 
+          span 20 – Total de l’IRPP retenue : (20 = 6+12+18)
+          .medium-rect
+
+      .reserve
+        p.title Cadre réservé à l’Administration
