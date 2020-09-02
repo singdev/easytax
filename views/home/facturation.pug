@@ -6,6 +6,7 @@ block content
   link(rel="stylesheet", href="/stylesheets/alert.css")
   link(rel='stylesheet', href='/stylesheets/dialog.css')
   link(rel='stylesheet', href='/stylesheets/mon_profil.css')
+  link(rel='stylesheet', href='/stylesheets/facturation.css')
 
   include ../includes/main_header.pug
   +header('profil')
@@ -14,3 +15,82 @@ block content
     h1.main-header
       a(href="/profil" class="tabitem") Profil
       a(href="/facturation" class="tabitem tabitem-selected") Facturation
+
+
+    div(style="overflow-x:auto;")
+      table.facturation-table
+        thead
+          tr
+            th Fonctionnalité
+            th
+              h2 Forfait 0
+              p Offre conseillé pour les particuliers et les entreprises individuelles
+              a(href="#" class="btn-yellow") Souscrire
+            th
+              h2 Forfait 1
+              p Offre conseillé pour les TPE, PME et les agences comptables
+              a(href="#" class="btn-yellow") Souscrire
+
+            th
+              h2 Forfait 2
+              p Offre conseillé pour les TPE, PME, agent des impôts et les agences comptables
+              a(href="#" class="btn-yellow") Souscrire
+
+            th
+              h2 Forfait 3
+              p Offre conseillé pour les agences et les experts comptable
+              a(href="#" class="btn-yellow") Souscrire
+
+        tbody
+          tr
+            td
+            td 
+              h3 5000 Fcfa /mois
+            td 
+              h3 100 000 Fcfa /an
+            td
+              h3 200 000 Fcfa /an
+            td 
+              h3 2 500 000 Fcfa /an
+
+          tr
+            td Déclaration
+            td
+            td &times;
+            td &times;
+            td &times;
+
+            tr
+              td Régime fiscal
+              td &times;
+              td &times;
+              td &times;
+              td &times;
+
+            tr
+              td Situation fiscale
+              td &times;
+              td &times;
+              td &times;
+              td &times;
+
+            tr
+              td Alertes
+              td 
+              td 
+              td &times; (limité)
+              td &times; (Illimité)
+
+            tr
+              td Interlocuteur fiscal
+              td &times;
+              td &times;
+              td &times;
+              td &times;
+
+            tr
+              td Easytax appel
+              td 
+              td &times;
+              td &times;
+              td &times;

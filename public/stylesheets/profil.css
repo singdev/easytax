@@ -90,4 +90,8 @@ main {
     .action-button button span {
         display: none;
     }
+
+    .main-header {
+        margin-top: 140px;
+    }
 }

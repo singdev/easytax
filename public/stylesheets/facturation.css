@@ -1,0 +1,16 @@
+.facturation-table {
+    margin-top: 20px;
+}
+
+.facturation-table * {
+    text-align: center;
+}
+
+.facturation-table a {
+    display: inline-block;
+    margin-top: 16px;
+}
+
+.facturation-table th p , .facturation-table td p {
+    width: 200px;
+}
