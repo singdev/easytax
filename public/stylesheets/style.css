@@ -85,7 +85,6 @@ p a {
   text-decoration: none;
   color: white;
   background-color: #b57900;
-  border-radius: 10px;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
@@ -111,10 +110,11 @@ button {
   background-color: #006EB6;
   color: white;
   border-radius: 4px;
-  padding: 8px 3px;
+  padding: 4px;
   transition: 0.4s;
-  padding: 8px 16px;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 400;
+
 }
 
 button:hover {

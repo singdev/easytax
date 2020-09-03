@@ -25,3 +25,12 @@
 .facturation-table th p, .facturation-table th h2 {
     font-weight: normal;
 }
+
+.price {
+    background-color: #ECA821;
+    color: black;
+}
+
+.price h3 {
+    font-weight: 400;
+}
