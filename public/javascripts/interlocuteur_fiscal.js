@@ -4,8 +4,16 @@ let formeJuridiqueType = null;
 
 let responseSituationGeographique = null;
 let responseIFU = null;
+let quartierSudLimit;
 
-const quartiers = [
+const quartierSud = [
+    ["Du pont NOMBA jusqu'a tout Owendo"],
+    ["Centre ville (à partir du ministère des TP )", "Glass", "Toulon", "London", "Saint Germain", "Baraka"],
+    ["Feu rouge plaint niger", "Lalala à droite", "Lalala à gauche", "Lalala Dakar", "Ozangue", "Mindoube"],
+    ["Nzeng Ayong", "PK5", "PK6", "PK7", "PK8", "PK9", "PK10", "PK11", "PK12"]
+];
+
+const quartierNord = [
     [
         "Cap Estérias",
         "Cap Santa Clara",
@@ -22,7 +30,7 @@ const quartiers = [
         "Autres (Zone Lycée Léon MBA)",
         "Dialoque Lycée Mba",
         "Cité Kalikake",
-        "Trois Quartiers",
+        "Trois quartierNord",
         "Les Hauts de Gue Gue",
         "Les Bas de Gue Gue",
         "Cité des Ailes",
@@ -50,7 +58,7 @@ const quartiers = [
         "Lycée Montaigne, Carrefour Mairie 1er Arrondi",
         "Derrière la Prison",
         "Gros Bouquet",
-        "Les Trois Quartiers",
+        "Les Trois quartierNord",
         "Battérie 4 (Battérie 4, CITIBANK)",
         "Feux Rouges Gros Bouquet au Marché Louis",
         "Derrière Marché de Louis",
@@ -111,24 +119,33 @@ window.addEventListener('load', async () => {
     let fm = fms.find(f => f.value == user.formeJuridique);
     formeJuridiqueType = fm.type;
     if (fm.type == 'p') {
-        formContainers[0].classList.add('current-form-container');
-        index = 0;
+        index = formContainers.length-1;
+        formContainers[index].classList.add('current-form-container');
     } else {
-        formContainers[1].classList.add('current-form-container');
-        index = 1;
+        index = 0;
+        formContainers[index].classList.add('current-form-container');
     }
     displayQuartier();
 })
 
 function displayQuartier() {
     const select = document.querySelector('select[name="quartier"]');
+    quartierSudLimit = 0;
+    createQuartierOptions(quartierSud, select);
+    quartierSudLimit = select.querySelectorAll('option').length;
+    createQuartierOptions(quartierNord, select);
+}
+
+function createQuartierOptions(quartiers, select){
+    let count = 0;
     for (let i = 0; i < quartiers.length; i++) {
         const ifu = quartiers[i];
         ifu.forEach(quartier => {
             const option = document.createElement('option');
-            option.value = "IFU-" + (i + 1);
+            option.value = "IFU-" + (i + 1) + " " + (count + quartierSudLimit);
             option.innerHTML = quartier;
             select.appendChild(option);
+            count++;
         })
     }
 }
@@ -155,26 +172,9 @@ async function fetchFormeJuridique() {
     }
 }
 
+
 function nextQuestion() {
     if (index == 0) {
-        let zone = null;
-        const zones = document.querySelectorAll('input[name="lbv"]');
-        zones.forEach(z => {
-            if (z.checked) {
-                zone = z.value;
-            }
-        })
-        if(zone == "lbv_nord"){
-            responseSituationGeographique = "Centre des impôts des petites entreprises et des particuliers de LBV NORD ( OLOUMI premier bâtiment en bordure de route)";
-        } else if(zone == "lbv_sud"){
-            responseSituationGeographique = "Centre des impôts des petites entreprises et des particuliers de lbv sud ( oloumi,  le bâtiment de derrière  ou il y a un parking)";
-        }
-        index = formContainers.length - 1;
-        formContainers.forEach(fc => {
-            fc.classList.remove('current-form-container');
-        });
-        formContainers[index].classList.add('current-form-container');
-    } else if (index == 1) {
         let situation = null;
         const situationsRadio = document.querySelectorAll('input[name="situation"]');
         situationsRadio.forEach(sr => {
@@ -183,13 +183,12 @@ function nextQuestion() {
             }
         })
         if (situation == 'creation') {
-            index = 0;
-
+            index = formContainers.length-1;
         } else if (situation == 'ca_80_15') {
             index = formContainers.length - 3;
             responseSituationGeographique = "CENTRE DES IMPÔTS DES MOYENNES ENTREPRISES D OWENDO (CIME en face de la pédiatrie)";
         } else if (situation == 'ca_80') {
-            index = 0;
+            index = formContainers.length-1;
         } else if (situation == 'ca_15') {
             index = formContainers.length - 2;
             responseSituationGeographique = "DIRECTION DES GRANDES ENTREPRISES (GLASS face pharmacie iboga)";
@@ -198,15 +197,25 @@ function nextQuestion() {
             fc.classList.remove('current-form-container');
         });
         formContainers[index].classList.add('current-form-container');
-    } else if(index == formContainers.length-1){
-        responseIFU = document.querySelector('select[name="quartier"]').value;
+    } else if (index == formContainers.length - 1) {
+        const v = document.querySelector('select[name="quartier"]').value;
+        console.log(v);
+        responseIFU = v.split(" ")[0];
+        const quartierIndex = v.split(" ")[1];
+        console.log(quartierIndex);
+        if(quartierIndex < quartierSudLimit){
+            responseSituationGeographique = "Centre des impôts des petites entreprises et des particuliers de LBV SUD ( oloumi,  le bâtiment de derrière  ou il y a un parking)";
+        } else {
+            responseSituationGeographique = "Centre des impôts des petites entreprises et des particuliers de LBV NORD ( OLOUMI premier bâtiment en bordure de route)";
+        }
+
         formContainers.forEach(fc => {
             fc.classList.remove('current-form-container');
         });
         document.querySelector('.ifu-result').classList.add('show-result');
         document.querySelector('.zone').innerHTML = responseSituationGeographique;
         document.querySelector('.ifu').innerHTML = responseIFU;
-    } else if(index == formContainers.length-2){
+    } else if (index == formContainers.length - 2) {
         responseIFU = document.querySelector('select[name="ca_15"]').value;
         formContainers.forEach(fc => {
             fc.classList.remove('current-form-container');
@@ -214,7 +223,7 @@ function nextQuestion() {
         document.querySelector('.ifu-result').classList.add('show-result');
         document.querySelector('.zone').innerHTML = responseSituationGeographique;
         document.querySelector('.ifu').innerHTML = responseIFU;
-    } else if(index == formContainers.length-3){
+    } else if (index == formContainers.length - 3) {
         responseIFU = document.querySelector('select[name="ca_80_15"]').value;
         formContainers.forEach(fc => {
             fc.classList.remove('current-form-container');
@@ -225,15 +234,14 @@ function nextQuestion() {
     }
 }
 
-
 function previousQuestion() {
     const s = formContainers.length;
     if (index == s - 1 && formeJuridiqueType == 'p') {
-        index = 0;
+        index = 1;
     } else if (index == s - 1 && formeJuridiqueType == 's') {
-        index = 1;
+        index = 0;
     } else {
-        index = 1;
+        index = 0;
     }
     formContainers.forEach(fc => {
         fc.classList.remove('current-form-container');
