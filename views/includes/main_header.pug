@@ -7,7 +7,7 @@ mixin header(current)
     img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
     nav.menu
       +navitem('home', 'Ma fiscalité', "fa fa-poll", current,"/", false)
-      if forfait.type !== 0
+      if forfait && forfait.type !== 0
         +navitem('declaration', 'Déclaration', "fa fa-pencil-alt", current,"/declaration", false)
       else
         +navitem('declaration', 'Déclaration', "fa fa-pencil-alt", current,"/declaration", true)

@@ -27,7 +27,7 @@ block content
         i(class="fa fa-poll")
         span Régime fiscal 
       
-      if forfait.type == 2 || forfait.type == 3
+      if forfait && (forfait.type == 2 || forfait.type == 3)
         a(href="#" id="dlp" class="nav-bar-item" onclick="enableNavBarItem(this)") 
           i(class="fa fa-clock")
           span Date limite de paiement
