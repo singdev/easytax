@@ -10,7 +10,11 @@ module.exports = class extends ForfaitRepo {
     }
 
     async findLastByUser(userId){
-        return await Forfait.findOne({ user: userId });
+        const a = await Forfait.find({ user: userId });
+        console.log("Le forfait");
+        console.log(a);
+        console.log("Le forfait");
+        return a.length == 0 ? null : a[a.length-1];
     }
 
     async findByUser(userId){

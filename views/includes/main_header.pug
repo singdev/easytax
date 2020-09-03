@@ -6,10 +6,14 @@ mixin header(current)
   header
     img( class="logo" src="/images/logo_easytax.png", alt="Logo easytax")
     nav.menu
-      +navitem('home', 'Ma fiscalité', "fa fa-poll", current,"/")
-      +navitem('declaration', 'Déclaration', "fa fa-pencil-alt", current,"/declaration")
-      +navitem('profil', 'Mon compte client', "fas fa-user-circle", current, "/profil")
-      +navitem('deconnexion', 'Déconnexion', 'fas fa-sign-out-alt', current, "/deconnexion")
+      +navitem('home', 'Ma fiscalité', "fa fa-poll", current,"/", false)
+      if forfait.type !== 0
+        +navitem('declaration', 'Déclaration', "fa fa-pencil-alt", current,"/declaration", false)
+      else
+        +navitem('declaration', 'Déclaration', "fa fa-pencil-alt", current,"/declaration", true)
+
+      +navitem('profil', 'Mon compte client', "fas fa-user-circle", current, "/profil", false)
+      +navitem('deconnexion', 'Déconnexion', 'fas fa-sign-out-alt', current, "/deconnexion", false)
   
     - var nom = user.nom;
     - var id = user.identifiant;
@@ -26,8 +30,12 @@ mixin header(current)
 
   script(src="/javascripts/notification.js")
 
-mixin navitem(identifiant, navTitle, icon, current, link)
-  if current == identifiant
+mixin navitem(identifiant, navTitle, icon, current, link, disable)
+  if disable
+    a(href="#" class="nav-item disable")
+      i(class=icon)
+      span=navTitle
+  else if current == identifiant
     a(href=link class="nav-item nav-item-current")
       i(class=icon)
       span=navTitle

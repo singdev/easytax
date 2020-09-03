@@ -21,7 +21,7 @@ function renderProfil(req, res) {
   renderPageWithUser(req, res, 'home/profil', 'Easytax');
 }
 
-function renderFacturation(req, res){
+function renderFacturation(req, res) {
   renderPageWithUser(req, res, 'home/facturation', 'Easytax');
 }
 
@@ -39,7 +39,14 @@ async function renderPageWithUser(req, res, page, title, data) {
 
   const user = new User(userGet[0]);
 
-  res.render(page, { title: title, user, forfait, data });
+  if (page == 'home/declaration' && forfait && forfait.type == 0) {
+    res.redirect("/");
+  } else if (forfait || page === 'home/profil' || page === 'home/facturation') {
+    res.render(page, { title: title, user, forfait, data });
+  } else {
+    res.redirect("/facturation");
+    //res.render('home/facturation', { title: 'Easytax', user, forfait });
+  }
 }
 
 /* GET home page. */
@@ -97,13 +104,13 @@ router.get('/profil-situtation-fiscale', function (req, res, next) {
 });
 
 router.get('/forgot-password', function (req, res, next) {
-  res.render('adhesion/forgot_password', { title: "Mot de passe oublié"})
+  res.render('adhesion/forgot_password', { title: "Mot de passe oublié" })
 });
 
 router.get('/users/forgot-password/:token', function (req, res, next) {
   const token = req.params.token;
   res.cookie("auth", token);
-  res.render('adhesion/change_forgot_password', { title: "Mot de passe oublié"})
+  res.render('adhesion/change_forgot_password', { title: "Mot de passe oublié" })
 });
 
 module.exports = router;

@@ -1,7 +1,6 @@
 window.addEventListener('load', async () => {
     const user = await fetchUser();
     const type = await fetchFormJuridiqueType(user);
-    console.log(type);
     if (type == "p") {
         document.querySelector('.societe').style.display = 'none';
     } else {

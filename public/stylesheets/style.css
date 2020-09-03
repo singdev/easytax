@@ -272,6 +272,14 @@ input:disabled {
  opacity: 0.4;
 }
 
+.disable {
+  opacity: 0.5;
+}
+
+.disable:hover {
+  cursor: not-allowed;
+}
+
 @media screen and (max-width: 640px) {
   .blue-text-field input {
     padding: 8px;

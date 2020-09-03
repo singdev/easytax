@@ -17,14 +17,18 @@ block content
       a(href="/facturation" class="tabitem tabitem-selected") Facturation
 
 
+    if forfait == null
+      h3(style="text-align: center; padding-top: 20px; color: green") Souscrivez un forfait pour pouvoir accéder aux différentes fonctionnalités de la plateforme
+
     div(style="overflow-x:auto;")
       table.facturation-table
         thead
           tr
             th Fonctionnalité
             - var type = forfait != null ? forfait.type : -1;
-            - var d = new Date(forfait.fin);
-            - var date = d != null ? ((d.getDate() < 10 ? '0' : '') +  d.getDate() + "/" + (d.getMonth()+1 < 10 ? '0' : '') + (d.getMonth()+1) + "/" + d.getFullYear()) : null;
+            if type >= 0
+              - var d = new Date(forfait.fin);
+              - var date = d != null ? ((d.getDate() < 10 ? '0' : '') +  d.getDate() + "/" + (d.getMonth()+1 < 10 ? '0' : '') + (d.getMonth()+1) + "/" + d.getFullYear()) : null;
             th(class=type==0 ? 'active' : '')
               h2 Forfait 0
               p Offre conseillé pour les particuliers et les entreprises individuelles
@@ -39,27 +43,38 @@ block content
             th(class=type==1 ? 'active' : '')
               h2 Forfait 1
               p Offre conseillé pour les TPE, PME et les agences comptables
-              form(method="post" action="/forfait")
-                input(type="hidden" name="type" value="1")
-                input(type="hidden" name="month_count" value="360")
-                button(class="btn-yellow") Souscrire
+              if type !== 1
+                form(method="post" action="/users/forfait")
+                  input(type="hidden" name="type" value="1")
+                  input(type="hidden" name="month_count" value="360")
+                  button(class="btn-yellow") Souscrire
+
+              else
+                p(style="padding-top: 20px; color: black;") Expire le
+                p(style="padding-bottom: 20px; color: black;")=date
 
             th(class=type==2 ? 'active' : '')
               h2 Forfait 2
               p Offre conseillé pour les TPE, PME, agent des impôts et les agences comptables
-              form(method="post" action="/users/forfait")
-                input(type="hidden" name="type" value="2")
-                input(type="hidden" name="month_count" value="360")
-                button(class="btn-yellow") Souscrire
-
+              if type !== 2
+                form(method="post" action="/users/forfait")
+                  input(type="hidden" name="type" value="2")
+                  input(type="hidden" name="month_count" value="360")
+                  button(class="btn-yellow") Souscrire
+              else
+                p(style="padding-top: 20px; color: black;") Expire le
+                p(style="padding-bottom: 20px; color: black;")=date
             th(class=type==3 ? 'active' : '')
               h2 Forfait 3
               p Offre conseillé pour les agences et les experts comptable
-              form(method="post" action="/users/forfait")
-                input(type="hidden" name="type" value="3")
-                input(type="hidden" name="month_count" value="360")
-                button(class="btn-yellow") Souscrire
-
+              if type !== 3
+                form(method="post" action="/users/forfait")
+                  input(type="hidden" name="type" value="3")
+                  input(type="hidden" name="month_count" value="360")
+                  button(class="btn-yellow") Souscrire
+              else
+                p(style="padding-top: 20px; color: black;") Expire le
+                p(style="padding-bottom: 20px; color: black;")=date
         tbody
           tr
             td

@@ -26,9 +26,15 @@ block content
       a(href="#" id="rf" class="nav-bar-item"  onclick="enableNavBarItem(this)") 
         i(class="fa fa-poll")
         span Régime fiscal 
-      a(href="#" id="dlp" class="nav-bar-item" onclick="enableNavBarItem(this)") 
-        i(class="fa fa-clock")
-        span Date limite de paiement
+      
+      if forfait.type == 2 || forfait.type == 3
+        a(href="#" id="dlp" class="nav-bar-item" onclick="enableNavBarItem(this)") 
+          i(class="fa fa-clock")
+          span Date limite de paiement
+      else
+        a(href="#" id="dlp" class="nav-bar-item disable" title="Changez de forfait pour y accéder") 
+          i(class="fa fa-clock")
+          span Date limite de paiement
       a(href="#" id="ifp" class="nav-bar-item" onclick="enableNavBarItem(this)") 
         i(class="fa fa-user")
         span Interlocuteur fiscal

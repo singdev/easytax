@@ -1,6 +1,9 @@
 .facturation-table {
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 80px;
 }
+
+
 
 .facturation-table * {
     text-align: center;
@@ -17,4 +20,8 @@
 
 .active {
     background-color: #b57900;
+}
+
+.facturation-table th p, .facturation-table th h2 {
+    font-weight: normal;
 }

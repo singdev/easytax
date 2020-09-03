@@ -36,7 +36,7 @@ async function fetchUser(){
 async function placeholdSituationGeographique(situationGeographique){
     const options = document.querySelectorAll('select[name="situationGeographique"] option');
     options.forEach(o => {
-        if(o.value.replace(/ /g, "") == situationGeographique.replace(/ /g, "")){
+        if(situationGeographique && o.value.replace(/ /g, "") == situationGeographique.replace(/ /g, "")){
             o.selected = true;
         }
     })
@@ -45,7 +45,7 @@ async function placeholdSituationGeographique(situationGeographique){
 function placeholdNombreEmploye(nbEmploye){
     const options = document.querySelectorAll('select[name="nombreEmployes"] option');
     options.forEach(o => {
-        if(o.value.replace(/ /g, "") == nbEmploye.replace(/ /g, "")){
+        if(nbEmploye && o.value.replace(/ /g, "") == nbEmploye.replace(/ /g, "")){
             o.selected = true;
         }
     })

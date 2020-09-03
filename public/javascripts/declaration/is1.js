@@ -19,22 +19,21 @@ window.addEventListener('load', async () => {
 async function load(index) {
     _user = await fetchUserData();
     _location = await fetchLocation();
-    console.log(_user.situationFiscale);
     if (_user.situationFiscale) {
         _situation_fiscal = JSON.parse(_user.situationFiscale);
     }
     autoCompleteField(index);
 }
 
-async function fetchLocation(){
+async function fetchLocation() {
     try {
         const res = await fetch("");
-        if(res.status == 200){
+        if (res.status == 200) {
             return await res.json();
         } else {
             return null;
         }
-    } catch(err){
+    } catch (err) {
         console.log(err);
         return null;
     }
@@ -47,7 +46,7 @@ function autoCompleteField(i) {
     document.querySelectorAll('input[name="email"]')[i].value = _user.email;
 
     if (_situation_fiscal) {
-        if(i < 2){
+        if (i < 2) {
             document.querySelectorAll('input[name="is_precedent"]')[i].value = _situation_fiscal.is_precedent;
         } else {
             document.querySelectorAll('input[name="is_precedent"]')[i].value = _situation_fiscal.is;
@@ -69,12 +68,12 @@ async function fetchUserData() {
 }
 
 function remplir(taux, i) {
-    if(i == 0){
+    if (i == 0) {
         window.location = "#page";
 
-    } else if(i == 1){
+    } else if (i == 1) {
         window.location = "#page2";
-    } else if(i == 2){
+    } else if (i == 2) {
         window.location = "#page_s";
     }
     document.querySelectorAll('.raison_social')[i].innerHTML = document.querySelectorAll('input[name="raison_social"')[i].value;
@@ -94,9 +93,9 @@ function remplir(taux, i) {
         document.querySelectorAll('.impot')[i].innerHTML = impot;
         document.querySelectorAll('.montant')[i].innerHTML = montant;
     } else {
-    document.querySelectorAll('.titre_exercice')[0].innerHTML = document.querySelectorAll('input[name="is_precedent"')[i].value;
-    document.querySelectorAll('.total_payer')[0].innerHTML = document.querySelectorAll('input[name="is_paye"')[0].value;
-    document.querySelectorAll('.total_paye')[0].innerHTML = document.querySelectorAll('input[name="solde"')[0].value;
+        document.querySelectorAll('.titre_exercice')[0].innerHTML = document.querySelectorAll('input[name="is_precedent"')[i].value;
+        document.querySelectorAll('.total_payer')[0].innerHTML = document.querySelectorAll('input[name="is_paye"')[0].value;
+        document.querySelectorAll('.total_paye')[0].innerHTML = document.querySelectorAll('input[name="solde"')[0].value;
     }
 }
 
