@@ -22,24 +22,43 @@ block content
         thead
           tr
             th Fonctionnalité
-            th
+            - var type = forfait != null ? forfait.type : -1;
+            - var d = new Date(forfait.fin);
+            - var date = d != null ? ((d.getDate() < 10 ? '0' : '') +  d.getDate() + "/" + (d.getMonth()+1 < 10 ? '0' : '') + (d.getMonth()+1) + "/" + d.getFullYear()) : null;
+            th(class=type==0 ? 'active' : '')
               h2 Forfait 0
               p Offre conseillé pour les particuliers et les entreprises individuelles
-              a(href="#" class="btn-yellow") Souscrire
-            th
+              if type !== 0
+                form(method="post" action="/users/forfait")
+                  input(type="hidden" name="type" value="0")
+                  input(type="hidden" name="month_count" value="30")
+                  button(class="btn-yellow") Souscrire
+              else
+                p(style="padding-top: 20px; color: black;") Expire le
+                p(style="padding-bottom: 20px; color: black;")=date
+            th(class=type==1 ? 'active' : '')
               h2 Forfait 1
               p Offre conseillé pour les TPE, PME et les agences comptables
-              a(href="#" class="btn-yellow") Souscrire
+              form(method="post" action="/forfait")
+                input(type="hidden" name="type" value="1")
+                input(type="hidden" name="month_count" value="360")
+                button(class="btn-yellow") Souscrire
 
-            th
+            th(class=type==2 ? 'active' : '')
               h2 Forfait 2
               p Offre conseillé pour les TPE, PME, agent des impôts et les agences comptables
-              a(href="#" class="btn-yellow") Souscrire
+              form(method="post" action="/users/forfait")
+                input(type="hidden" name="type" value="2")
+                input(type="hidden" name="month_count" value="360")
+                button(class="btn-yellow") Souscrire
 
-            th
+            th(class=type==3 ? 'active' : '')
               h2 Forfait 3
               p Offre conseillé pour les agences et les experts comptable
-              a(href="#" class="btn-yellow") Souscrire
+              form(method="post" action="/users/forfait")
+                input(type="hidden" name="type" value="3")
+                input(type="hidden" name="month_count" value="360")
+                button(class="btn-yellow") Souscrire
 
         tbody
           tr
@@ -47,11 +66,11 @@ block content
             td 
               h3 5000 Fcfa /mois
             td 
-              h3 100 000 Fcfa /an
+              h3 10 000 Fcfa /mois
             td
-              h3 200 000 Fcfa /an
+              h3 20 000 Fcfa /mois
             td 
-              h3 2 500 000 Fcfa /an
+              h3 250 000 Fcfa /mois
 
           tr
             td Déclaration

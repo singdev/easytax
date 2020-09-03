@@ -14,13 +14,17 @@ const UserRepository = require('../../src/interface_adapter/storage/UserRepoMong
 const userRepository = new UserRepository();
 const bcrypt = new Bcrypt();
 
+router.get('/forfait', authController.verifyAccessToken, function (req, res, next) {
+    userController.getForfait(req, res, next);
+})
+
 router.get('/auth', authController.verifyAccessToken, async (req, res, next) => {
-    const users = await GetUser(req.auth.credentials.uid, { userRepository});
+    const users = await GetUser(req.auth.credentials.uid, { userRepository });
     res.json(users[0]);
-}); 
+});
 
 router.put('/', authController.verifyAccessToken, async (req, res, next) => {
-    if(req.body.password){
+    if (req.body.password) {
         req.body.password = await bcrypt.hash(req.body.password);
     }
     console.log(req.body);

@@ -6,9 +6,12 @@ const Alert = require('../src/framework_driver/database/mongoDB/models/AlertMode
 var GetTokenData = require('../src/application_business_logic/use_case/GetTokenData');
 var JWT = require('../src/interface_adapter/security/JWTAccessToken');
 var GetUser = require('../src/application_business_logic/use_case/GetUser');
+
 var UserRepository = require('../src/interface_adapter/storage/UserRepoMongoDB');
+var ForfatiRepository = require('../src/interface_adapter/storage/ForfaitRepoMongoDB');
+
 var User = require('../src/enterprise_business_logic/entity/User');
-const { render } = require('pug');
+var GetLastForfait = require('../src/application_business_logic/use_case/GetLastForfait');
 
 function renderHome(req, res, data) {
   renderPageWithUser(req, res, 'home/ma_fiscalite', 'Easytax', data);
@@ -32,9 +35,11 @@ async function renderPageWithUser(req, res, page, title, data) {
   const decoded = await GetTokenData(req.cookies.auth, { accessToken });
   const userGet = await GetUser(decoded.uid, { userRepository });
 
+  const forfait = await GetLastForfait(decoded.uid, new ForfatiRepository());
+
   const user = new User(userGet[0]);
 
-  res.render(page, { title: title, user, data });
+  res.render(page, { title: title, user, forfait, data });
 }
 
 /* GET home page. */
@@ -42,7 +47,6 @@ router.get('/', async function (req, res, next) {
   if (req.cookies.auth) {
     const accessToken = new JWT();
     const user = await GetTokenData(req.cookies.auth, { accessToken });
-    console.log(user);
     //Get alert paiement
     const alerts = await Alert.find({ user: user.uid });
     console.log(alerts);

@@ -5,23 +5,21 @@ const GetUser = require('../../application_business_logic/use_case/GetUser');
 const SearchUserByEmail = require('../../application_business_logic/use_case/SearchUserByEmail');
 const SendEmail = require('../../application_business_logic/use_case/SendEmail');
 const GetInitPasswordMessage = require('../../application_business_logic/use_case/GetInitPasswordMessage');
-
+const GetLastForfait = require('../../application_business_logic/use_case/GetLastForfait');
 
 const MailSender = require('../messages/GMailSender');
 const EMAIL = require('../../application_business_logic/constants/email')
 const UserRepoMongo = require('../storage/UserRepoMongoDB');
+const ForfaitRepo = require('../storage/ForfaitRepoMongoDB');
 const User = require('../../enterprise_business_logic/entity/User');
 const Crypto = require('../../interface_adapter/security/BcryptJS');
 const JWTAccessToken = require('../../interface_adapter/security/JWTAccessToken');
-const { render } = require('pug');
+const CreateForfait = require('../../application_business_logic/use_case/CreateForfait');
 
-async function renderPageWithUser(req, res, page, title) {
-    const accessToken = new JWT();
-    const userRepository = new UserRepository();
-    const decoded = await GetTokenData(req.cookies.auth, { accessToken });
-    const userGet = await GetUser(decoded.uid, { userRepository });
-    const user = new User(userGet[0]);
-    res.render(page, { title: title, user });
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
 }
 
 module.exports = {
@@ -38,9 +36,7 @@ module.exports = {
                 const token = await GetToken(newUser, { accessToken });
                 res.cookie("auth", token);
                 res.redirect('/');
-                //renderPageWithUser(req, res, 'home/ma_fiscalite', "Easytax")
             } else {
-                const errorMessage = "Cette utilisateur existe déjà ";
                 res.render("adhesion/inscription", { title: "Inscription | Eeasytax", error: "Un utilisateur avec ce nom existe déjà"});
             }
         } catch (err) {
@@ -96,5 +92,39 @@ module.exports = {
             console.log(err);
             res.sendStatus(500);
         }
-    }
+    },
+
+    async createForfait(req, res, next){
+        const forfaitRepo = new ForfaitRepo();
+        try {
+            const now = new Date();
+            const last = addDays(now, Number.parseInt(req.body.month_count));
+            const id = req.auth.credentials.uid;
+            const forfait = {
+                type: req.body.type,
+                debut: now,
+                fin: last,
+                user: id
+            };
+            console.log(forfait);
+            await CreateForfait(forfait, forfaitRepo);
+            res.status(200);
+            res.redirect("/facturation");
+        } catch(err){
+            console.log(err);
+            res.status(500);
+            res.redirect("/facturation");
+        }
+    },
+
+    async getForfait(req, res, next){
+        const forfaitRepo = new ForfaitRepo();
+        try {
+            const result = await GetLastForfait(req.auth.credentials.uid, forfaitRepo);
+            res.send(result);
+        } catch(err){
+            console.log(err);
+            res.sendStatus(500);
+        }
+    },
 }

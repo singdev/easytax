@@ -5,8 +5,11 @@ var userController = require('../src/interface_adapter/controller/UserController
 var authController = require('../src/interface_adapter/controller/AuthController');
 
 
-/* GET users listing. */
-router.post('/', function(req, res, next) {
+router.post('/forfait', authController.verifyAccessToken, function(req, res, next){
+  userController.createForfait(req, res, next);
+});
+
+router.post('/',  function(req, res, next) {
   userController.createUser(req, res, next);
 });
 

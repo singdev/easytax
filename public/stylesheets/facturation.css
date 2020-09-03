@@ -6,11 +6,15 @@
     text-align: center;
 }
 
-.facturation-table a {
-    display: inline-block;
+.facturation-table form {
+    width: 100%;
     margin-top: 16px;
 }
 
 .facturation-table th p , .facturation-table td p {
     width: 200px;
+}
+
+.active {
+    background-color: #b57900;
 }
