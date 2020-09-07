@@ -2,6 +2,143 @@ link(rel='stylesheet', href='/stylesheets/declaration/irpp_fiche.css')
 
 h2 Champs du formulaire IRPP
 
+.form-ctn
+  .form-group
+    input(type="text" name="raison_social")
+    label Nom
+  
+  .form-group
+    input(type="text" name="prenom")
+    label Prénom
+
+  .form-group
+    input(type="text" name="nationalite")
+    label Nationalité
+
+  .form-group
+    input(type="text" name="date_naissance")
+    label Date de naissance
+  
+  .form-group
+    input(type="text" name="quartier")
+    label Quartier
+
+  .form-group
+    input(type="text" name="boite_postal")
+    label Boite postal
+
+  .form-group
+    input(type="text" name="telephone")
+    label Téléphone
+
+  .form-group
+    input(type="text" name="email")
+    label Adresse Email
+
+  .form-group
+    input(type="text" name="ville")
+    label Ville
+
+  .form-group
+    input(type="text" name="telecopie")
+    label Télécopie
+
+  .form-group
+    input(type="text" name="site_internet")
+    label Site internet
+
+  .form-group
+    input(type="text" name="code_residence")
+    label Code de résidence 
+      em (Résidence d’affectation de l’impôt)
+
+  .form-group
+    select(type="text" name="matrimonial")
+      option(value="marie") Marié
+      option(value="celibataire") Célibataire
+      option(value="veuf") Veuf
+      option(value="divorce") Divorcé ou Séparé de corps
+    label Situation matrimonial
+
+  .form-group
+    input(type="text" name="profession")
+    label Profession exercé (Chef de famille)
+
+  .form-group
+    input(type="text" name="employeur")
+    label Nom et adresse de l'employeur
+
+  .form-group
+    input(type="text" name="somme_percu")
+    label Somme perçue
+
+  .form-group
+    input(type="text" name="profession_epouse")
+    label Profession exercé (Votre épouse)
+
+  .form-group
+    input(type="text" name="employeur_epouse")
+    label Nom et adresse de l'employeur de votre épouse
+
+  .form-group
+    input(type="text" name="somme_percu_epouse")
+    label Somme perçue par votre epouse
+
+  .form-group
+    input(type="text" name="profession_enfant")
+    label Profession exercé (Cumulé de vos enfants salariés)
+
+  .form-group
+    input(type="text" name="employeur_enfant")
+    label Nom et adresse de l'employeur de vos enfants
+
+  .form-group
+    input(type="text" name="somme_percu_enfant")
+    label Somme perçue par vos enfants
+
+  .form-group
+    input(type="text" name="emprunt")
+    label Emprunts
+
+  .form-group
+    input(type="text" name="cfpb")
+    label CFPB
+
+  .form-group
+    input(type="text" name="cfpnb")
+    label CFPNB
+
+  .form-group
+    input(type="text" name="tsil")
+    label TSIL
+
+  .form-group
+    input(type="text" name="bic_ca")
+    label Chiffre d'affaires des activités industriel
+
+  .form-group
+    input(type="text" name="bnc_ca")
+    label Chiffre d'affaires réalisé profession hors commercial
+
+  .form-group
+    input(type="text" name="ba_ca")
+    label Chiffre d'affaires réalisé profession agricole
+
+  .form-group
+    input(type="text" name="bic")
+    label BIC
+
+  .form-group
+    input(type="text" name="bnc")
+    label BNC
+
+  .form-group
+    input(type="text" name="ba")
+    label BA
+
+.actions
+  button(onclick="remplir(0.25, 0)") Générer le document de déclaration
+
 include declaration_irpp_fiche.pug
 
 .actions
