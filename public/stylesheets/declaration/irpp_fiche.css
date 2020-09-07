@@ -4,27 +4,27 @@
     justify-content: flex-start;
 } 
 
-.fiche-irpp .key {
+.key {
     display: grid;
     grid-template-columns: auto;
     justify-content: flex-start;
     padding-top: 2px;
 }
 
-.fiche-irpp .grid-2 {
+.grid-2 {
     padding: 4px;
 }
 
-.fiche-irpp .key * {
+.key * {
     padding: 0px;
     margin: 0px;
 }
 
-.fiche-irpp .doc-step-1 {
+.doc-step-1 {
     border: 1px solid black;
 }
 
-.fiche-irpp .public h3 {
+.public h3 {
     border-bottom: 1px solid black;
     height: 35px;
     width: 100%;
@@ -32,12 +32,13 @@
     padding-left: 10px;
 }
 
-.fiche-irpp h3 {
+h3 {
     font-size: 16px;
     line-height: 1em;
+    padding: 4px;
 }
 
-.fiche-irpp .reserve p.title {
+.reserve p.title {
     border-bottom: 1px solid black;
     height: 35px;
     text-align: center;
@@ -89,7 +90,7 @@
     padding: 8px;
 }
 
-.fiche-irpp p, .fiche-irpp li, .fiche-irpp td {
+p,  li,  td {
     font-size: 12px;
     line-height: 1.2em;
 }
@@ -205,4 +206,8 @@ h5 {
 .signature .date {
     display: grid;
     grid-template-columns: 20%  30% 10% 40%;
+}
+
+.revenus {
+    width: 95%;
 }

@@ -13,10 +13,12 @@ body {
     background-color: #FAFAFA;
     font: 12pt "Tahoma";
 }
+
 * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
+
 .page {
     width: 210mm;
     min-height: 297mm;
@@ -26,6 +28,7 @@ body {
     background: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
 .subpage {
     height: 257mm;
     padding: 1cm;
@@ -36,10 +39,6 @@ body {
     margin: 0;
 }
 @media print {
-    html, body {
-        width: 210mm;
-        height: 297mm;        
-    }
     .page {
         margin: 0;
         border: initial;
