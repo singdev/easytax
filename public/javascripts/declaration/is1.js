@@ -18,25 +18,11 @@ window.addEventListener('load', async () => {
 
 async function load(index) {
     _user = await fetchUserData();
-    _location = await fetchLocation();
+    _location = null;
     if (_user.situationFiscale) {
         _situation_fiscal = JSON.parse(_user.situationFiscale);
     }
     autoCompleteField(index);
-}
-
-async function fetchLocation() {
-    try {
-        const res = await fetch("");
-        if (res.status == 200) {
-            return await res.json();
-        } else {
-            return null;
-        }
-    } catch (err) {
-        console.log(err);
-        return null;
-    }
 }
 
 function autoCompleteField(i) {
@@ -76,15 +62,15 @@ function remplir(taux, i) {
     } else if (i == 2) {
         window.location = "#page_s";
     }
-    document.querySelectorAll('.raison_social')[i].innerHTML = document.querySelectorAll('input[name="raison_social"')[i].value;
-    document.querySelectorAll('.sigle')[i].innerHTML = document.querySelectorAll('input[name="sigle"')[i].value;
-    document.querySelectorAll('.ville')[i].innerHTML = document.querySelectorAll('input[name="ville"')[i].value;
-    document.querySelectorAll('.email')[i].innerHTML = document.querySelectorAll('input[name="email"')[i].value;
-    document.querySelectorAll('.telephone')[i].innerHTML = document.querySelectorAll('input[name="telephone"')[i].value;
-    document.querySelectorAll('.telecopie')[i].innerHTML = document.querySelectorAll('input[name="telecopie"')[i].value;
-    document.querySelectorAll('.boite_postal')[i].innerHTML = document.querySelectorAll('input[name="boite_postal"')[i].value;
-    document.querySelectorAll('.code_residence')[i].innerHTML = document.querySelectorAll('input[name="code_residence"')[i].value;
-    document.querySelectorAll('.site_internet')[i].innerHTML = document.querySelectorAll('input[name="site_internet"')[i].value;
+    document.querySelectorAll('.raison_social')[i].innerHTML = document.querySelectorAll('input[name="raison_social"]')[i].value;
+    document.querySelectorAll('.sigle')[i].innerHTML = document.querySelectorAll('input[name="sigle"]')[i].value;
+    document.querySelectorAll('.ville')[i].innerHTML = document.querySelectorAll('input[name="ville"]')[i].value;
+    document.querySelectorAll('.email')[i].innerHTML = document.querySelectorAll('input[name="email"]')[i].value;
+    document.querySelectorAll('.telephone')[i].innerHTML = document.querySelectorAll('input[name="telephone"]')[i].value;
+    document.querySelectorAll('.telecopie')[i].innerHTML = document.querySelectorAll('input[name="telecopie"]')[i].value;
+    document.querySelectorAll('.boite_postal')[i].innerHTML = document.querySelectorAll('input[name="boite_postal"]')[i].value;
+    document.querySelectorAll('.code_residence')[i].innerHTML = document.querySelectorAll('input[name="code_residence"]')[i].value;
+    document.querySelectorAll('.site_internet')[i].innerHTML = document.querySelectorAll('input[name="site_internet"]')[i].value;
 
     if (i < 2) {
         const impot = document.querySelectorAll('input[name="is_precedent"]')[i].value.replace(/ /g, "").trim();
