@@ -56,7 +56,6 @@ router.get('/', async function (req, res, next) {
     const user = await GetTokenData(req.cookies.auth, { accessToken });
     //Get alert paiement
     const alerts = await Alert.find({ user: user.uid });
-    console.log(alerts);
     //Render index
     renderHome(req, res, { alerts });
   } else {

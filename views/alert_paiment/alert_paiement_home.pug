@@ -8,7 +8,8 @@ div(class="dlp alert-paiement-cn mc-it")
   p Pour cela, paramétrez juste le tableau suivant en ajoutant de nouvelles alertes ou en modifiant les dates de répétition. 
 
 
-  button(style="margin-left: 0px;" onclick="deleteAllAlert()") Réinitialiser le tableau
+  - let f = JSON.stringify(forfait);
+  button(style="margin-left: 0px;" onclick="deleteAllAlert('"+f+"')") Réinitialiser le planning d'alerte
   div(style="overflow-x:auto;")
     table
       thead

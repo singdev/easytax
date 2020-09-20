@@ -31,6 +31,7 @@ window.addEventListener('load', async () => {
     _userAlert = await fetchUser();
     _formJuridiqueAlert = await fetchFormeJuridique();
     _alert = await fetchAlert();
+    console.log(_alert);
     _alert.forEach(async a => {
         const da = new Date(a.date_alert);
         const now = new Date();
@@ -118,6 +119,22 @@ function getImpotByFormJuridique(formeJuridique) {
         }
     }
     return impots;
+}
+
+function hasAlert(){
+    return _alert.length > 0;
+}
+
+function hasAlertForPreviousYear(){
+    const previousYear = new Date().getFullYear()-1;
+    let result = false;
+    _alert.forEach(a => {
+        const year = new Date(a.date_limite).getFullYear();
+        if(year == previousYear){
+            result = true;
+        }
+    });
+    return result;
 }
 
 function displayImpotAlertTableRow(impots) {
@@ -244,7 +261,13 @@ async function postAlert({ date_limite, date_alert, impot }) {
     }
 }
 
-async function deleteAllAlert(){
+async function deleteAllAlert(forfaitStr){
+    const forfait = JSON.parse(forfaitStr);
+    console.log(forfait);
+    if(forfait.type == 2 && hasAlert() && !hasAlertForPreviousYear()){
+        alert("Votre forfait ne vous permet pas de réinitialiser le planning d'alerte au cours de l'exercice fiscal en cours");
+        return;
+    }
    const res = await fetch("/api/alerts/all", {
        method: 'delete',
    });
