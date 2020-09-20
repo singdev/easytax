@@ -152,7 +152,8 @@ function displayImpotAlertTableRow(impots) {
 
 function toStringData(date) {
     let d = new Date(date);
-    let str = (d.getDate() < 10 ? "0" : "") + d.getDate() + "/" + (d.getMonth() < 10 ? "0" : "") + d.getMonth() + "/" + d.getFullYear();
+    let month = d.getMonth()+1;
+    let str = (d.getDate() < 10 ? "0" : "") + d.getDate() + "/" + (month < 10 ? "0" : "") + month + "/" + d.getFullYear();
     return str;
 }
 
@@ -207,9 +208,10 @@ async function createAlertPaiement() {
     const datePaiementStrSplits = document.querySelector('.date').innerHTML.split(' ');
 
     const str = document.querySelector('.month-value').innerHTML.replace(/ /g, "");
-    const m = MONTHS.indexOf(str);
+    const m = MONTHS.indexOf(str)+1;
     const month = (m < 10 ? "0" : "") + m;
-    const date = (datePaiementStrSplits[0] < 10 ? "0" : "") + datePaiementStrSplits[0];
+    const dnum = Number.parseInt(datePaiementStrSplits[0]);
+    const date = (dnum < 10 ? "0" : "") + dnum;
     const year = datePaiementStrSplits[datePaiementStrSplits.length - 1];
 
     const date_limite = new Date(`${year}-${month}-${date}`);

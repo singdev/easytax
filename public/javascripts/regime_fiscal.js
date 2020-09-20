@@ -42,7 +42,8 @@ const _impots = [
             ]
         }
     },
-    { name: "IRPP", article: `
+    {
+        name: "IRPP", article: `
     <div class="article">
       <h3>Article 79</h3>
       <p>
@@ -52,7 +53,13 @@ const _impots = [
       Il en est de même des membres des groupements d’intérêt économique, des sociétés civiles, des sociétés en participation et des sociétés de fait non passibles de l’impôt sur les sociétés.
       </p>
     </div>
-    ` },
+    `, alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "IRPP (BIC, BNC, BA): Régime de base", date: 28, month: 1, year: new Date().getMonth() > 1 ? 1 : 0 + new Date().getFullYear(), question: "Quel étais le dernier mois  de la livraison?" }
+            ]
+        }
+    },
     {
         name: "TVA", article: `
         <div class="article">
@@ -84,7 +91,8 @@ Une possibilité d’option pour l’assujettissement à la TVA est autorisée p
             ]
         }
     },
-    { name: "Licences", article: `
+    {
+        name: "Licences", article: `
   <div class="article">
   <h3>Article 272</h3>
   <p>
@@ -110,7 +118,8 @@ Une possibilité d’option pour l’assujettissement à la TVA est autorisée p
             ]
         }
     },
-    { name: "CFPNB", article: `
+    {
+        name: "CFPNB", article: `
     <div class="article">
     <h3>Article 297</h3>
     <p>
@@ -120,8 +129,15 @@ Une possibilité d’option pour l’assujettissement à la TVA est autorisée p
     Le revenu imposable est égal aux 4/5e de la valeur locative laquelle est elle-même égale à 10 % de la valeur vénale.
     </p>
   </div>
-    ` },
-    { name: "CSS", article: `
+    `, alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "CFPNB", date: 31, month: 2, year: new Date().getMonth() <= 2 ? 0 : 1 + new Date().getFullYear() }
+            ]
+        }
+    },
+    {
+        name: "CSS", article: `
     <div class="article">
     <h3>Article 14</h3>
     <p>
@@ -134,8 +150,15 @@ Une possibilité d’option pour l’assujettissement à la TVA est autorisée p
     </p>
   </div>
     
-    ` },
-    { name: "CFP", article: `
+    ` , alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "CSS", date: 20, month: (new Date().getDate() < 20 ? 0 : 1) + new Date().getMonth(), year: new Date().getFullYear() }
+            ]
+        }
+    },
+    {
+        name: "CFP", article: `
     <div class="article">
     <h3>Article 8</h3>
     <p>
@@ -145,8 +168,15 @@ Une possibilité d’option pour l’assujettissement à la TVA est autorisée p
       L'estimation des rémunérations allouées sous la forme d'avantages en nature est faite conformément aux dispositions du Code Général des Impôts.
     </p>
   </div>
-    ` },
-    { name: "DET", article: `
+    `, alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "CFP", date: 15, month: new Date().getMonth() < 11 ? (1 + new Date().getMonth()) : 0, year: new Date().getFullYear() }
+            ]
+        }
+    },
+    {
+        name: "DET", article: `
     <div class="article">
     <h3>Article 79</h3>
     <p>
@@ -170,7 +200,8 @@ Une possibilité d’option pour l’assujettissement à la TVA est autorisée p
             ]
         }
     },
-    { name: "Redevances sur l’extraction des matériaux de carrières", article: `
+    {
+        name: "Redevances sur l’extraction des matériaux de carrières", article: `
     <div class="article">
     <h3>Article 336</h3>
     <p>
@@ -216,14 +247,21 @@ L’un des deux exemplaires est rendu au contribuable dûment daté et visé par
             ]
         }
     },
-    { name: "RUR", article: `
+    {
+        name: "RUR", article: `
     <div class="article">
     <h3>Article 361</h3>
     <p>
     Les ventes de produits pétroliers raffinés destinés à la consommation intérieure sont soumises au paiement de la redevance d’usure de la route en abrégé RUR.
     </p>
   </div>
-    ` },
+    `, alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "RUR", date: 25, year: new Date().getFullYear(), question: "Quel étais le dernier mois  de la livraison?" }
+            ]
+        }
+    },
     {
         name: "Taxe sur les contrats d’assurances", article: `
         <div class="article">
@@ -239,7 +277,8 @@ L’un des deux exemplaires est rendu au contribuable dûment daté et visé par
             ]
         }
     },
-    { name: "Taxe Forfaitaire d’habitation", article: `
+    {
+        name: "Taxe Forfaitaire d’habitation", article: `
     <div class="article">
     <h3>Article 381</h3>
     <p>
@@ -247,14 +286,21 @@ L’un des deux exemplaires est rendu au contribuable dûment daté et visé par
     </p>
   </div>
     ` },
-    { name: "TSIL", article: `
+    {
+        name: "TSIL", article: `
     <div class="article">
     <h3>Article 386</h3>
     <p>
     La taxe est établie sur le produit brut des locations ou sous-locations, au nom de chaque particulier ou société, pour l’ensemble des immeubles loués au lieu de la résidence principale ou du principal établissement.
     </p>
   </div>
-    ` },
+    ` , alert: {
+            echeance_count: 1,
+            echeance: [
+                { title: "TSIL", date: 15, year: new Date().getFullYear(), question: "Quel étais le dernier mois du trimestre d'encaissement des loyers ?" }
+            ]
+        }
+    },
     {
         name: "FNH", article: `
         <div class="article">
@@ -270,7 +316,8 @@ L’un des deux exemplaires est rendu au contribuable dûment daté et visé par
             ]
         }
     },
-    { name: "TJH", article: `
+    {
+        name: "TJH", article: `
     <div class="article">
     <h3>Article 407</h3>
     <p>
@@ -278,7 +325,8 @@ L’un des deux exemplaires est rendu au contribuable dûment daté et visé par
     </p>
   </div>
     ` },
-    { name: "TBP", article: `
+    {
+        name: "TBP", article: `
     <div class="article">
     <h3>Article 410</h3>
     <p>
@@ -294,11 +342,11 @@ window.addEventListener('load', async () => {
     checkUserFormJuridique();
 })
 
-function closeArticleDialog(){
+function closeArticleDialog() {
     document.querySelector('.article-dialog').classList.remove('show-dialog');
 }
 
-function showArticleDialog(){
+function showArticleDialog() {
     document.querySelector('.article-dialog').classList.add('show-dialog');
 }
 
@@ -377,7 +425,7 @@ function displayImpotsObligatoire() {
                     document.querySelector('.article-content').innerHTML = `
                     <h2>${impot.name}</h2>
                     ${impot.article}
-                    ` 
+                    `
                 })
                 td2.appendChild(a);
                 tr.appendChild(td1);
