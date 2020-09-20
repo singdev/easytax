@@ -55,3 +55,10 @@ main > .current-declaration {
     padding-left: 4px;
     color: blue;
 }
+
+@media screen and (max-width: 800px){
+
+    main {
+        overflow-x: scroll;
+    }
+}

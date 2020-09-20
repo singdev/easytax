@@ -80,6 +80,10 @@ p a {
   padding: 0px 8px;
 }
 
+body {
+  padding-bottom: 80px;
+}
+
 .btn-yellow {
   padding: 4px;
   text-decoration: none;
