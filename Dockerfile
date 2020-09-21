@@ -3,6 +3,7 @@ FROM node:stretch
 ENV PORT 8080
 ENV MONGO_HOST easytax
 ENV MONGO_PORT 27017
+ENV EASYTAX_DOMAIN preprod.easytax.tech
 
 # Create app directory
 WORKDIR /usr/src/app
